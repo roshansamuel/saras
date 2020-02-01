@@ -42,17 +42,23 @@ The following Python modules are necessary for the test to run:
 At the end of the test, the plot is written into a test.png file for the user to verify.
 
 
-REFERENCES:
+## REFERENCES:
+
 Various articles and pages used to make programming decisions during development of the solver are listed here:
-[1]. http://coding.derkeiler.com/Archive/C_CPP/comp.lang.c/2004-02/1382.html
-[2]. https://stackoverflow.com/questions/4816698/avoiding-circular-dependencies-of-header-files
-[3]. http://blitz.sourceforge.net/resources/blitz-0.9.pdf
-[4]. https://stackoverflow.com/questions/8111677/what-is-argument-dependent-lookup-aka-adl-or-koenig-lookup
-[5]. https://www.codesynthesis.com/~boris/blog/2012/04/04/when-provide-empty-destructor/
 
-Articles on multi-grid methods:
-[a]. http://math.mit.edu/classes/18.086/2006/am63.pdf
-[b]. http://www.mgnet.org/mgnet-tuts.html
+### General stuff
 
-Journal references:
-[1]. Ghia, U., Ghia, K. N., & Shin, C. T. (1982). High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method. J. Comput. Phys., 48(3), 387–411. 
+1. http://coding.derkeiler.com/Archive/C_CPP/comp.lang.c/2004-02/1382.html
+2. https://stackoverflow.com/questions/4816698/avoiding-circular-dependencies-of-header-files
+3. http://blitz.sourceforge.net/resources/blitz-0.9.pdf
+4. https://stackoverflow.com/questions/8111677/what-is-argument-dependent-lookup-aka-adl-or-koenig-lookup
+5. https://www.codesynthesis.com/~boris/blog/2012/04/04/when-provide-empty-destructor/
+
+### Articles on multi-grid methods
+
+1. http://math.mit.edu/classes/18.086/2006/am63.pdf
+2. http://www.mgnet.org/mgnet-tuts.html
+
+### Journal references
+
+1. Ghia, U., Ghia, K. N., & Shin, C. T. (1982). High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method. J. Comput. Phys., 48(3), 387–411. 
