@@ -1,8 +1,8 @@
-# Saras - Finite-difference solver
+# Saras - Finite difference solver
 
 Saras is an OpenMP-MPI hybrid parallelized Navier-Stokes equation solver written in C++.
-It uses finite-difference methods for spatial discretization along with parallelized algebraic multi-grid method for solving
-the pressure correction equation.
+It uses the finite-difference method for calculating spatial derivatives and parallelized algebraic multi-grid method for solving
+the pressure Poisson equation.
 
 All the source and library files for the Saras solver are contained in the following directories:
 
@@ -67,22 +67,32 @@ please make sure to update the relevant paths in the shell configuration file (`
 
 ## Testing SARAS
 
-The Bash shell script ``testSaras.sh``, found in the ``tests/`` folder can be executed to test the solver post-installation.
-The script compiles Saras, and runs it with a pre-defined set of parameters.
-The parameters file necessary to test the solver with benchmark results of Ghia et al for the lid-driven cavity
-(LDC) problem can be found in the ``input/`` folder of ``tests/ldcTest/``.
+``SARAS`` offers an automated testing process to validate the solver after installation.
+The relevant test scripts can be found in the ``tests/`` folder of the solver.
+Executing the Bash shell script ``testSaras.sh``, will compile ``SARAS``, and run it with a pre-defined set of parameters.
+We use the benchmark results on 2D lid-driven cavity (LDC) performed by Ghia et al (1982) to validate ``SARAS``.
+The test can be executed by running the following command within the ``tests/`` folder.
 
-The test run uses 4 cores and takes about 12 minutes to complete on a desktop workstation.
-At the end of the test, the result file output by the solver in the ``ldcTest/output/`` directory is read by a Python script.
-The script plots the velocity profiles calculated by Saras and compares the data with the results from Ghia et al.
-The following Python modules are necessary for the test to run:
+`bash testSaras.sh``
+
+The test uses 4 cores and takes about 12 minutes to complete on an Intel workstation.
+At the end of the test, the Python script ``validate_ldc.py``, found in ``tests/ldcTest/`` reads the output from ``SARAS``,
+and plots the velocity profiles along with the data from Ghia et al's result.
+
+The following Python modules are necessary for the Python test script to execute successfully
 
 * numpy
 * matplotlib
 * h5py
 * yaml
 
-At the end of the test, the plot is written into a ``test.png`` file for the user to verify.
+At the end of the test, a plot of the x and y velocity profiles is drawn into a ``test.png`` file for the user to verify.
+A measure of the deviation of the results from the expected values is also calculated and the test is deemed passed if this
+deviation is within the set tolerance.
+
+## License
+
+``SARAS`` is an open-source package made available under the New BSD License.
 
 ## References
 
