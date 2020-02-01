@@ -58,6 +58,7 @@ class writer {
     public:
         writer(const grid &mesh, std::vector<field> &wFields);
 
+        void writeTarang(real time);
         void writeSolution(real time);
         void writeRestart(real time);
 

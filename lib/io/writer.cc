@@ -239,6 +239,126 @@ void writer::outputCheck() {
 
 /**
  ********************************************************************************************************************************************
+ * \brief   Function to write solution file in HDF5 format in parallel in the same manner as TARANG
+ *
+ *          TARANG writes solution files in folders within the output folder.
+ *          This totally defeats the purpose of HDF5 data format and makes data processing more cumbersome.
+ *          However, in the interest of maintaining backward compatibility, this feature is being added to Saras.
+ *          Before writing the file, all the data is interpolated into the cell centers for ease of post-processing.
+ *
+ * \param   time is a real value containing the time to be used for naming the file
+ ********************************************************************************************************************************************
+ */
+void writer::writeTarang(real time) {
+    hid_t plist_id;
+    hid_t fileHandle;
+    hid_t dataSet;
+
+    herr_t status;
+
+    std::ostringstream constFile;
+
+    char* fieldStr;
+    char* fileName;
+    char* folderName;
+    struct stat info;
+    int createStatus;
+
+    // The last entry in wFields is P, which is cell centered. Hence the MPI-IO data-structures associated with this index is used for file writing
+    int pIndex = wFields.size() - 1;
+
+    // Generate the foldername corresponding to the time
+    folderName = new char[100];
+    constFile.str(std::string());
+    constFile << "output/real_" << std::fixed << std::setfill('0') << std::setw(9) << std::setprecision(4) << time;
+    strcpy(folderName, constFile.str().c_str());
+
+    if (mesh.rankData.rank == 0) {
+        if (stat(folderName, &info) != 0) {
+            createStatus = mkdir(folderName, S_IRWXU | S_IRWXG);
+
+            // Raise error if the filesystem is read-only or something
+            if (createStatus) {
+                std::cout << "Error in while attempting to create directory for writing solution. Aborting" << std::endl;
+                exit(0);
+            }
+        }
+    }
+
+    for (unsigned int i=0; i < wFields.size(); i++) {
+        // Below is a very dirty way to make the file names of hdf5 solution from SARAS to match those of TARANG.
+        // Clearly, it is not neat. But then, the output of TARANG itself is not neat. So what is there to say?
+        fieldStr = new char[100];
+        constFile.str(std::string());
+
+        if (!std::strcmp(wFields[i].fieldName.c_str(), "Vx")) constFile << "U.V1";
+        else if (!std::strcmp(wFields[i].fieldName.c_str(), "Vy")) constFile << "U.V2";
+        else if (!std::strcmp(wFields[i].fieldName.c_str(), "Vz")) constFile << "U.V3";
+        else if (!std::strcmp(wFields[i].fieldName.c_str(), "P")) constFile << "P.F";
+        else if (!std::strcmp(wFields[i].fieldName.c_str(), "T")) constFile << "T.F";
+        strcpy(fieldStr, constFile.str().c_str());
+
+        // Create a property list for collectively opening a file by all processors
+        plist_id = H5Pcreate(H5P_FILE_ACCESS);
+        H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
+
+        // Generate the foldername corresponding to the time
+        fileName = new char[100];
+        constFile.str(std::string());
+        constFile << folderName << "/" << fieldStr << "r.h5";
+        strcpy(fileName, constFile.str().c_str());
+
+        // First create a file handle with the path to the output file
+        fileHandle = H5Fcreate(fileName, H5F_ACC_TRUNC, H5P_DEFAULT, plist_id);
+
+        // Close the property list for later reuse
+        H5Pclose(plist_id);
+
+        // Create a property list to use collective data write
+        plist_id = H5Pcreate(H5P_DATASET_XFER);
+        H5Pset_dxpl_mpio(plist_id, H5FD_MPIO_COLLECTIVE);
+
+#ifdef PLANAR
+        fieldData.resize(blitz::TinyVector<int, 2>(localSize[pIndex](0), localSize[pIndex](2)));
+#else
+        fieldData.resize(localSize[pIndex]);
+#endif
+
+        //Write data after first interpolating them to cell centers
+        interpolateData(wFields[i]);
+
+        // Create the dataset *for the file*, linking it to the file handle.
+        // Correspondingly, it will use the *core* dataspace, as only the core has to be written excluding the pads
+        dataSet = H5Dcreate2(fileHandle, wFields[i].fieldName.c_str(), H5T_NATIVE_REAL, targetDSpace[pIndex], H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+
+        // Write the dataset. Most important thing to note is that the 3rd and 4th arguments represent the *source* and *destination* dataspaces.
+        // The source here is the sourceDSpace pointing to the memory buffer. Note that its view has been adjusted using hyperslab.
+        // The destination is the targetDSpace. Though the targetDSpace is smaller than the sourceDSpace,
+        // only the appropriate hyperslab within the sourceDSpace is transferred to the destination.
+
+        status = H5Dwrite(dataSet, H5T_NATIVE_REAL, sourceDSpace[pIndex], targetDSpace[pIndex], plist_id, fieldData.dataFirst());
+        if (status) {
+            if (mesh.rankData.rank == 0) {
+                std::cout << "Error in writing output to HDF file. Aborting" << std::endl;
+            }
+            MPI_Finalize();
+            exit(0);
+        }
+
+        // CLOSE/RELEASE RESOURCES
+        H5Dclose(dataSet);
+        H5Pclose(plist_id);
+        H5Fclose(fileHandle);
+
+        delete fileName;
+        delete fieldStr;
+    }
+
+    delete folderName;
+}
+
+/**
+ ********************************************************************************************************************************************
  * \brief   Function to write solution file in HDF5 format in parallel
  *
  *          It opens a file in the output folder and all the processors write in parallel into the file

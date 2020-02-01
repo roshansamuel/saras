@@ -112,6 +112,11 @@
     # Number of iterations to display output to standard I/O
     "I/O Count": 10
 
+    # Select the format in which the output file must be written
+    # 1 = AETHER Format
+    # 2 = TARANG Format
+    "Solution Format": 1
+
     # Time interval at which solution file must be written
     "Solution Write Interval": 30.0
 
