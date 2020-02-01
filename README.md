@@ -8,18 +8,62 @@ All the source and library files for the Saras solver are contained in the follo
 
 * ``./src/`` - contains all the different solvers available in Saras
 * ``./lib/`` - contains all the libraries used by the solvers in ``./src/`` folder
-* ``./install/`` - contains the installation scripts to build and compile the solver
+* ``./compile/`` - contains the installation script to build and compile the solver
 * ``./output/`` - the solution files written by the solver are contained in this folder, it also contains Python post-processing scripts
 
-## Prerequisites:
+## Installation
 
-* ``blitz`` - All array manipulations are done by the blitz library
+To install ``SARAS``, you need to first clone the git repository into your local machine
+
+`git clone https://github.com/roshansamuel/saras.git`
+
+On LINUX systems which use the Bash shell, ``SARAS`` can be compiled by simply running the ``compileSaras.sh`` shell script in the `compile/` folder, as below
+
+`bash compileSaras.sh`
+
+Before compilation, a few dependencies have to installed first.
+
+* ``blitz`` - All array manipulations are performed using the Blitz++ library
 * ``cmake`` - Necessary to make the executable from the source files
 * ``mpich`` - The compiler used is mpic++
-* ``yaml`` - The input parameters are stored in the parameters.yaml file which needs the yaml library to parse.
-* ``hdf5`` - The output files are written in HDF5 format and requires the HDF5 library
+* ``yaml`` - The input parameters are stored in the parameters.yaml file which needs the yaml-cpp library to parse.
+* ``hdf5`` - The output files are written in HDF5 format
 
-To compile and run the solver, run the compileSaras.sh shell script in the install directory
+### Blitz++
+
+To install the Blitz++ library, please download the library from [here](http://turbulencehub.org/wp-content/uploads/Download_Files/blitz-1.0.1.tar.gz), and extract the archive.
+Follow the installation instructions in the archive.
+
+### CMake
+
+On LINUX systems which use Debian package manager, please use the package manager itself to install CMake.
+For example, on Ubuntu systems, CMake can be installed by running
+
+`sudo apt-get install cmake`
+
+### MPICH
+
+Similar to CMake installation above, it is best to install MPICH using the native package manager.
+
+### YAML
+
+On Debian based systems, the YAML library can be installed by running
+
+`sudo apt-get install libyaml-cpp-dev`
+
+Otherwise, the yaml-cpp library can be downloaded from [here](http://turbulencehub.org/wp-content/uploads/Download_Files/yaml-cpp-release-0.3.0.tar.gz).
+Please extract the archive and follow the installation instructions.
+
+### HDF5
+
+The HDF5 library has to be installed with parallel writing enabled for the file writing functions of ``SARAS`` to work.
+The library can either be downloaded and manually installed from [here](http://turbulencehub.org/wp-content/uploads/Download_Files/hdf5-1.8.20.tar.bz2),
+or the native package manager of the OS can be used to locate and install the library.
+
+
+More instructions on installing the libraries listed above can be found [here](http://turbulencehub.org/index.php/codes/tarang/installing-tarang/).
+If any of the above libraries is being installed to the home directory,
+please make sure to update the relevant paths in the shell configuration file (``~/.bashrc``)
 
 ## Testing SARAS
 
