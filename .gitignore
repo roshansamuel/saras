@@ -1,0 +1,11 @@
+*.gz
+*.swp
+*.swo
+*.out
+*.png
+*.vtk
+*.lay
+saras
+doc/
+compile/build/
+tests/build/

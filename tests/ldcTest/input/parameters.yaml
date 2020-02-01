@@ -1,0 +1,147 @@
+# Problem parameters
+"Program":
+    # Choose from following list of problem types:
+    # 1 = Hydrodynamics: Lid-Driven Cavity
+    # 2 = Hydrodynamics: Taylor Green Vortices
+    # 3 = Hydrodynamics: Channel Flow
+    # 4 = Hydrodynamics: Forced Channel Flow
+    # 5 = Flows with scalar: Heated bottom plate 
+    # 6 = Flows with scalar: Heated upper plate
+    # 7 = Flows with scalar: Heated sidewall
+    "Problem Type": 1
+
+    # Choose from the following initial conditions
+    # 1 = Taylor Green Vortices
+    # 2 = Sinusoidal Perturbation (for Channel Flows)
+    # 3 = Random Perturbation (for Channel Flows)
+    "Initial Condition": 1
+
+    # Domain type indicates periodicity/non-periodicity (P/N) along X, Y and Z directions
+    # If domain is periodic along X and Y, but non-periodic along Z, Domain Type = PPN
+    # If periodic along all directions, Domain Type = PPP, and so on
+    # For 2D runs, only X and Z direction values are considered
+    "Domain Type": "NNN"
+
+    # For RBC, specify the non-dimensionalization to be used:
+    # 1 = small U, large Pr
+    # 2 = large U, large Pr
+    # 3 = small U, small Pr
+    # 4 = large U, small Pr
+    "RBC Type": 1
+
+    "Reynolds Number": 1000
+    "Rossby Number": 12
+    "Rayleigh Number": 10000
+    "Prandtl Number": 0.71
+    "Taylor Number": 0.0
+
+    # Dimensions of the domain
+    "X Length": 1.0
+    "Y Length": 1.0
+    "Z Length": 1.0
+
+    # For Problem Type 5, heating can be applied at bottom wall using a circular heating plate
+    "Heating Plate": false
+    # If above value is true, the radius of this plate is specified below.
+    # If the radius exceeds half the domain length specifed above, the solver will run like ordinary RBC
+    # Currently the solver supports this non-homogeneous BC only for 3D runs
+    "Plate Radius": 0.25
+
+    # Choose the type of forcing (source term)
+    # 0 = No forcing
+    # 1 = Random forcing (This is yet to be implemented)
+    # 2 = Coriolis force 
+    # 3 = Buoyancy force (Natural convection: only applicable for flows with scalar)
+    # 4 = Buoyancy + Coriolis force (Rotatig natural convection: only applicable for flows with scalar)
+    # 5 = Constant pressure gradient (along X-direction: used mainly for preiodic channel flows)
+    "Force": 0
+
+
+# Mesh parameters
+"Mesh":
+    # The grid spacing along each direction can be set according to one of the following:
+    # U - Uniform spacing
+    # S - Single sided tangent-hyperbolic stretching (finest near one edge and coarsest at the opposite edge)
+    # D - Double sided tangent-hyperbolic stretching (finest near both edges and coarsest at the center)
+    # Specify the required spacing along X, Y and Z directions by using appropriate letters from above
+    # Eg. Uniform spacing in X-direction, double sided tan-hyp stretching along Y and single sided tan-hyp along Z would be "UDS"
+    "Mesh Type": "UUU"
+
+    # Stretching factor to be used for tangent-hyperbolic grids - considered only when Mesh Type is TanHyp
+    "X Beta": 1.0
+    "Y Beta": 1.0
+    "Z Beta": 1.0
+
+    # Choose the grid sizes (for the staggered grid) as indices from the list below
+    # These sizes are set to allow multigrid operations on the staggered grid
+    # 2D simulations can be run by setting Y Index to 0
+    # Grid sizes:   2 3 5 9 17 33 65 129 257 513 1025 2049 4097 8193 16385]
+    # Size index:   0 1 2 3  4  5  6  7   8   9   10   11   12   13    14
+    "X Index": 7
+    "Y Index": 0
+    "Z Index": 7
+
+
+# Parellelization parameters
+"Parallel":
+    "Number of OMP threads": 1
+    "X Number of Procs": 4
+    "Y Number of Procs": 1
+
+
+# Solver parameters
+"Solver":
+    "Differentiation Scheme": "CD2"
+
+    # Choose from following list of integration schemes:
+    # 1 = Implicit Crank Nicholson
+    # 2 = Euler Method (Not Implemented)
+    "Integration Scheme": 1
+
+    # Set below flag to true if restarting from a solution file
+    # If flag is true, solver will read the last written solution file in output directory for restart
+    "Restart Run": false
+
+    # Set below flag to true for adaptive time-stepping based on Courant number
+    "Use CFL Condition": true
+    # If above flag is true, then set the value of Courant number below
+    "Courant Number": 0.1
+    "Time-Step": 0.001
+    "Final Time": 30.0
+
+    # Number of iterations to display output to standard I/O
+    "I/O Count": 10
+
+    # Time interval at which solution file must be written
+    "Solution Write Interval": 30.0
+
+    # Time interval at which restart file must be written
+    "Restart Write Interval": 50.0
+
+    # Set below flag to true if data from probes have to be recorded, if true, set appropriate probe time interval
+    "Record Probes": false
+    "Probe Time Interval": 0.1
+
+    # Enter as many sets of probes as needed in Python NumPy's linspace style - startIndex:endIndex:noOfProbes
+    # Enter each set in square braces [], with each set separated by new line or space
+    "Probes": >
+        [5, 5, 5]
+        [1:62:3, 1:62:3, 1:62:3]
+        [1:62:3, 7, 1:62:3]
+        [5, 5, 6]
+
+
+# Poisson solver parameters
+"Multigrid":
+    # Tolerance used in Jacobi iterations
+    "Jacobi Tolerance": 1.0e-6
+    # Number of restriction/prolongation steps in each V-Cycle
+    "V-Cycle Depth": 3
+    # Number of V-Cycles to be performed
+    "V-Cycle Count": 5
+    # Number of smoothing iterations to be performed before V-Cycle
+    "Pre-Smoothing Count": 10
+    # Number of smoothing iterations to be performed after V-Cycle
+    "Post-Smoothing Count": 10
+    # Array of numbers of smoothing iterations to be performed in between prolongation operations of V-Cycle at different levels *from coarsest mesh to finest mesh*
+    "Inter-Smoothing Count": [10, 10, 10, 10]
