@@ -42,6 +42,7 @@
  ############################################################################################################################################
  ##
 
+from scipy.interpolate import griddata
 import matplotlib.pyplot as plt
 import numpy as np
 import h5py as hp
@@ -52,7 +53,7 @@ plt.rcParams["font.family"] = "Times New Roman"
 plt.rcParams["mathtext.fontset"] = 'cm'
 plt.rcParams["font.weight"] = "medium"
 
-ptFile = True
+ptFile = False
 
 def init():
     global U, W
@@ -97,7 +98,6 @@ def loadData(timeVal):
     global U, W
 
     fileName = "output/Soln_{0:09.4f}.h5".format(float(timeVal))
-    print("Processing file " + fileName + "\n")
 
     try:
         f = hp.File(fileName, 'r')
@@ -149,11 +149,11 @@ def plotProfile():
     axes[0].plot(u_ghia[:,2], u_ghia[:,1], marker='*', markersize=10, linestyle=' ', label='Ghia et al')
     axes[0].plot(uProfile, profAxis, linewidth=2, label='SARAS')
     axes[0].set_xlim([-0.6, 1.1])
-    axes[0].set_xlabel(r"$v_x$", fontsize=25)
+    axes[0].set_xlabel(r"$u_x$", fontsize=25)
     axes[0].set_ylabel(r"$z$", fontsize=25)
     axes[0].tick_params(labelsize=20)
     axes[0].legend(fontsize=20)
-    axes[0].set_title(r"$v_x$ at $x=0.5$", fontsize=25)
+    axes[0].set_title(r"$u_x$ at $x=0.5$", fontsize=25)
 
     vProfile = W[:, int(Nz/2)]
     profAxis = np.linspace(0.0, xLen, Nx)
@@ -162,10 +162,10 @@ def plotProfile():
     axes[1].set_ylim([-0.62, 0.42])
     axes[1].set_xticks([0.0, 0.2, 0.4, 0.6, 0.8, 1.0])
     axes[1].set_xlabel(r"$x$", fontsize=25)
-    axes[1].set_ylabel(r"$v_z$", fontsize=25)
+    axes[1].set_ylabel(r"$u_z$", fontsize=25)
     axes[1].tick_params(labelsize=20)
     axes[1].legend(fontsize=20)
-    axes[1].set_title(r"$v_z$ at $z=0.5$", fontsize=25)
+    axes[1].set_title(r"$u_z$ at $z=0.5$", fontsize=25)
 
     plt.gca().set_aspect('auto')
     plt.tight_layout()
@@ -174,6 +174,35 @@ def plotProfile():
         plt.savefig("test.png")
     else:
         plt.show()
+
+
+def checkTolerance():
+    global U, W
+    global Nx, Nz
+    global u_ghia, v_ghia
+
+    uProfile = U[int(Nx/2), :]
+    profAxis = np.linspace(0.0, zLen, Nz)
+    intpAxis = u_ghia[:,1]
+    intpData = griddata(profAxis, uProfile, intpAxis)
+
+    avgError = sum(np.absolute(u_ghia[:,2] - intpData))/len(intpData)
+    avgValue = sum(np.absolute(u_ghia[:,2]))/len(intpData)
+
+    print("")
+    print("Average absolute value of horizontal velocity, Ux = " + str(avgValue) + "\n")
+    print("Average absolute value of deviation = " + str(avgError) + "\n")
+
+    vProfile = W[:, int(Nz/2)]
+    profAxis = np.linspace(0.0, xLen, Nx)
+    intpAxis = v_ghia[:,1]
+    intpData = griddata(profAxis, vProfile, intpAxis)
+
+    avgError = sum(np.absolute(v_ghia[:,2] - intpData))/len(intpData)
+    avgValue = sum(np.absolute(v_ghia[:,2]))/len(intpData)
+
+    print(r"Average absolute value of vertical velocity, Uz = " + str(avgValue) + "\n")
+    print("Average absolute value of deviation = " + str(avgError) + "\n")
 
 
 if __name__ == "__main__":
@@ -186,4 +215,6 @@ if __name__ == "__main__":
     loadGhia()
 
     plotProfile()
+
+    #checkTolerance()
 
