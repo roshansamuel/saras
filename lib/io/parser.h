@@ -73,6 +73,7 @@ class parser {
         int preSmooth, postSmooth;
 
         int icType;
+        int dScheme;
         int iScheme;
         int probType;
         int xGrid, yGrid, zGrid;
@@ -99,9 +100,6 @@ class parser {
         real betaX, betaY, betaZ;
         real courantNumber;
 
-        std::string dScheme;
-        std::string meshType;
-
         std::vector<int> interSmooth;
         std::vector<blitz::TinyVector<int, 3> > probesList;
 
@@ -110,6 +108,7 @@ class parser {
         void writeParams();
 
     private:
+        std::string meshType;
         std::string domainType;
         std::string probeCoords;
 

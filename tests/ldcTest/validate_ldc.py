@@ -171,8 +171,9 @@ def plotProfile():
     plt.tight_layout()
 
     if ptFile:
-        plt.savefig("ldc_validate.png")
+        plt.savefig("ldc_validation.png")
     else:
+        plt.savefig("ldc_validation.png")
         plt.show()
 
 
