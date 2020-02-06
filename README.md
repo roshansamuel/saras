@@ -21,6 +21,15 @@ On LINUX systems which use the Bash shell, ``SARAS`` can be compiled by simply r
 
 `bash compileSaras.sh`
 
+The first few lines of the ``compileSaras.sh`` script can be used to set certain compilation parameters and flags:
+
+* ``PROC`` - Number of processors to be used when running ``SARAS``. This parameter is used only if the ``EXECUTE_AFTER_COMPILE`` parameter is uncommented.
+* ``REAL_TYPE`` - ``SARAS`` supports computations with both double and single precision floating point values. This parameter must be either ``SINGLE`` or ``DOUBLE``
+* ``PLANAR`` - This parameter has to be enabled to use the ``SARAS`` executable for 2D simulations.
+* ``TIME_RUN`` - Suppresses file-writing and I/O operations. This flag is enabled only when timing the solver for scaling runs.
+* ``TEST_RUN`` - Runs the unit-tests module of the solver. This is distinct from the tests contained in the ``tests/`` folder of the solver.
+* ``EXECUTE_AFTER_COMPILE`` - The script automatically runs the executable by issuing the ``mpirun`` command. This flag is enabled mainly during development for quickly compiling and running the solver.
+
 Before compilation, a few dependencies have to installed first.
 
 * ``blitz`` - All array manipulations are performed using the Blitz++ library
