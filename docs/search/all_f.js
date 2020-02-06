@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['saras_20_2d_20finite_20difference_20solver',['Saras - Finite difference solver',['../md_README.html',1,'']]],
   ['scalar',['scalar',['../classscalar.html',1,'scalar'],['../classscalar.html#a6f782d21d230ddca383135a1a599fbe4',1,'scalar::scalar()']]],
   ['scalar_2ecc',['scalar.cc',['../scalar_8cc.html',1,'']]],
   ['scalar_2eh',['scalar.h',['../scalar_8h.html',1,'']]],
