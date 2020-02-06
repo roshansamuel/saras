@@ -1,7 +1,7 @@
 # Saras - Finite difference solver
 
 Saras is an OpenMP-MPI hybrid parallelized Navier-Stokes equation solver written in C++.
-It uses the finite-difference method for calculating spatial derivatives and parallelized algebraic multi-grid method for solving
+It uses the finite-difference method for calculating spatial derivatives and parallelized geometric multigrid method for solving
 the pressure Poisson equation.
 
 All the source and library files for the Saras solver are contained in the following directories:
@@ -108,8 +108,6 @@ The following Python modules are necessary for the Python test script to execute
 * yaml
 
 At the end of the test, a plot of the x and y velocity profiles is shown to the user and drawn into a ``ldc_validation.png`` file.
-A measure of the deviation of the results from the expected values is also calculated and the test is deemed passed if this
-deviation is within the set tolerance.
 
 ## License
 
