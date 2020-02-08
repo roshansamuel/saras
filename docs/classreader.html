@@ -90,8 +90,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classreader-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">reader Class Reference</div>  </div>
@@ -111,37 +109,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a001d2424c8d41b9eaaca63e2f24fc718"><td class="memItemLeft" align="right" valign="top">real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreader.html#a001d2424c8d41b9eaaca63e2f24fc718">readData</a> ()</td></tr>
 <tr class="memdesc:a001d2424c8d41b9eaaca63e2f24fc718"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to read files in HDF5 format in parallel.  <a href="#a001d2424c8d41b9eaaca63e2f24fc718">More...</a><br/></td></tr>
 <tr class="separator:a001d2424c8d41b9eaaca63e2f24fc718"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
-<tr class="memitem:a9bd4451eaa69416795ebaeebcac3011b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreader.html#a9bd4451eaa69416795ebaeebcac3011b">initLimits</a> ()</td></tr>
-<tr class="memdesc:a9bd4451eaa69416795ebaeebcac3011b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to initialize the global and local limits for setting file views.  <a href="#a9bd4451eaa69416795ebaeebcac3011b">More...</a><br/></td></tr>
-<tr class="separator:a9bd4451eaa69416795ebaeebcac3011b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbe577b5ed2e3cc38c94bf8822bdd55a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classreader.html#abbe577b5ed2e3cc38c94bf8822bdd55a">copyData</a> (<a class="el" href="classfield.html">field</a> &amp;outField)</td></tr>
-<tr class="memdesc:abbe577b5ed2e3cc38c94bf8822bdd55a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to copy data from blitz array without pads into solver variables.  <a href="#abbe577b5ed2e3cc38c94bf8822bdd55a">More...</a><br/></td></tr>
-<tr class="separator:abbe577b5ed2e3cc38c94bf8822bdd55a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:a93ebcbc69132668da6c31b731fbcec4c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93ebcbc69132668da6c31b731fbcec4c"></a>
-const <a class="el" href="classgrid.html">grid</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>mesh</b></td></tr>
-<tr class="separator:a93ebcbc69132668da6c31b731fbcec4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9dd960a1e18447a76e435e434dc867f9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9dd960a1e18447a76e435e434dc867f9"></a>
-std::vector&lt; <a class="el" href="classfield.html">field</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>rFields</b></td></tr>
-<tr class="separator:a9dd960a1e18447a76e435e434dc867f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2d81ee22ea437d652cccf91094ef3e0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2d81ee22ea437d652cccf91094ef3e0"></a>
-blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>fieldData</b></td></tr>
-<tr class="separator:aa2d81ee22ea437d652cccf91094ef3e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ad3c51e38388fb640ea7424bc7613df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8ad3c51e38388fb640ea7424bc7613df"></a>
-std::vector&lt; hid_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>sourceDSpace</b></td></tr>
-<tr class="separator:a8ad3c51e38388fb640ea7424bc7613df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f7cdbb6b8e1313ec362c387c7e5eeae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4f7cdbb6b8e1313ec362c387c7e5eeae"></a>
-std::vector&lt; hid_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>targetDSpace</b></td></tr>
-<tr class="separator:a4f7cdbb6b8e1313ec362c387c7e5eeae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8e9bbdd2b8d92d1d9de6c52b6e322c8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae8e9bbdd2b8d92d1d9de6c52b6e322c8"></a>
-std::vector&lt; blitz::TinyVector<br class="typebreak"/>
-&lt; int, 3 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>localSize</b></td></tr>
-<tr class="separator:ae8e9bbdd2b8d92d1d9de6c52b6e322c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for all the global variables and functions related to reading input data for the solver. </p>
@@ -185,59 +152,6 @@ std::vector&lt; blitz::TinyVector<br class="typebreak"/>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="abbe577b5ed2e3cc38c94bf8822bdd55a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void reader::copyData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classfield.html">field</a> &amp;&#160;</td>
-          <td class="paramname"><em>outField</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to copy data from blitz array without pads into solver variables. </p>
-<p>In order to simplify the file views while reading from disk to memory, the variables are copied into a local blitz array without the pads. These variables are then written into the solver variables supplied to the reader class. </p>
-
-</div>
-</div>
-<a class="anchor" id="a9bd4451eaa69416795ebaeebcac3011b"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void reader::initLimits </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to initialize the global and local limits for setting file views. </p>
-<p>All the necessary limits of the local arrays with respect to the global array for setting the dataspace views for HDF5 are appropriately set here. </p>
-
-</div>
-</div>
 <a class="anchor" id="a001d2424c8d41b9eaaca63e2f24fc718"></a>
 <div class="memitem">
 <div class="memproto">
@@ -263,7 +177,7 @@ std::vector&lt; blitz::TinyVector<br class="typebreak"/>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 7 2020 12:04:28 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Feb 8 2020 16:51:54 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

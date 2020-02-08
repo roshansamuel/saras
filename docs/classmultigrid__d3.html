@@ -90,8 +90,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classmultigrid__d3-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">multigrid_d3 Class Reference</div>  </div>
@@ -136,60 +134,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aab9fe3eef6a98c33bf19c2a80c46d814 inherit pub_methods_classpoisson"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpoisson.html#aab9fe3eef6a98c33bf19c2a80c46d814">poisson</a> (const <a class="el" href="classgrid.html">grid</a> &amp;mesh, const <a class="el" href="classparser.html">parser</a> &amp;solParam)</td></tr>
 <tr class="memdesc:aab9fe3eef6a98c33bf19c2a80c46d814 inherit pub_methods_classpoisson"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the base poisson class.  <a href="#aab9fe3eef6a98c33bf19c2a80c46d814">More...</a><br/></td></tr>
 <tr class="separator:aab9fe3eef6a98c33bf19c2a80c46d814 inherit pub_methods_classpoisson"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
-<tr class="memitem:ac9783032e3623eceb6ee3ac7ac824388"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmultigrid__d3.html#ac9783032e3623eceb6ee3ac7ac824388">solve</a> ()</td></tr>
-<tr class="memdesc:ac9783032e3623eceb6ee3ac7ac824388"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to solve the poisson equation at the coarsest multi-grid level.  <a href="#ac9783032e3623eceb6ee3ac7ac824388">More...</a><br/></td></tr>
-<tr class="separator:ac9783032e3623eceb6ee3ac7ac824388"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a917b053d920d142a9be32418ba0b7d6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmultigrid__d3.html#a917b053d920d142a9be32418ba0b7d6f">prolong</a> ()</td></tr>
-<tr class="memdesc:a917b053d920d142a9be32418ba0b7d6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to perform prolongation on the array being solved.  <a href="#a917b053d920d142a9be32418ba0b7d6f">More...</a><br/></td></tr>
-<tr class="separator:a917b053d920d142a9be32418ba0b7d6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca4530dc4898b1d0ab6468b1753c266b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmultigrid__d3.html#aca4530dc4898b1d0ab6468b1753c266b">smooth</a> (const int smoothCount)</td></tr>
-<tr class="memdesc:aca4530dc4898b1d0ab6468b1753c266b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to perform smoothing operation on the input array.  <a href="#aca4530dc4898b1d0ab6468b1753c266b">More...</a><br/></td></tr>
-<tr class="separator:aca4530dc4898b1d0ab6468b1753c266b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80a1db6b10788f1cf1fb9b2ed441e1e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmultigrid__d3.html#a80a1db6b10788f1cf1fb9b2ed441e1e3">initMeshRanges</a> ()</td></tr>
-<tr class="memdesc:a80a1db6b10788f1cf1fb9b2ed441e1e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to initialize the Range objects for accessing mesh derivatives in transformed plane.  <a href="#a80a1db6b10788f1cf1fb9b2ed441e1e3">More...</a><br/></td></tr>
-<tr class="separator:a80a1db6b10788f1cf1fb9b2ed441e1e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac89c1a857bcca222129d0d92e80a3076"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmultigrid__d3.html#ac89c1a857bcca222129d0d92e80a3076">setStagBounds</a> ()</td></tr>
-<tr class="memdesc:ac89c1a857bcca222129d0d92e80a3076"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to set the RectDomain variables for all future references throughout the poisson solver.  <a href="#ac89c1a857bcca222129d0d92e80a3076">More...</a><br/></td></tr>
-<tr class="separator:ac89c1a857bcca222129d0d92e80a3076"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1ddb3d52831b44902b4987acca88d78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmultigrid__d3.html#ab1ddb3d52831b44902b4987acca88d78">setLocalSizeIndex</a> ()</td></tr>
-<tr class="memdesc:ab1ddb3d52831b44902b4987acca88d78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to calculate the local size indices of sub-domains after MPI domain decomposition.  <a href="#ab1ddb3d52831b44902b4987acca88d78">More...</a><br/></td></tr>
-<tr class="separator:ab1ddb3d52831b44902b4987acca88d78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8e6ed137f140179e0835a144a496b31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmultigrid__d3.html#ad8e6ed137f140179e0835a144a496b31">setCoefficients</a> ()</td></tr>
-<tr class="memdesc:ad8e6ed137f140179e0835a144a496b31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to set the coefficients used for calculating laplacian and in smoothing.  <a href="#ad8e6ed137f140179e0835a144a496b31">More...</a><br/></td></tr>
-<tr class="separator:ad8e6ed137f140179e0835a144a496b31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb2b1a642f8c37b72c564852eed7f4ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmultigrid__d3.html#acb2b1a642f8c37b72c564852eed7f4ca">copyStaggrDerivs</a> ()</td></tr>
-<tr class="memdesc:acb2b1a642f8c37b72c564852eed7f4ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to copy the staggered grid derivatives from the grid class to local arrays.  <a href="#acb2b1a642f8c37b72c564852eed7f4ca">More...</a><br/></td></tr>
-<tr class="separator:acb2b1a642f8c37b72c564852eed7f4ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae768dfd460a349aa6d2f8f7b7a63ad09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmultigrid__d3.html#ae768dfd460a349aa6d2f8f7b7a63ad09">imposeBC</a> ()</td></tr>
-<tr class="memdesc:ae768dfd460a349aa6d2f8f7b7a63ad09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to impose the boundary conditions of Poisson solver at different levels of the V-cycle.  <a href="#ae768dfd460a349aa6d2f8f7b7a63ad09">More...</a><br/></td></tr>
-<tr class="separator:ae768dfd460a349aa6d2f8f7b7a63ad09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac80f4c62ce5700c2188683ae052c05df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmultigrid__d3.html#ac80f4c62ce5700c2188683ae052c05df">updatePads</a> ()</td></tr>
-<tr class="memdesc:ac80f4c62ce5700c2188683ae052c05df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to update the pad points of the local sub-domains at different levels of the V-cycle.  <a href="#ac80f4c62ce5700c2188683ae052c05df">More...</a><br/></td></tr>
-<tr class="separator:ac80f4c62ce5700c2188683ae052c05df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a159045a7fe683f8942c11d110f714fd9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmultigrid__d3.html#a159045a7fe683f8942c11d110f714fd9">createMGSubArrays</a> ()</td></tr>
-<tr class="memdesc:a159045a7fe683f8942c11d110f714fd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to create the MPI sub-array data types necessary to transfer data across sub-domains.  <a href="#a159045a7fe683f8942c11d110f714fd9">More...</a><br/></td></tr>
-<tr class="separator:a159045a7fe683f8942c11d110f714fd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a966e9bebcecf223a04048768a5dbe742"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmultigrid__d3.html#a966e9bebcecf223a04048768a5dbe742">vCycle</a> ()</td></tr>
-<tr class="memdesc:a966e9bebcecf223a04048768a5dbe742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to perform one loop of V-cycle.  <a href="#a966e9bebcecf223a04048768a5dbe742">More...</a><br/></td></tr>
-<tr class="separator:a966e9bebcecf223a04048768a5dbe742"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:a0a4940c6b4b499c3bd576b150b80fd02"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a4940c6b4b499c3bd576b150b80fd02"></a>
-blitz::Array&lt; real, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>hxhy</b></td></tr>
-<tr class="separator:a0a4940c6b4b499c3bd576b150b80fd02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7c1c5868e999af8e5cbc15168cc082c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae7c1c5868e999af8e5cbc15168cc082c"></a>
-blitz::Array&lt; real, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>hyhz</b></td></tr>
-<tr class="separator:ae7c1c5868e999af8e5cbc15168cc082c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afacf47bcf85e7a8958d2428a5bb2c943"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afacf47bcf85e7a8958d2428a5bb2c943"></a>
-blitz::Array&lt; real, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>hzhx</b></td></tr>
-<tr class="separator:afacf47bcf85e7a8958d2428a5bb2c943"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bdc46a8f1268be5606a5809ddf3b9c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5bdc46a8f1268be5606a5809ddf3b9c3"></a>
-blitz::Array&lt; real, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>hxhyhz</b></td></tr>
-<tr class="separator:a5bdc46a8f1268be5606a5809ddf3b9c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -342,7 +286,7 @@ blitz::Array<br class="typebreak"/>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The derived class from poisson to perform multi-grid operations on a 3D grid. </p>
-<p>The 3D implementation of the multi-grid method differs from the 2D version in that the <a class="el" href="classmultigrid__d3.html#ac9783032e3623eceb6ee3ac7ac824388">solve</a> <a class="el" href="classmultigrid__d3.html#aca4530dc4898b1d0ab6468b1753c266b">smooth</a> functions use a different equation with extra terms, and the <a class="el" href="classmultigrid__d3.html#a917b053d920d142a9be32418ba0b7d6f">prolong</a> operation needs to perform extra interpolation steps in the y-direction. </p>
+<p>The 3D implementation of the multi-grid method differs from the 2D version in that the solve smooth functions use a different equation with extra terms, and the prolong operation needs to perform extra interpolation steps in the y-direction. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a519d30e2edb6c7c707d936285334bb93"></a>
 <div class="memitem">
@@ -382,119 +326,6 @@ blitz::Array<br class="typebreak"/>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="acb2b1a642f8c37b72c564852eed7f4ca"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void multigrid_d3::copyStaggrDerivs </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to copy the staggered grid derivatives from the grid class to local arrays. </p>
-<p>Though the grid derivatives in the grid class can be read and accessed, they cannot be used directly along with the arrays defined in the poisson class as the local arrays have wide pads on both sides. Therefore, correspondingly wide arrays for grid derivatives are used, into which the staggered grid derivatives from the grid class are written and stored. This function serves this purpose of copying the grid derivatives. </p>
-
-<p>Reimplemented from <a class="el" href="classpoisson.html#a660a034c820a8cf17252732312b3913c">poisson</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a159045a7fe683f8942c11d110f714fd9"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void multigrid_d3::createMGSubArrays </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to create the MPI sub-array data types necessary to transfer data across sub-domains. </p>
-<p>The inter-domain boundaries of all the sub-domains at different V-cycle levels need data to be transfered at with different mesh strides. The number of sub-arrays along each edge/face of the sub-domains are equal to the number of V-cycle levels. Since this data transfer has to take place at all the mesh levels including the finest mesh, there will be vcDepth + 1 elements. </p>
-<p>For transfer of non-contiguous, yet uniformly spaced blocks of data, the MPI_Type_indexed datatype is being used here. The number of such data blocks is represented by numPoints. Since single points are being transferred rather than small blocks, the blockSize array, which holds the block length of each block of data to be sent, is set to 1. The blockIndx variable holds the starting index of each block (here, each single data point) within the full global array of data.</p>
-
-<p>Reimplemented from <a class="el" href="classpoisson.html#aaa95b6928a8652c3861245399da6143c">poisson</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae768dfd460a349aa6d2f8f7b7a63ad09"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void multigrid_d3::imposeBC </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to impose the boundary conditions of Poisson solver at different levels of the V-cycle. </p>
-<p>This function is called mainly during smoothing operations to impose the boundary conditions for the Poisson equation. The sub-domains close to the wall will have the Neumann boundary condition on pressure imposeed at the walls. Meanwhile at the interior boundaries at the inter-processor sub-domains, data is transferred from the neighbouring cells by calling the <a class="el" href="classmultigrid__d3.html#ac80f4c62ce5700c2188683ae052c05df">updatePads</a> function. </p>
-
-<p>Reimplemented from <a class="el" href="classpoisson.html#a490f97075d967bfbe5c692fdea48f719">poisson</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a80a1db6b10788f1cf1fb9b2ed441e1e3"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void multigrid_d3::initMeshRanges </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to initialize the Range objects for accessing mesh derivatives in transformed plane. </p>
-<p>The Range objects defined here are used for reading the values of grid metrics at all the V-cycle levels. Since these values are required at all the grid levels, there are vcDepth + 1 number of Range objects. </p>
-
-<p>Reimplemented from <a class="el" href="classpoisson.html#aa4b01c19b902b32683b2a6da5c84c569">poisson</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a3a047b87ad6c7cf0bb4648ba4fe9df98"></a>
 <div class="memitem">
 <div class="memproto">
@@ -538,181 +369,6 @@ blitz::Array<br class="typebreak"/>
 </dl>
 
 <p>Reimplemented from <a class="el" href="classpoisson.html#a963e726526e6a6fdcb16c188eda79fb5">poisson</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a917b053d920d142a9be32418ba0b7d6f"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void multigrid_d3::prolong </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to perform prolongation on the array being solved. </p>
-<p>Prolongation makes the grid finer by averaging values at two adjacent nodes onto an intermediate point between them As a result, the number of points in the domain increases from \( 2^N + 1 \) at the input level to \( 2^{N+1} + 1 \). The vLevel variable is accordingly reduced by 1 to reflect this ascent by one step up the V-Cycle. </p>
-
-<p>Reimplemented from <a class="el" href="classpoisson.html#aa0ade4f081b9aa098737191193c8f99e">poisson</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad8e6ed137f140179e0835a144a496b31"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void multigrid_d3::setCoefficients </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to set the coefficients used for calculating laplacian and in smoothing. </p>
-<p>The function assigns values to the variables hx, hy etc. These coefficients are repeatedly used at many places in the Poisson solver. </p>
-
-<p>Reimplemented from <a class="el" href="classpoisson.html#a6a34d851780fdbd0f97dca6555f80c02">poisson</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab1ddb3d52831b44902b4987acca88d78"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void multigrid_d3::setLocalSizeIndex </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to calculate the local size indices of sub-domains after MPI domain decomposition. </p>
-<p>For the multi-grid solver, the number of grid nodes must be \( 2^N + 1 \) to perform V-Cycles The domain decomposition is also done in such a way that each sub-domain will also have \( 2^M + 1 \) points. As a result, the number of processors in each direction must be a power of 2. In this case, the the value \( M \) of \( 2^M + 1 \) can be computed as \( M = N - log_2(np) \) where \( np \) is the number of processors along the direction under consideration. </p>
-
-<p>Reimplemented from <a class="el" href="classpoisson.html#a2d6c2c4b88ee54fc4be0a31e13708d70">poisson</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac89c1a857bcca222129d0d92e80a3076"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void multigrid_d3::setStagBounds </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to set the RectDomain variables for all future references throughout the poisson solver. </p>
-<p>The function sets the core and full domain staggered grid sizes for all the sub-domains. </p>
-
-<p>Reimplemented from <a class="el" href="classpoisson.html#a9934adb3c6cb63d1f133ae0aed871d63">poisson</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aca4530dc4898b1d0ab6468b1753c266b"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void multigrid_d3::smooth </td>
-          <td>(</td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>smoothCount</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to perform smoothing operation on the input array. </p>
-<p>The smoothing operation is always performed on the data contained in the array pressureData. The array iteratorTemp is used to store the temporary data and it is continuously swapped with the pressureData array at every iteration. This operation can be performed at any level of the V-cycle.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">smoothCount</td><td>is the integer value of the number of smoothing iterations to be performed </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Reimplemented from <a class="el" href="classpoisson.html#a34dcab564048f46bfe636709bd765c39">poisson</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac9783032e3623eceb6ee3ac7ac824388"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void multigrid_d3::solve </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to solve the poisson equation at the coarsest multi-grid level. </p>
-<p>This function operates exclusively at the lowest level of the multi-grid V-cycle. It uses the Jacobi iterative solver to solve the residual of the Poisson equation on the coarsest mesh. Note that the all calculations are performed assuming that the vLevel variable is maximal when the function is being called. </p>
-
-<p>Reimplemented from <a class="el" href="classpoisson.html#ad2cecb2bfe5569b7256285ffa385acf4">poisson</a>.</p>
 
 </div>
 </div>
@@ -828,62 +484,6 @@ blitz::Array<br class="typebreak"/>
 
 </div>
 </div>
-<a class="anchor" id="ac80f4c62ce5700c2188683ae052c05df"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void multigrid_d3::updatePads </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to update the pad points of the local sub-domains at different levels of the V-cycle. </p>
-<p>This function is called mainly during smoothing operations by the <a class="el" href="classmultigrid__d3.html#ae768dfd460a349aa6d2f8f7b7a63ad09">imposeBC</a> function. It is also specifically called by the <a class="el" href="classmultigrid__d3.html#ac9783032e3623eceb6ee3ac7ac824388">solve</a> function while solving the equation at the coarsest mesh level. At the interior boundaries at the inter-processor sub-domains, data is transferred from the neighbouring cells using a combination of MPI_Irecv and MPI_Send functions. </p>
-
-<p>Reimplemented from <a class="el" href="classpoisson.html#a82e9d36121a97499be52c0c617459f6a">poisson</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a966e9bebcecf223a04048768a5dbe742"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void multigrid_d3::vCycle </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to perform one loop of V-cycle. </p>
-<p>The V-cycle of restrictions, prolongations and smoothings are performed within this function. First the input data contained in pressureData is smoothed, after which the residual is computed and stored in the residualData array. The restrictions, smoothing, and prolongations are performed on these two arrays subsequently. </p>
-
-<p>Reimplemented from <a class="el" href="classpoisson.html#aa6a4d7b1cd67bc69df92f9bcf3e3901e">poisson</a>.</p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>lib/poisson/<a class="el" href="poisson_8h_source.html">poisson.h</a></li>
 <li>lib/poisson/poisson_d3.cc</li>
@@ -891,7 +491,7 @@ blitz::Array<br class="typebreak"/>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 7 2020 12:04:28 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Feb 8 2020 16:51:54 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

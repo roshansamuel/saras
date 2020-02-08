@@ -50,7 +50,7 @@
  *          The value of the derivative of the field at the boundary, denoted by fieldValue, is also set in the initialization list.
  *
  * \param   mesh is a const reference to the global data contained in the grid class
- * \param   inField is a reference to scalar field to which the boundary conditions must be applied.
+ * \param   inField is a reference to field to which the boundary conditions must be applied.
  * \param   bcWall is a const integer which specifies the wall to which the BC must be applied.
  * \param   bcValue is the const real value of the derivative of the variable at the boundary.
  ********************************************************************************************************************************************

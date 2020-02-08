@@ -55,19 +55,57 @@ class boundary {
         virtual void imposeBC();
 
     protected:
+        /** A const reference to the global variables stored in the grid class to access mesh data. */
         const grid &mesh;
 
+        /** Reference to the field onto which the boundary condition has to be applied. */
         field &dField;
 
+        /** The flag is true for MPI ranks on which the boundary condition has to be applied. */
         bool rankFlag;
+
+        /** The const integer denotes the wall at which the boundary condition is being applied. */
         const int wallNum;
-        int shiftVal, shiftDim;
+
+        /** Denotes the dimension normal to the wall at which the boundary condition is applied. */
+        int shiftDim;
+
+        /** The number of points by which the view of the wall slice is shifted to when applying the boundary condition. */
+        int shiftVal;
 };
 
 /**
  ********************************************************************************************************************************************
  *  \class boundary boundary.h "lib/boundary/boundary.h"
  *  \brief Contains all the global variables related to the imposing of boundary conditions, and functions to impose BCs
+ *
+ *         Depending on the location of the variable in the mesh (face-center, cell-center, etc.), the boundary condition (BC) may
+ *         either be imposed directly, or through averaging.
+ *         Moreover, the nature of the boundary condition (Neumann, Dirichlet, etc.) also affects the manner of imposing the BC.
+ *         First of all, the wall on which the BC must be applied is passed to the constructor as an argument.
+ *         This information is stored in the \ref wallNum variable, which takes the following values:
+ *              - 0 = left wall along X direction
+ *              - 1 = right wall along X direction
+ *              - 2 = front wall along Y direction
+ *              - 3 = rear wall along Y direction
+ *              - 4 = bottom wall along Z direction
+ *              - 5 = top wall along Z direction
+ *
+ *         Next the dimension normal to the wall has to be identifed.
+ *         This is necessary for shifting the view of the wall slice when applying the BC within \ref imposeBC.
+ *         This value is stored by the \ref shiftDim integer variable, which takes the following values:
+ *              - 0 = X direction
+ *              - 1 = Y direction
+ *              - 2 = Z direction
+ *
+ *         The view of the wall slice defined by any one of the blitz RectDomain objects in the \ref field#fWalls has to
+ *         shifted to the left or right in order to access data at the points adjacent to the wall.
+ *         This is needed when averaging/interpolating the values at the wall.
+ *         The integer value by which this shifting has to be done is specified by \ref shiftVal, which could be either +1 or -1.
+ *         
+ *         Finally not all subdomains need to have the BC applied to them.
+ *         The boolean variable \ref rankFlag is set appropriately in the constructor so that \ref imposeBC updates only
+ *         those MPI ranks whose boundaries need the BC applied to them.
  *
  ********************************************************************************************************************************************
  */

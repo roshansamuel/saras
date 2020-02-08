@@ -91,8 +91,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classgrid-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">grid Class Reference</div>  </div>
@@ -311,67 +309,6 @@ blitz::Array&lt; real, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <tr class="memitem:a94cb67ba06ec505b9380697a99bf00f5"><td class="memItemLeft" align="right" valign="top">blitz::Array&lt; real, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgrid.html#a94cb67ba06ec505b9380697a99bf00f5">ztz2Staggr</a></td></tr>
 <tr class="memdesc:a94cb67ba06ec505b9380697a99bf00f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array of the grid derivatives \( \left(\frac{\partial\zeta}{\partial z}\right)^2 \) at staggered grid points, defined locally within each sub-domain.  <a href="#a94cb67ba06ec505b9380697a99bf00f5">More...</a><br/></td></tr>
 <tr class="separator:a94cb67ba06ec505b9380697a99bf00f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
-<tr class="memitem:a96e3a2a3d0d3ad2d1d665b03c95e04b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgrid.html#a96e3a2a3d0d3ad2d1d665b03c95e04b4">resizeGrid</a> ()</td></tr>
-<tr class="memdesc:a96e3a2a3d0d3ad2d1d665b03c95e04b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to resize and initialize the grid.  <a href="#a96e3a2a3d0d3ad2d1d665b03c95e04b4">More...</a><br/></td></tr>
-<tr class="separator:a96e3a2a3d0d3ad2d1d665b03c95e04b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad01c2a3102238f76aa5f41096e79cec9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgrid.html#ad01c2a3102238f76aa5f41096e79cec9">makeSizeArray</a> ()</td></tr>
-<tr class="memdesc:ad01c2a3102238f76aa5f41096e79cec9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to resize and initialize the size array from which the dimensions of the grid will be determined.  <a href="#ad01c2a3102238f76aa5f41096e79cec9">More...</a><br/></td></tr>
-<tr class="separator:ad01c2a3102238f76aa5f41096e79cec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74ad8f6c988e37d451b4de1d08de8da7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgrid.html#a74ad8f6c988e37d451b4de1d08de8da7">setDomainSizes</a> ()</td></tr>
-<tr class="memdesc:a74ad8f6c988e37d451b4de1d08de8da7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to set all the TinyVector and RectDomain variables for all future references throughout the solver.  <a href="#a74ad8f6c988e37d451b4de1d08de8da7">More...</a><br/></td></tr>
-<tr class="separator:a74ad8f6c988e37d451b4de1d08de8da7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0aab12f2c4f4df8c7075403c9bb8509"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgrid.html#aa0aab12f2c4f4df8c7075403c9bb8509">globalXiEtaZeta</a> ()</td></tr>
-<tr class="memdesc:aa0aab12f2c4f4df8c7075403c9bb8509"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to compute global values of xi, eta and zeta in transformed plane.  <a href="#aa0aab12f2c4f4df8c7075403c9bb8509">More...</a><br/></td></tr>
-<tr class="separator:aa0aab12f2c4f4df8c7075403c9bb8509"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4712d4d559bb5b3e77a8b27b5e9ed8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgrid.html#ab4712d4d559bb5b3e77a8b27b5e9ed8c">createUniformGrid</a> ()</td></tr>
-<tr class="memdesc:ab4712d4d559bb5b3e77a8b27b5e9ed8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to generate grid with uniform stretching.  <a href="#ab4712d4d559bb5b3e77a8b27b5e9ed8c">More...</a><br/></td></tr>
-<tr class="separator:ab4712d4d559bb5b3e77a8b27b5e9ed8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60994347ba6d4b6d71bac07d0ada36bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgrid.html#a60994347ba6d4b6d71bac07d0ada36bc">createTanHypGrid</a> (int dim)</td></tr>
-<tr class="memdesc:a60994347ba6d4b6d71bac07d0ada36bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to generate grid with tangent-hyperbolic stretching.  <a href="#a60994347ba6d4b6d71bac07d0ada36bc">More...</a><br/></td></tr>
-<tr class="separator:a60994347ba6d4b6d71bac07d0ada36bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c54f8c0985b8ee9bc3def673cfbf0bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgrid.html#a6c54f8c0985b8ee9bc3def673cfbf0bd">checkAnisotropy</a> ()</td></tr>
-<tr class="memdesc:a6c54f8c0985b8ee9bc3def673cfbf0bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to check the anisotropy of the grid.  <a href="#a6c54f8c0985b8ee9bc3def673cfbf0bd">More...</a><br/></td></tr>
-<tr class="separator:a6c54f8c0985b8ee9bc3def673cfbf0bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32950708e41fb52c50baf61e520537ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgrid.html#a32950708e41fb52c50baf61e520537ed">gatherGlobal</a> ()</td></tr>
-<tr class="memdesc:a32950708e41fb52c50baf61e520537ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to gather global data about the grid into every rank.  <a href="#a32950708e41fb52c50baf61e520537ed">More...</a><br/></td></tr>
-<tr class="separator:a32950708e41fb52c50baf61e520537ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4efb368b0071c9f226030cbc29625dd4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgrid.html#a4efb368b0071c9f226030cbc29625dd4">computeGlobalLimits</a> ()</td></tr>
-<tr class="memdesc:a4efb368b0071c9f226030cbc29625dd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to set the extent of local sub-domains in terms of the global index of the full domain.  <a href="#a4efb368b0071c9f226030cbc29625dd4">More...</a><br/></td></tr>
-<tr class="separator:a4efb368b0071c9f226030cbc29625dd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:a4a73660523d02104134c327329f34934"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a73660523d02104134c327329f34934"></a>
-blitz::TinyVector&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgrid.html#a4a73660523d02104134c327329f34934">thBeta</a></td></tr>
-<tr class="memdesc:a4a73660523d02104134c327329f34934"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grid stretching parameter for tangent-hyperbolic function along x, y and z directions. <br/></td></tr>
-<tr class="separator:a4a73660523d02104134c327329f34934"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b78fa94ce33c24bcb8c606280740a16"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b78fa94ce33c24bcb8c606280740a16"></a>
-blitz::Array&lt; real, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgrid.html#a7b78fa94ce33c24bcb8c606280740a16">xi</a></td></tr>
-<tr class="memdesc:a7b78fa94ce33c24bcb8c606280740a16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array of the local values of \( \xi \) within the MPI-decomposed sub-domains in the transformed plane. <br/></td></tr>
-<tr class="separator:a7b78fa94ce33c24bcb8c606280740a16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54cd1cb3e5600eb360c13de3361aff56"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54cd1cb3e5600eb360c13de3361aff56"></a>
-blitz::Array&lt; real, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgrid.html#a54cd1cb3e5600eb360c13de3361aff56">et</a></td></tr>
-<tr class="memdesc:a54cd1cb3e5600eb360c13de3361aff56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array of the local values of \( \eta \) within the MPI-decomposed sub-domains in the transformed plane. <br/></td></tr>
-<tr class="separator:a54cd1cb3e5600eb360c13de3361aff56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8dfa2df84c44da69c881b907116e397"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac8dfa2df84c44da69c881b907116e397"></a>
-blitz::Array&lt; real, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgrid.html#ac8dfa2df84c44da69c881b907116e397">zt</a></td></tr>
-<tr class="memdesc:ac8dfa2df84c44da69c881b907116e397"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array of the local values of \( \zeta \) within the MPI-decomposed sub-domains in the transformed plane. <br/></td></tr>
-<tr class="separator:ac8dfa2df84c44da69c881b907116e397"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea3aef5d628b475d969380f4c75641b4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aea3aef5d628b475d969380f4c75641b4"></a>
-blitz::Array&lt; real, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgrid.html#aea3aef5d628b475d969380f4c75641b4">xiGlo</a></td></tr>
-<tr class="memdesc:aea3aef5d628b475d969380f4c75641b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array of the global values of \( \xi \) within the full domain in the transformed plane. <br/></td></tr>
-<tr class="separator:aea3aef5d628b475d969380f4c75641b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a756217ab486bb82f646b03637243c0f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a756217ab486bb82f646b03637243c0f6"></a>
-blitz::Array&lt; real, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgrid.html#a756217ab486bb82f646b03637243c0f6">etGlo</a></td></tr>
-<tr class="memdesc:a756217ab486bb82f646b03637243c0f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array of the global values of \( \eta \) within the full domain in the transformed plane. <br/></td></tr>
-<tr class="separator:a756217ab486bb82f646b03637243c0f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69cf9fb51a07c4b332038db7c25cf50c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a69cf9fb51a07c4b332038db7c25cf50c"></a>
-blitz::Array&lt; real, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgrid.html#a69cf9fb51a07c4b332038db7c25cf50c">ztGlo</a></td></tr>
-<tr class="memdesc:a69cf9fb51a07c4b332038db7c25cf50c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array of the global values of \( \zeta \) within the full domain in the transformed plane. <br/></td></tr>
-<tr class="separator:a69cf9fb51a07c4b332038db7c25cf50c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains all the global variables related to the grid, its slices, limits, and grid derivatives used throughout the solver. </p>
@@ -414,145 +351,6 @@ blitz::Array&lt; real, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a6c54f8c0985b8ee9bc3def673cfbf0bd"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void grid::checkAnisotropy </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to check the anisotropy of the grid. </p>
-<p>The function is called only if non-uniform grid is made. It scans through the entire grid cell-by-cell and checks the 2 aspect-ratios of the cell (one for 2D grids) The maximum value of aspect ratio is stored. Each MPI sub-domain checks within its limits and an MPI_Reduce call gets the global maximum. </p>
-
-</div>
-</div>
-<a class="anchor" id="a4efb368b0071c9f226030cbc29625dd4"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void grid::computeGlobalLimits </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to set the extent of local sub-domains in terms of the global index of the full domain. </p>
-<p>Depending on the number of processor divisions along each direction, the limits of the grid for each local sub-domain is set based on its <a class="el" href="classparallel.html#a24418c6a2aa5edb7c06a024757cb2bb6">xRank</a> and <a class="el" href="classparallel.html#a79838566ac5a6e3013343b66e272d08d">yRank</a>. These limits are used to locate the local sub-domains within the full domain later. </p>
-
-</div>
-</div>
-<a class="anchor" id="a60994347ba6d4b6d71bac07d0ada36bc"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void grid::createTanHypGrid </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>dim</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to generate grid with tangent-hyperbolic stretching. </p>
-<p>The local collocated grids, <a class="el" href="classgrid.html#a261933fd96e3c56af7048a94dbd496e0">xColloc</a>, <a class="el" href="classgrid.html#af43bf78cc65c280cb67068abd43e20e3">yColloc</a>, and <a class="el" href="classgrid.html#a7a661e13ef91ba300864db6da5671952">zColloc</a> are initialized from their corresponding transformed plane coordinates, <a class="el" href="classgrid.html#a7b78fa94ce33c24bcb8c606280740a16">xi</a>, <a class="el" href="classgrid.html#a54cd1cb3e5600eb360c13de3361aff56">et</a>, and <a class="el" href="classgrid.html#ac8dfa2df84c44da69c881b907116e397">zt</a> respectively using the tangent hyperbolic function. The corresponding grid derivative terms, <a class="el" href="classgrid.html#a33474471880ec80f6770908cf0b531da">xi_xColloc</a>, <a class="el" href="classgrid.html#a0d370a3c36801e0cb401ba981625f747">xixxColloc</a>, <a class="el" href="classgrid.html#a8fef052f9ab5175d0b5d6c452053e8be">ety2Colloc</a>, etc are computed using analytical expressions for the tangent hyperbolic function.</p>
-<p>Similarly, the staggered grids, <a class="el" href="classgrid.html#a79c99209eb02e27fa03157e2b44295a3">xStaggr</a>, <a class="el" href="classgrid.html#ad2e9df6f0132f1e40bb1c8c0239501e5">yStaggr</a>, and <a class="el" href="classgrid.html#a7113caf01aac4342a4768f1b515f5af3">zStaggr</a> are initialized from the mid-point averaged values of the nodes in their corresponding transformed plane coordinates, <a class="el" href="classgrid.html#a7b78fa94ce33c24bcb8c606280740a16">xi</a>, <a class="el" href="classgrid.html#a54cd1cb3e5600eb360c13de3361aff56">et</a>, and <a class="el" href="classgrid.html#ac8dfa2df84c44da69c881b907116e397">zt</a> respectively using the tangent hyperbolic function. As before, the grid derivative terms for the staggered points are also computed using analytical expressions.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">dim</td><td>is an integer value that defines the direction along which tan-hyp grid is to be generated: 0 -&gt; X, 1 -&gt; Y, 2 -&gt; Z </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="ab4712d4d559bb5b3e77a8b27b5e9ed8c"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void grid::createUniformGrid </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to generate grid with uniform stretching. </p>
-<p>The local collocated grids, <a class="el" href="classgrid.html#a261933fd96e3c56af7048a94dbd496e0">xColloc</a>, <a class="el" href="classgrid.html#af43bf78cc65c280cb67068abd43e20e3">yColloc</a>, and <a class="el" href="classgrid.html#a7a661e13ef91ba300864db6da5671952">zColloc</a> are equated to their corresponding transformed plane coordinates, <a class="el" href="classgrid.html#a7b78fa94ce33c24bcb8c606280740a16">xi</a>, <a class="el" href="classgrid.html#a54cd1cb3e5600eb360c13de3361aff56">et</a>, and <a class="el" href="classgrid.html#ac8dfa2df84c44da69c881b907116e397">zt</a> respectively. The corresponding grid derivative terms, <a class="el" href="classgrid.html#a33474471880ec80f6770908cf0b531da">xi_xColloc</a>, <a class="el" href="classgrid.html#a0d370a3c36801e0cb401ba981625f747">xixxColloc</a>, <a class="el" href="classgrid.html#a8fef052f9ab5175d0b5d6c452053e8be">ety2Colloc</a>, etc are left unchanged from their initial value of 1.0, indicating that the grid is uniform.</p>
-<p>Similarly, the staggered grids, <a class="el" href="classgrid.html#a79c99209eb02e27fa03157e2b44295a3">xStaggr</a>, <a class="el" href="classgrid.html#ad2e9df6f0132f1e40bb1c8c0239501e5">yStaggr</a>, and <a class="el" href="classgrid.html#a7113caf01aac4342a4768f1b515f5af3">zStaggr</a> are also equated to the mid-point averaged values of the nodes in their corresponding transformed plane coordinates, <a class="el" href="classgrid.html#a7b78fa94ce33c24bcb8c606280740a16">xi</a>, <a class="el" href="classgrid.html#a54cd1cb3e5600eb360c13de3361aff56">et</a>, and <a class="el" href="classgrid.html#ac8dfa2df84c44da69c881b907116e397">zt</a> respectively. As before, the grid derivative terms for the staggered points are also left as 1.0. </p>
-
-</div>
-</div>
-<a class="anchor" id="a32950708e41fb52c50baf61e520537ed"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void grid::gatherGlobal </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to gather global data about the grid into every rank. </p>
-<p>In certain cases, for example, implementation of non-homogeneous boundary conditions, the data regarding the global extents of the grid and the global coordinates are necessary. For this reason, the global grid data is made available to each rank through an MPI_Allgather call. </p>
-
-</div>
-</div>
 <a class="anchor" id="a0dc73cebd3aa862014a44b547c1c5a21"></a>
 <div class="memitem">
 <div class="memproto">
@@ -584,32 +382,6 @@ blitz::Array&lt; real, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A blitz TinyVector that contains the local indices computed from the given global indices </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="aa0aab12f2c4f4df8c7075403c9bb8509"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void grid::globalXiEtaZeta </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to compute global values of xi, eta and zeta in transformed plane. </p>
-<p>The function populates the <a class="el" href="classgrid.html#aea3aef5d628b475d969380f4c75641b4">xiGlo</a>, <a class="el" href="classgrid.html#a756217ab486bb82f646b03637243c0f6">etGlo</a> and <a class="el" href="classgrid.html#a69cf9fb51a07c4b332038db7c25cf50c">ztGlo</a> arrays from which the local values of <a class="el" href="classgrid.html#a7b78fa94ce33c24bcb8c606280740a16">xi</a>, <a class="el" href="classgrid.html#a54cd1cb3e5600eb360c13de3361aff56">et</a> and <a class="el" href="classgrid.html#ac8dfa2df84c44da69c881b907116e397">zt</a> in each sub-domain are obtained. These local values are obtained from the global grid according to the limits defined in <a class="el" href="classgrid.html#a4efb368b0071c9f226030cbc29625dd4">computeGlobalLimits</a>. </p>
 
 </div>
 </div>
@@ -647,33 +419,6 @@ blitz::Array&lt; real, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 
 </div>
 </div>
-<a class="anchor" id="ad01c2a3102238f76aa5f41096e79cec9"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void grid::makeSizeArray </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to resize and initialize the size array from which the dimensions of the grid will be determined. </p>
-<p>The size array will generate grid sizes according to \( 2^N + 2 \) to enable multigrid operations on the grid. The xInd, yInd and zInd parameters set by the users in parameters.yaml and read by the <a class="el" href="classparser.html">parser</a> class will be used to locate the grid size within the <a class="el" href="classgrid.html#a7775e9957a7f042e8a00b2fcf90ae1db">sizeArray</a> and generate grid accordingly.</p>
-<p>Note that the grid sizes stored in <a class="el" href="classgrid.html#a7775e9957a7f042e8a00b2fcf90ae1db">sizeArray</a> correspond to the collocated grid. For multi-grid operations, the number of grid points necessary is \( 2^N + 1 \), which is 1 less than the values generated by this function. However, multi-grid is applied here to compute pressure correction and pressure is calculated on the staggered grid. Since there are \( N - 1 \) staggered grid points for \( N \) collocated points, the sizes become consistent. </p>
-
-</div>
-</div>
 <a class="anchor" id="a76ef23d722df2aaf6c4a6b556c5a36b0"></a>
 <div class="memitem">
 <div class="memproto">
@@ -705,58 +450,6 @@ blitz::Array&lt; real, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A boolean value that evaluates to true if the point lies within the sub-domain </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a96e3a2a3d0d3ad2d1d665b03c95e04b4"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void grid::resizeGrid </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to resize and initialize the grid. </p>
-<p>The global collocated grid in transformed plane are resized according the global size of full domain. Then the local collocated grid in transformed plane is resized according to the limits defined in <a class="el" href="classgrid.html#a4efb368b0071c9f226030cbc29625dd4">computeGlobalLimits</a>. Correspondingly, this function is called after the global limits have been set. After defining the transformed plane coordinates, both the staggered and collocated grids in physical plane are resized. Finally, the arrays for the grid derivative terms are also resized and initialized to 1. </p>
-
-</div>
-</div>
-<a class="anchor" id="a74ad8f6c988e37d451b4de1d08de8da7"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void grid::setDomainSizes </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to set all the TinyVector and RectDomain variables for all future references throughout the solver. </p>
-<p>The function sets the core and full domain sizes for all the sub-domains after MPI decomposition. Additionally, the pad widths and starting indices of the sub-domains within the global domain are also set. </p>
 
 </div>
 </div>
@@ -1020,7 +713,7 @@ blitz::Array&lt; real, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 7 2020 12:04:28 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Feb 8 2020 16:51:54 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

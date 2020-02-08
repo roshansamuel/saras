@@ -60,8 +60,15 @@ class vfield {
     public:
         field Vx, Vy, Vz;
 
+        /** derVx, derVy and derVz are three instances of the derivative class used to compute derivatives
+         *  When the flag is true, the variable is shifted by half the grid-spacing.
+         *  This means that when all the flags are true, the variable is at the cell-center.
+         *  And when all the flags are false, the variable is placed at the vertex centers (collocated arrangement). */
+        //@{
         derivative derVx, derVy, derVz;
+        //@}
 
+        /** This string is used to identify the vector field, and is useful in file-writing */
         std::string fieldName;
 
         blitz::Array<real, 3> interTempX, interTempY, interTempZ;

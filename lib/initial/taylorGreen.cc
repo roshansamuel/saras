@@ -48,7 +48,7 @@
  *
  *          The empty constructer merely initializes the local reference to the global mesh variable.
  *
- * \param   mesh is a const reference to the global data contained in the grid class
+ * \param   mesh is a const reference to the global data contained in the grid class.
  ********************************************************************************************************************************************
  */
 taylorGreen::taylorGreen(const grid &mesh): initial(mesh) { }

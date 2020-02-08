@@ -91,7 +91,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classvfield-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">vfield Class Reference</div>  </div>
@@ -105,7 +104,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7acb873361a1a3c7bdda3f9f3bbfdaaf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvfield.html#a7acb873361a1a3c7bdda3f9f3bbfdaaf">vfield</a> (const <a class="el" href="classgrid.html">grid</a> &amp;gridData, std::string fieldName)</td></tr>
+<tr class="memitem:a7acb873361a1a3c7bdda3f9f3bbfdaaf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvfield.html#a7acb873361a1a3c7bdda3f9f3bbfdaaf">vfield</a> (const <a class="el" href="classgrid.html">grid</a> &amp;gridData, std::string <a class="el" href="classvfield.html#aab1871607e3f99d097d5647a789f8da6">fieldName</a>)</td></tr>
 <tr class="memdesc:a7acb873361a1a3c7bdda3f9f3bbfdaaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the vfield class.  <a href="#a7acb873361a1a3c7bdda3f9f3bbfdaaf">More...</a><br/></td></tr>
 <tr class="separator:a7acb873361a1a3c7bdda3f9f3bbfdaaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5d0427a7d3137071ddfd13bb059e0d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvfield.html#af5d0427a7d3137071ddfd13bb059e0d7">computeDiff</a> (<a class="el" href="classplainvf.html">plainvf</a> &amp;H)</td></tr>
@@ -159,17 +158,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a938e2a9005eecf3d4fc506d03d657980"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a938e2a9005eecf3d4fc506d03d657980"></a>
 <a class="el" href="classfield.html">field</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Vz</b></td></tr>
 <tr class="separator:a938e2a9005eecf3d4fc506d03d657980"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab83fbb4dd6be6b1216a9c001f9f7f2ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab83fbb4dd6be6b1216a9c001f9f7f2ad"></a>
-<a class="el" href="classderivative.html">derivative</a>&#160;</td><td class="memItemRight" valign="bottom"><b>derVx</b></td></tr>
-<tr class="separator:ab83fbb4dd6be6b1216a9c001f9f7f2ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0629859307bbacd7db780a839ab6f96c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0629859307bbacd7db780a839ab6f96c"></a>
-<a class="el" href="classderivative.html">derivative</a>&#160;</td><td class="memItemRight" valign="bottom"><b>derVy</b></td></tr>
-<tr class="separator:a0629859307bbacd7db780a839ab6f96c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abce157555f69077f558f2e077fc7ea14"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abce157555f69077f558f2e077fc7ea14"></a>
-<a class="el" href="classderivative.html">derivative</a>&#160;</td><td class="memItemRight" valign="bottom"><b>derVz</b></td></tr>
-<tr class="separator:abce157555f69077f558f2e077fc7ea14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab1871607e3f99d097d5647a789f8da6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab1871607e3f99d097d5647a789f8da6"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>fieldName</b></td></tr>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvfield.html#aab1871607e3f99d097d5647a789f8da6">fieldName</a></td></tr>
+<tr class="memdesc:aab1871607e3f99d097d5647a789f8da6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This string is used to identify the vector field, and is useful in file-writing. <br/></td></tr>
 <tr class="separator:aab1871607e3f99d097d5647a789f8da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72bbaebcf2b91389595f6212339cc767"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72bbaebcf2b91389595f6212339cc767"></a>
 blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>interTempX</b></td></tr>
@@ -180,21 +171,16 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <tr class="memitem:ace18fca943c3b52f49fcbb1be9f84b75"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace18fca943c3b52f49fcbb1be9f84b75"></a>
 blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>interTempZ</b></td></tr>
 <tr class="separator:ace18fca943c3b52f49fcbb1be9f84b75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:ae7bbaed334e2fc7840b45e4a89f408cc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae7bbaed334e2fc7840b45e4a89f408cc"></a>
-const <a class="el" href="classgrid.html">grid</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>gridData</b></td></tr>
-<tr class="separator:ae7bbaed334e2fc7840b45e4a89f408cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a551b5c4439b570af1f8faf056b342d68"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a551b5c4439b570af1f8faf056b342d68"></a>
-blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>derivTempX</b></td></tr>
-<tr class="separator:a551b5c4439b570af1f8faf056b342d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d8398cf6cf6da96d454506083f38c9d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0d8398cf6cf6da96d454506083f38c9d"></a>
-blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>derivTempY</b></td></tr>
-<tr class="separator:a0d8398cf6cf6da96d454506083f38c9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf019c2e81475915598b4e3572fba75b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf019c2e81475915598b4e3572fba75b"></a>
-blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>derivTempZ</b></td></tr>
-<tr class="separator:acf019c2e81475915598b4e3572fba75b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ab83fbb4dd6be6b1216a9c001f9f7f2ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classderivative.html">derivative</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvfield.html#ab83fbb4dd6be6b1216a9c001f9f7f2ad">derVx</a></td></tr>
+<tr class="memdesc:ab83fbb4dd6be6b1216a9c001f9f7f2ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">derVx, derVy and derVz are three instances of the derivative class used to compute derivatives When the flag is true, the variable is shifted by half the grid-spacing.  <a href="#ab83fbb4dd6be6b1216a9c001f9f7f2ad">More...</a><br/></td></tr>
+<tr class="separator:ab83fbb4dd6be6b1216a9c001f9f7f2ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0629859307bbacd7db780a839ab6f96c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classderivative.html">derivative</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvfield.html#a0629859307bbacd7db780a839ab6f96c">derVy</a></td></tr>
+<tr class="memdesc:a0629859307bbacd7db780a839ab6f96c"><td class="mdescLeft">&#160;</td><td class="mdescRight">derVx, derVy and derVz are three instances of the derivative class used to compute derivatives When the flag is true, the variable is shifted by half the grid-spacing.  <a href="#a0629859307bbacd7db780a839ab6f96c">More...</a><br/></td></tr>
+<tr class="separator:a0629859307bbacd7db780a839ab6f96c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abce157555f69077f558f2e077fc7ea14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classderivative.html">derivative</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvfield.html#abce157555f69077f558f2e077fc7ea14">derVz</a></td></tr>
+<tr class="memdesc:abce157555f69077f558f2e077fc7ea14"><td class="mdescLeft">&#160;</td><td class="mdescRight">derVx, derVy and derVz are three instances of the derivative class used to compute derivatives When the flag is true, the variable is shifted by half the grid-spacing.  <a href="#abce157555f69077f558f2e077fc7ea14">More...</a><br/></td></tr>
+<tr class="separator:abce157555f69077f558f2e077fc7ea14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Vector field class to store and operate on vector fields. </p>
@@ -586,6 +572,52 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 
 </div>
 </div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ab83fbb4dd6be6b1216a9c001f9f7f2ad"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classderivative.html">derivative</a> vfield::derVx</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>derVx, derVy and derVz are three instances of the derivative class used to compute derivatives When the flag is true, the variable is shifted by half the grid-spacing. </p>
+<p>This means that when all the flags are true, the variable is at the cell-center. And when all the flags are false, the variable is placed at the vertex centers (collocated arrangement). </p>
+
+</div>
+</div>
+<a class="anchor" id="a0629859307bbacd7db780a839ab6f96c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classderivative.html">derivative</a> vfield::derVy</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>derVx, derVy and derVz are three instances of the derivative class used to compute derivatives When the flag is true, the variable is shifted by half the grid-spacing. </p>
+<p>This means that when all the flags are true, the variable is at the cell-center. And when all the flags are false, the variable is placed at the vertex centers (collocated arrangement). </p>
+
+</div>
+</div>
+<a class="anchor" id="abce157555f69077f558f2e077fc7ea14"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classderivative.html">derivative</a> vfield::derVz</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>derVx, derVy and derVz are three instances of the derivative class used to compute derivatives When the flag is true, the variable is shifted by half the grid-spacing. </p>
+<p>This means that when all the flags are true, the variable is at the cell-center. And when all the flags are false, the variable is placed at the vertex centers (collocated arrangement). </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>lib/field/<a class="el" href="vfield_8h_source.html">vfield.h</a></li>
 <li>lib/field/<a class="el" href="vfield_8cc.html">vfield.cc</a></li>
@@ -593,7 +625,7 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 7 2020 12:04:28 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Feb 8 2020 16:51:54 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

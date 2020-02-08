@@ -73,11 +73,7 @@ void channelRand::initializeField(vfield &uField) {
     int randSeed = std::time(0) + mesh.rankData.rank;
     std::srand(randSeed);
 
-    // DEBUG CODE
-    //std::srand(mesh.rankData.rank);
-    // END DEBUG CODE
-
-    // The below factor was recommended to be set to 26.0 by Anikesh Pal, but that number appears when V is scaled with friction velocity, U_tau
+    // The below factor was recommended to be set to 26.0, but that number appears when V is scaled with friction velocity, U_tau
     real vScale = 1.0;
 
 #ifdef PLANAR

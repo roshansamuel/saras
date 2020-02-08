@@ -280,8 +280,8 @@ void field::setBulkSlice() {
  *          only for the near-boundary sub-domains in parallel computations.
  *          Moreover, only the collocated grid has points on the boundary.
  *          The staggered grid points lie on either side of the domain boundaries.
- *          As a result the wall slices are defined only for those fields for which at least one of \ref xStag, \ref yStag or
- *          \ref zStag is false
+ *          As a result the wall slices are defined only for those fields for which at least one of \ref field#xStag "xStag",
+ *          \ref field#yStag "yStag" or \ref field#zStag "zStag" is false
  ********************************************************************************************************************************************
  */
 void field::setWallSlices() {

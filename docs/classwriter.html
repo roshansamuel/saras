@@ -90,8 +90,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classwriter-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">writer Class Reference</div>  </div>
@@ -117,43 +115,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa8da78d2c011168389f27a4830e3600f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwriter.html#aa8da78d2c011168389f27a4830e3600f">writeRestart</a> (real time)</td></tr>
 <tr class="memdesc:aa8da78d2c011168389f27a4830e3600f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to write restart file in HDF5 format in parallel.  <a href="#aa8da78d2c011168389f27a4830e3600f">More...</a><br/></td></tr>
 <tr class="separator:aa8da78d2c011168389f27a4830e3600f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
-<tr class="memitem:a73d01fdb58bad2378d9ab7ffe6379b03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwriter.html#a73d01fdb58bad2378d9ab7ffe6379b03">outputCheck</a> ()</td></tr>
-<tr class="memdesc:a73d01fdb58bad2378d9ab7ffe6379b03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to create output folder if it does not exist.  <a href="#a73d01fdb58bad2378d9ab7ffe6379b03">More...</a><br/></td></tr>
-<tr class="separator:a73d01fdb58bad2378d9ab7ffe6379b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae02ca7e3638a36f216a2f7d7fad1d5b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwriter.html#ae02ca7e3638a36f216a2f7d7fad1d5b5">initLimits</a> ()</td></tr>
-<tr class="memdesc:ae02ca7e3638a36f216a2f7d7fad1d5b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to initialize the global and local limits for setting file views.  <a href="#ae02ca7e3638a36f216a2f7d7fad1d5b5">More...</a><br/></td></tr>
-<tr class="separator:ae02ca7e3638a36f216a2f7d7fad1d5b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bcda6d5e73e51a98c9154dc0f8ddc86"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwriter.html#a0bcda6d5e73e51a98c9154dc0f8ddc86">copyData</a> (<a class="el" href="classfield.html">field</a> &amp;outField)</td></tr>
-<tr class="memdesc:a0bcda6d5e73e51a98c9154dc0f8ddc86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to copy data to a blitz array without pads.  <a href="#a0bcda6d5e73e51a98c9154dc0f8ddc86">More...</a><br/></td></tr>
-<tr class="separator:a0bcda6d5e73e51a98c9154dc0f8ddc86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56deed7cd221edbba8212ab742485420"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwriter.html#a56deed7cd221edbba8212ab742485420">interpolateData</a> (<a class="el" href="classfield.html">field</a> &amp;outField)</td></tr>
-<tr class="memdesc:a56deed7cd221edbba8212ab742485420"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to interpolate data to a blitz array without pads.  <a href="#a56deed7cd221edbba8212ab742485420">More...</a><br/></td></tr>
-<tr class="separator:a56deed7cd221edbba8212ab742485420"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:ae3584f5a9053f2b12645e4e59bd9a201"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3584f5a9053f2b12645e4e59bd9a201"></a>
-const <a class="el" href="classgrid.html">grid</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>mesh</b></td></tr>
-<tr class="separator:ae3584f5a9053f2b12645e4e59bd9a201"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2edb2383916e289449bfcd1cd11912f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2edb2383916e289449bfcd1cd11912f7"></a>
-std::vector&lt; <a class="el" href="classfield.html">field</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>wFields</b></td></tr>
-<tr class="separator:a2edb2383916e289449bfcd1cd11912f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a128b8a847d9acfa7506e9339c1a7f598"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a128b8a847d9acfa7506e9339c1a7f598"></a>
-blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>fieldData</b></td></tr>
-<tr class="separator:a128b8a847d9acfa7506e9339c1a7f598"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4882dcba3e3c8544777e39e0db85c24"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac4882dcba3e3c8544777e39e0db85c24"></a>
-std::vector&lt; hid_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>sourceDSpace</b></td></tr>
-<tr class="separator:ac4882dcba3e3c8544777e39e0db85c24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1684a00b71d5602990fb870ec90401c6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1684a00b71d5602990fb870ec90401c6"></a>
-std::vector&lt; hid_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>targetDSpace</b></td></tr>
-<tr class="separator:a1684a00b71d5602990fb870ec90401c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af55305edef097a1e3b127ddb96ee7bed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af55305edef097a1e3b127ddb96ee7bed"></a>
-std::vector&lt; blitz::TinyVector<br class="typebreak"/>
-&lt; int, 3 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>localSize</b></td></tr>
-<tr class="separator:af55305edef097a1e3b127ddb96ee7bed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for all the global variables and functions related to writing output data of the solver. </p>
@@ -198,112 +159,6 @@ std::vector&lt; blitz::TinyVector<br class="typebreak"/>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a0bcda6d5e73e51a98c9154dc0f8ddc86"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void writer::copyData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classfield.html">field</a> &amp;&#160;</td>
-          <td class="paramname"><em>outField</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to copy data to a blitz array without pads. </p>
-<p>In order to simplify the file views while writing to disk from memory for the restart file, the variables are copied into a local blitz array without the pads. </p>
-
-</div>
-</div>
-<a class="anchor" id="ae02ca7e3638a36f216a2f7d7fad1d5b5"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void writer::initLimits </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to initialize the global and local limits for setting file views. </p>
-<p>All the necessary limits of the local arrays with respect to the global array for setting the dataspace views for HDF5 are appropriately set here. </p>
-
-</div>
-</div>
-<a class="anchor" id="a56deed7cd221edbba8212ab742485420"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void writer::interpolateData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classfield.html">field</a> &amp;&#160;</td>
-          <td class="paramname"><em>outField</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to interpolate data to a blitz array without pads. </p>
-<p>The solution files are written after interpolating the data to cell centers. This function performs this task depending on the mesh configuration of the variable. </p>
-
-</div>
-</div>
-<a class="anchor" id="a73d01fdb58bad2378d9ab7ffe6379b03"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void writer::outputCheck </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to create output folder if it does not exist. </p>
-<p>The function uses methods available in the sys/stat.h header to create an output folder if it does not exist Without this, the code used to give segmentation fault while attempting to write solution files </p>
-
-</div>
-</div>
 <a class="anchor" id="aa8da78d2c011168389f27a4830e3600f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -386,7 +241,7 @@ std::vector&lt; blitz::TinyVector<br class="typebreak"/>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 7 2020 12:04:28 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Feb 8 2020 16:51:54 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

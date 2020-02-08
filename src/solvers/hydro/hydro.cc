@@ -79,7 +79,7 @@ hydro::hydro(const grid &mesh, const parser &solParam, parallel &mpiParam):
  ********************************************************************************************************************************************
  * \brief   The core publicly accessible function of the \ref hydro class to solve the Navier-Stokes equations
  *
- *          The NSE are integrated in time from within this function by calling \ref computeTimeStep in a loop.
+ *          The NSE are integrated in time from within this function by calling \ref hydro#computeTimeStep in a loop.
  *          The function keeps track of the non-dimensional time with \ref time and number of iterations with \ref iterCount.
  *          Both these values are continuously incremented from within the loop, and finally, when \ref time has reached the
  *          user-ser value in \ref parser#tMax "tMax", the time-integration loop is broken and the program exits.

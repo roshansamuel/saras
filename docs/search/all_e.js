@@ -4,17 +4,11 @@ var searchData=
   ['randomforcing_2ecc',['randomForcing.cc',['../randomForcing_8cc.html',1,'']]],
   ['rank',['rank',['../classparallel.html#a7e7e97e491ded7bf23632bf9e01aa5a2',1,'parallel']]],
   ['rankdata',['rankData',['../classgrid.html#a601c3c843a2152673af275a88a140c5f',1,'grid::rankData()'],['../classmpidata.html#a2aba921899554381996cc564ff21bbd0',1,'mpidata::rankData()']]],
+  ['rankflag',['rankFlag',['../classboundary.html#a5464da5fd4868218c7d97ff3057721b5',1,'boundary']]],
   ['readdata',['readData',['../classreader.html#a001d2424c8d41b9eaaca63e2f24fc718',1,'reader']]],
   ['reader',['reader',['../classreader.html',1,'reader'],['../classreader.html#a1ee0a2c32b237f52175788ddc3022420',1,'reader::reader()']]],
   ['reader_2ecc',['reader.cc',['../reader_8cc.html',1,'']]],
   ['reader_2eh',['reader.h',['../reader_8h.html',1,'']]],
-  ['recvrequest',['recvRequest',['../classmpidata.html#acbb3d68ac38655845aebef905baef53e',1,'mpidata']]],
-  ['recvstatus',['recvStatus',['../classmpidata.html#a1f65667763d7389f84d51b26833b59b8',1,'mpidata']]],
-  ['recvsubarrayx0',['recvSubarrayX0',['../classmpidata.html#aaec85ac63c2db58c4d3f61f7b342e14e',1,'mpidata']]],
-  ['recvsubarrayx1',['recvSubarrayX1',['../classmpidata.html#a27babb11091607a15a7703847bb01a1d',1,'mpidata']]],
-  ['recvsubarrayy0',['recvSubarrayY0',['../classmpidata.html#a21a3360550c8ca0ac241872537b3958f',1,'mpidata']]],
-  ['recvsubarrayy1',['recvSubarrayY1',['../classmpidata.html#a86002d4bea31da00b559802d2c8a310d',1,'mpidata']]],
-  ['resizegrid',['resizeGrid',['../classgrid.html#a96e3a2a3d0d3ad2d1d665b03c95e04b4',1,'grid']]],
   ['rotatingconv',['rotatingConv',['../classrotatingConv.html',1,'']]],
   ['rotatingconv_2ecc',['rotatingConv.cc',['../rotatingConv_8cc.html',1,'']]]
 ];

@@ -61,6 +61,7 @@
 
 class hydro {
     public:
+        /** The vector field that stores the velocity field */
         vfield V;
 
         sfield P;
@@ -89,16 +90,24 @@ class hydro {
 
         const real inverseRe;
 
+        /** Instance of the \ref probe class to collect data from probes in the domain. */
         probes *dataProbe;
+
+        /** Instances of the \ref boundary class to impose boundary conditions on all the 6 walls for the 3 components of the velocity field. */
+        //@{
         boundary *uLft, *uRgt, *uFrn, *uBak, *uTop, *uBot;
         boundary *vLft, *vRgt, *vFrn, *vBak, *vTop, *vBot;
         boundary *wLft, *wRgt, *wFrn, *wBak, *wTop, *wBot;
+        //@}
 
         parallel &mpiData;
 
+        /** Plain scalar field into which the pressure correction is calculated and written by the Poisson solver */
         plainsf Pp;
+        /** Plain scalar field into which the RHS for pressure Poisson equation is written and passed to the Poisson solver */
         plainsf mgRHS;
 
+        /** Plain vector field into which the RHS of the Navier-Stokes equation is written and stored */
         plainvf nseRHS;
         plainvf velocityLaplacian;
         plainvf pressureGradient;

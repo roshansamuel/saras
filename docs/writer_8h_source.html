@@ -163,20 +163,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        std::vector&lt; blitz::TinyVector&lt;int, 3&gt; &gt; localSize;</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classwriter.html#a73d01fdb58bad2378d9ab7ffe6379b03">outputCheck</a>();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordtype">void</span> outputCheck();</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classwriter.html#ae02ca7e3638a36f216a2f7d7fad1d5b5">initLimits</a>();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordtype">void</span> initLimits();</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classwriter.html#a0bcda6d5e73e51a98c9154dc0f8ddc86">copyData</a>(<a class="code" href="classfield.html">field</a> &amp;outField);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classwriter.html#a56deed7cd221edbba8212ab742485420">interpolateData</a>(<a class="code" href="classfield.html">field</a> &amp;outField);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordtype">void</span> copyData(<a class="code" href="classfield.html">field</a> &amp;outField);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordtype">void</span> interpolateData(<a class="code" href="classfield.html">field</a> &amp;outField);</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;};</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="classwriter_html_ae02ca7e3638a36f216a2f7d7fad1d5b5"><div class="ttname"><a href="classwriter.html#ae02ca7e3638a36f216a2f7d7fad1d5b5">writer::initLimits</a></div><div class="ttdeci">void initLimits()</div><div class="ttdoc">Function to initialize the global and local limits for setting file views. </div><div class="ttdef"><b>Definition:</b> writer.cc:72</div></div>
-<div class="ttc" id="classwriter_html_a73d01fdb58bad2378d9ab7ffe6379b03"><div class="ttname"><a href="classwriter.html#a73d01fdb58bad2378d9ab7ffe6379b03">writer::outputCheck</a></div><div class="ttdeci">void outputCheck()</div><div class="ttdoc">Function to create output folder if it does not exist. </div><div class="ttdef"><b>Definition:</b> writer.cc:222</div></div>
 <div class="ttc" id="classgrid_html"><div class="ttname"><a href="classgrid.html">grid</a></div><div class="ttdoc">Contains all the global variables related to the grid, its slices, limits, and grid derivatives used ...</div><div class="ttdef"><b>Definition:</b> grid.h:53</div></div>
-<div class="ttc" id="classwriter_html_a56deed7cd221edbba8212ab742485420"><div class="ttname"><a href="classwriter.html#a56deed7cd221edbba8212ab742485420">writer::interpolateData</a></div><div class="ttdeci">void interpolateData(field &amp;outField)</div><div class="ttdoc">Function to interpolate data to a blitz array without pads. </div><div class="ttdef"><b>Definition:</b> writer.cc:555</div></div>
-<div class="ttc" id="classwriter_html_a0bcda6d5e73e51a98c9154dc0f8ddc86"><div class="ttname"><a href="classwriter.html#a0bcda6d5e73e51a98c9154dc0f8ddc86">writer::copyData</a></div><div class="ttdeci">void copyData(field &amp;outField)</div><div class="ttdoc">Function to copy data to a blitz array without pads. </div><div class="ttdef"><b>Definition:</b> writer.cc:528</div></div>
 <div class="ttc" id="classwriter_html"><div class="ttname"><a href="classwriter.html">writer</a></div><div class="ttdoc">Class for all the global variables and functions related to writing output data of the solver...</div><div class="ttdef"><b>Definition:</b> writer.h:57</div></div>
 <div class="ttc" id="classwriter_html_aaa2aca379999de81e3672ee88001f42b"><div class="ttname"><a href="classwriter.html#aaa2aca379999de81e3672ee88001f42b">writer::writer</a></div><div class="ttdeci">writer(const grid &amp;mesh, std::vector&lt; field &gt; &amp;wFields)</div><div class="ttdoc">Constructor of the writer class. </div><div class="ttdef"><b>Definition:</b> writer.cc:56</div></div>
 <div class="ttc" id="classwriter_html_a63a56c40f8c67b80f1d26aa09a286a30"><div class="ttname"><a href="classwriter.html#a63a56c40f8c67b80f1d26aa09a286a30">writer::writeSolution</a></div><div class="ttdeci">void writeSolution(real time)</div><div class="ttdoc">Function to write solution file in HDF5 format in parallel. </div><div class="ttdef"><b>Definition:</b> writer.cc:370</div></div>
@@ -188,7 +184,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 7 2020 12:04:27 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Feb 8 2020 16:51:54 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

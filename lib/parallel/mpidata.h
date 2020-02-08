@@ -74,7 +74,7 @@ class mpidata {
         /** An array of MPI_Status data-types necessary for obtaining output from the non-blocking receive MPI_Irecv in the syncData function. */
         blitz::Array<MPI_Status, 1> recvStatus;
 
-        /** Array of values of the data field which needs to be synchronised across processors */
+        /** Blitz array of the data field which needs to be synchronised across processors. */
         blitz::Array<real, 3> dataField;
 
     public:

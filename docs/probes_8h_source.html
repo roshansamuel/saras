@@ -167,30 +167,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        MPI_Datatype mpiStruct;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classprobes.html#a1c157f994fbc5fd5f2a8bccbc996dcb9">getData</a>(<a class="code" href="structdataStruct.html">dataStruct</a> *outData);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classprobes.html#a190f7431211e6f18f01dbc7b4d5acc73">gatherData</a>(<a class="code" href="structdataStruct.html">dataStruct</a> *outData);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordtype">void</span> getData(<a class="code" href="structdataStruct.html">dataStruct</a> *outData);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordtype">void</span> gatherData(<a class="code" href="structdataStruct.html">dataStruct</a> *outData);</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classprobes.html#adf8ed8f478396737a34be4145cc02e62">createMPIStruct</a>();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordtype">void</span> createMPIStruct();</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classprobes.html#a0b03ced012fb87155d5498842d18f09a">placeProbes</a>();</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordtype">void</span> placeProbes();</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;};</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classprobes_html_a66d8ce73e299e358015e3e1a349d8826"><div class="ttname"><a href="classprobes.html#a66d8ce73e299e358015e3e1a349d8826">probes::probes</a></div><div class="ttdeci">probes(const grid &amp;mesh, std::vector&lt; field &gt; &amp;pFields)</div><div class="ttdoc">Constructor of the probes class. </div><div class="ttdef"><b>Definition:</b> probes.cc:61</div></div>
 <div class="ttc" id="classprobes_html"><div class="ttname"><a href="classprobes.html">probes</a></div><div class="ttdoc">Handles the writing of data from probes placed in the domain. </div><div class="ttdef"><b>Definition:</b> probes.h:65</div></div>
-<div class="ttc" id="classprobes_html_adf8ed8f478396737a34be4145cc02e62"><div class="ttname"><a href="classprobes.html#adf8ed8f478396737a34be4145cc02e62">probes::createMPIStruct</a></div><div class="ttdeci">void createMPIStruct()</div><div class="ttdoc">Function to create the derived MPI datatype to be used for transferring probed data across processors...</div><div class="ttdef"><b>Definition:</b> probes.cc:247</div></div>
 <div class="ttc" id="structdataStruct_html"><div class="ttname"><a href="structdataStruct.html">dataStruct</a></div><div class="ttdef"><b>Definition:</b> probes.h:55</div></div>
-<div class="ttc" id="classprobes_html_a190f7431211e6f18f01dbc7b4d5acc73"><div class="ttname"><a href="classprobes.html#a190f7431211e6f18f01dbc7b4d5acc73">probes::gatherData</a></div><div class="ttdeci">void gatherData(dataStruct *outData)</div><div class="ttdoc">Function to gather the probed data to rank 0. </div><div class="ttdef"><b>Definition:</b> probes.cc:201</div></div>
 <div class="ttc" id="classgrid_html"><div class="ttname"><a href="classgrid.html">grid</a></div><div class="ttdoc">Contains all the global variables related to the grid, its slices, limits, and grid derivatives used ...</div><div class="ttdef"><b>Definition:</b> grid.h:53</div></div>
-<div class="ttc" id="classprobes_html_a1c157f994fbc5fd5f2a8bccbc996dcb9"><div class="ttname"><a href="classprobes.html#a1c157f994fbc5fd5f2a8bccbc996dcb9">probes::getData</a></div><div class="ttdeci">void getData(dataStruct *outData)</div><div class="ttdoc">Function to read the variables locally within each sub-domain. </div><div class="ttdef"><b>Definition:</b> probes.cc:179</div></div>
-<div class="ttc" id="classprobes_html_a0b03ced012fb87155d5498842d18f09a"><div class="ttname"><a href="classprobes.html#a0b03ced012fb87155d5498842d18f09a">probes::placeProbes</a></div><div class="ttdeci">void placeProbes()</div><div class="ttdoc">Function to place all the probes in the MPI decomposed sub-domains. </div><div class="ttdef"><b>Definition:</b> probes.cc:97</div></div>
 <div class="ttc" id="classprobes_html_aec03084c771d82388340f296dc22936a"><div class="ttname"><a href="classprobes.html#aec03084c771d82388340f296dc22936a">probes::probeData</a></div><div class="ttdeci">void probeData(real time)</div><div class="ttdoc">Function to read the variables at the probe locations and return them. </div><div class="ttdef"><b>Definition:</b> probes.cc:127</div></div>
 <div class="ttc" id="grid_8h_html"><div class="ttname"><a href="grid_8h.html">grid.h</a></div><div class="ttdoc">Class declaration of grid. </div></div>
 <div class="ttc" id="field_8h_html"><div class="ttname"><a href="field_8h.html">field.h</a></div><div class="ttdoc">Class declaration of field. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 7 2020 12:04:27 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Feb 8 2020 16:51:54 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

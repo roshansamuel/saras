@@ -389,8 +389,6 @@ blitz::Array<br class="typebreak"/>
 <p>Function to copy the staggered grid derivatives from the grid class to local arrays. </p>
 <p>Though the grid derivatives in the grid class can be read and accessed, they cannot be used directly along with the arrays defined in the poisson class as the local arrays have wide pads on both sides. Therefore, correspondingly wide arrays for grid derivatives are used, into which the staggered grid derivatives from the grid class are written and stored. This function serves this purpose of copying the grid derivatives. </p>
 
-<p>Reimplemented in <a class="el" href="classmultigrid__d3.html#acb2b1a642f8c37b72c564852eed7f4ca">multigrid_d3</a>, and <a class="el" href="classmultigrid__d2.html#ad42215675be3ef6d96e49855700a3724">multigrid_d2</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aaa95b6928a8652c3861245399da6143c"></a>
@@ -417,8 +415,6 @@ blitz::Array<br class="typebreak"/>
 <p>Function to create the MPI sub-array data types necessary to transfer data across sub-domains. </p>
 <p>The inter-domain boundaries of all the sub-domains at different V-cycle levels need data to be transfered at with different mesh strides. The number of sub-arrays along each edge/face of the sub-domains are equal to the number of V-cycle levels. Since this data transfer has to take place at all the mesh levels including the finest mesh, there will be vcDepth + 1 elements. </p>
 
-<p>Reimplemented in <a class="el" href="classmultigrid__d3.html#a159045a7fe683f8942c11d110f714fd9">multigrid_d3</a>, and <a class="el" href="classmultigrid__d2.html#a2cedcb665f0cb49f1986d954da7a913c">multigrid_d2</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a490f97075d967bfbe5c692fdea48f719"></a>
@@ -444,8 +440,6 @@ blitz::Array<br class="typebreak"/>
 
 <p>Function to impose the boundary conditions of Poisson solver at different levels of the V-cycle. </p>
 <p>This function is called mainly during smoothing operations to impose the boundary conditions for the Poisson equation. The sub-domains close to the wall will have the Neumann boundary condition on pressure imposeed at the walls. Meanwhile at the interior boundaries at the inter-processor sub-domains, data is transferred from the neighbouring cells by calling the <a class="el" href="classpoisson.html#a82e9d36121a97499be52c0c617459f6a">updatePads</a> function. </p>
-
-<p>Reimplemented in <a class="el" href="classmultigrid__d3.html#ae768dfd460a349aa6d2f8f7b7a63ad09">multigrid_d3</a>, and <a class="el" href="classmultigrid__d2.html#a9891f62d47bfc8f0217eed0aed5eb7b7">multigrid_d2</a>.</p>
 
 </div>
 </div>
@@ -498,8 +492,6 @@ blitz::Array<br class="typebreak"/>
 
 <p>Function to initialize the Range objects for accessing mesh derivatives in transformed plane. </p>
 <p>The Range objects defined here are used for reading the values of grid metrics at all the V-cycle levels. Since these values are required at all the grid levels, there are vcDepth + 1 number of Range objects. </p>
-
-<p>Reimplemented in <a class="el" href="classmultigrid__d3.html#a80a1db6b10788f1cf1fb9b2ed441e1e3">multigrid_d3</a>, and <a class="el" href="classmultigrid__d2.html#a6075b6b3f875f7df3e948a3667868c5f">multigrid_d2</a>.</p>
 
 </div>
 </div>
@@ -573,8 +565,6 @@ blitz::Array<br class="typebreak"/>
 <p>Function to perform prolongation on the array being solved. </p>
 <p>Prolongation makes the grid finer by averaging values at two adjacent nodes onto an intermediate point between them As a result, the number of points in the domain increases from \( 2^N + 1 \) at the input level to \( 2^{N+1} + 1 \). The vLevel variable is accordingly reduced by 1 to reflect this ascent by one step up the V-Cycle. </p>
 
-<p>Reimplemented in <a class="el" href="classmultigrid__d3.html#a917b053d920d142a9be32418ba0b7d6f">multigrid_d3</a>, and <a class="el" href="classmultigrid__d2.html#af434c5fddf5bf5a3c82660d0e20e631d">multigrid_d2</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a6a34d851780fdbd0f97dca6555f80c02"></a>
@@ -600,8 +590,6 @@ blitz::Array<br class="typebreak"/>
 
 <p>Function to set the coefficients used for calculating laplacian and in smoothing. </p>
 <p>The function assigns values to the variables hx, hy etc. These coefficients are repeatedly used at many places in the Poisson solver. </p>
-
-<p>Reimplemented in <a class="el" href="classmultigrid__d3.html#ad8e6ed137f140179e0835a144a496b31">multigrid_d3</a>, and <a class="el" href="classmultigrid__d2.html#a54974463cb8de698e734ee3438f86f15">multigrid_d2</a>.</p>
 
 </div>
 </div>
@@ -629,8 +617,6 @@ blitz::Array<br class="typebreak"/>
 <p>Function to calculate the local size indices of sub-domains after MPI domain decomposition. </p>
 <p>For the multi-grid solver, the number of grid nodes must be \( 2^N + 1 \) to perform V-Cycles The domain decomposition is also done in such a way that each sub-domain will also have \( 2^M + 1 \) points. As a result, the number of processors in each direction must be a power of 2. In this case, the the value \( M \) of \( 2^M + 1 \) can be computed as \( M = N - log_2(np) \) where \( np \) is the number of processors along the direction under consideration. </p>
 
-<p>Reimplemented in <a class="el" href="classmultigrid__d3.html#ab1ddb3d52831b44902b4987acca88d78">multigrid_d3</a>, and <a class="el" href="classmultigrid__d2.html#ad471ed617e5e78b9d8888df006dfe85d">multigrid_d2</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a9934adb3c6cb63d1f133ae0aed871d63"></a>
@@ -656,8 +642,6 @@ blitz::Array<br class="typebreak"/>
 
 <p>Function to set the RectDomain variables for all future references throughout the poisson solver. </p>
 <p>The function sets the core and full domain staggered grid sizes for all the sub-domains. </p>
-
-<p>Reimplemented in <a class="el" href="classmultigrid__d3.html#ac89c1a857bcca222129d0d92e80a3076">multigrid_d3</a>, and <a class="el" href="classmultigrid__d2.html#a0986dab3bd0dc77f2ccd1d3856025ba1">multigrid_d2</a>.</p>
 
 </div>
 </div>
@@ -692,8 +676,6 @@ blitz::Array<br class="typebreak"/>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="classmultigrid__d3.html#aca4530dc4898b1d0ab6468b1753c266b">multigrid_d3</a>, and <a class="el" href="classmultigrid__d2.html#a58432fb9f7db5525aa2080209bde5f31">multigrid_d2</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ad2cecb2bfe5569b7256285ffa385acf4"></a>
@@ -719,8 +701,6 @@ blitz::Array<br class="typebreak"/>
 
 <p>Function to solve the poisson equation at the coarsest multi-grid level. </p>
 <p>This function operates exclusively at the lowest level of the multi-grid V-cycle. It uses the Jacobi iterative solver to solve the residual of the Poisson equation on the coarsest mesh. Note that the all calculations are performed assuming that the vLevel variable is maximal when the function is being called. </p>
-
-<p>Reimplemented in <a class="el" href="classmultigrid__d3.html#ac9783032e3623eceb6ee3ac7ac824388">multigrid_d3</a>, and <a class="el" href="classmultigrid__d2.html#a3427721b7dfb195a8f61f0f3a8b01e91">multigrid_d2</a>.</p>
 
 </div>
 </div>
@@ -860,8 +840,6 @@ blitz::Array<br class="typebreak"/>
 <p>Function to update the pad points of the local sub-domains at different levels of the V-cycle. </p>
 <p>This function is called mainly during smoothing operations by the <a class="el" href="classpoisson.html#a490f97075d967bfbe5c692fdea48f719">imposeBC</a> function. It is also specifically called by the <a class="el" href="classpoisson.html#ad2cecb2bfe5569b7256285ffa385acf4">solve</a> function while solving the equation at the coarsest mesh level. At the interior boundaries at the inter-processor sub-domains, data is transferred from the neighbouring cells using a combination of MPI_Irecv and MPI_Send functions. </p>
 
-<p>Reimplemented in <a class="el" href="classmultigrid__d3.html#ac80f4c62ce5700c2188683ae052c05df">multigrid_d3</a>, and <a class="el" href="classmultigrid__d2.html#af12e992210696bdc1e5961e5855a5e18">multigrid_d2</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aa6a4d7b1cd67bc69df92f9bcf3e3901e"></a>
@@ -888,8 +866,6 @@ blitz::Array<br class="typebreak"/>
 <p>Function to perform one loop of V-cycle. </p>
 <p>The V-cycle of restrictions, prolongations and smoothings are performed within this function. First the input data contained in pressureData is smoothed, after which the residual is computed and stored in the residualData array. The restrictions, smoothing, and prolongations are performed on these two arrays subsequently. </p>
 
-<p>Reimplemented in <a class="el" href="classmultigrid__d3.html#a966e9bebcecf223a04048768a5dbe742">multigrid_d3</a>, and <a class="el" href="classmultigrid__d2.html#a552c8e589fe38424afb163acde49b0dd">multigrid_d2</a>.</p>
-
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
@@ -899,7 +875,7 @@ blitz::Array<br class="typebreak"/>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 7 2020 12:04:28 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Feb 8 2020 16:51:54 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

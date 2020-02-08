@@ -119,7 +119,7 @@ Inheritance diagram for boundary:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afb9d6d039750ca4164d08faaf4cef3a6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboundary.html#afb9d6d039750ca4164d08faaf4cef3a6">boundary</a> (const <a class="el" href="classgrid.html">grid</a> &amp;mesh, <a class="el" href="classfield.html">field</a> &amp;inField, const int bcWall)</td></tr>
+<tr class="memitem:afb9d6d039750ca4164d08faaf4cef3a6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboundary.html#afb9d6d039750ca4164d08faaf4cef3a6">boundary</a> (const <a class="el" href="classgrid.html">grid</a> &amp;<a class="el" href="classboundary.html#a4c10053491b5da6c902c4e614db6352c">mesh</a>, <a class="el" href="classfield.html">field</a> &amp;inField, const int bcWall)</td></tr>
 <tr class="memdesc:afb9d6d039750ca4164d08faaf4cef3a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the boundary class.  <a href="#afb9d6d039750ca4164d08faaf4cef3a6">More...</a><br/></td></tr>
 <tr class="separator:afb9d6d039750ca4164d08faaf4cef3a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecb34daea1bf7546634902579ea7882f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboundary.html#aecb34daea1bf7546634902579ea7882f">imposeBC</a> ()</td></tr>
@@ -128,27 +128,44 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a4c10053491b5da6c902c4e614db6352c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c10053491b5da6c902c4e614db6352c"></a>
-const <a class="el" href="classgrid.html">grid</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>mesh</b></td></tr>
+<tr class="memitem:a4c10053491b5da6c902c4e614db6352c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classgrid.html">grid</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboundary.html#a4c10053491b5da6c902c4e614db6352c">mesh</a></td></tr>
+<tr class="memdesc:a4c10053491b5da6c902c4e614db6352c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A const reference to the global variables stored in the grid class to access mesh data.  <a href="#a4c10053491b5da6c902c4e614db6352c">More...</a><br/></td></tr>
 <tr class="separator:a4c10053491b5da6c902c4e614db6352c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64ff0d3aff98c9a3c5c7397f8e61c817"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64ff0d3aff98c9a3c5c7397f8e61c817"></a>
-<a class="el" href="classfield.html">field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>dField</b></td></tr>
+<tr class="memitem:a64ff0d3aff98c9a3c5c7397f8e61c817"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfield.html">field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboundary.html#a64ff0d3aff98c9a3c5c7397f8e61c817">dField</a></td></tr>
+<tr class="memdesc:a64ff0d3aff98c9a3c5c7397f8e61c817"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the field onto which the boundary condition has to be applied.  <a href="#a64ff0d3aff98c9a3c5c7397f8e61c817">More...</a><br/></td></tr>
 <tr class="separator:a64ff0d3aff98c9a3c5c7397f8e61c817"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5464da5fd4868218c7d97ff3057721b5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5464da5fd4868218c7d97ff3057721b5"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>rankFlag</b></td></tr>
+<tr class="memitem:a5464da5fd4868218c7d97ff3057721b5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboundary.html#a5464da5fd4868218c7d97ff3057721b5">rankFlag</a></td></tr>
+<tr class="memdesc:a5464da5fd4868218c7d97ff3057721b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The flag is true for MPI ranks on which the boundary condition has to be applied.  <a href="#a5464da5fd4868218c7d97ff3057721b5">More...</a><br/></td></tr>
 <tr class="separator:a5464da5fd4868218c7d97ff3057721b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1a3f13a428da71bae0b905825ebc545"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af1a3f13a428da71bae0b905825ebc545"></a>
-const int&#160;</td><td class="memItemRight" valign="bottom"><b>wallNum</b></td></tr>
+<tr class="memitem:af1a3f13a428da71bae0b905825ebc545"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboundary.html#af1a3f13a428da71bae0b905825ebc545">wallNum</a></td></tr>
+<tr class="memdesc:af1a3f13a428da71bae0b905825ebc545"><td class="mdescLeft">&#160;</td><td class="mdescRight">The const integer denotes the wall at which the boundary condition is being applied.  <a href="#af1a3f13a428da71bae0b905825ebc545">More...</a><br/></td></tr>
 <tr class="separator:af1a3f13a428da71bae0b905825ebc545"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a5960af32e2aca2ef6098da0c4387dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5a5960af32e2aca2ef6098da0c4387dc"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>shiftVal</b></td></tr>
-<tr class="separator:a5a5960af32e2aca2ef6098da0c4387dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8dda600e930282fe8ba64792fef0e6cb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8dda600e930282fe8ba64792fef0e6cb"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>shiftDim</b></td></tr>
+<tr class="memitem:a8dda600e930282fe8ba64792fef0e6cb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboundary.html#a8dda600e930282fe8ba64792fef0e6cb">shiftDim</a></td></tr>
+<tr class="memdesc:a8dda600e930282fe8ba64792fef0e6cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Denotes the dimension normal to the wall at which the boundary condition is applied.  <a href="#a8dda600e930282fe8ba64792fef0e6cb">More...</a><br/></td></tr>
 <tr class="separator:a8dda600e930282fe8ba64792fef0e6cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a5960af32e2aca2ef6098da0c4387dc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboundary.html#a5a5960af32e2aca2ef6098da0c4387dc">shiftVal</a></td></tr>
+<tr class="memdesc:a5a5960af32e2aca2ef6098da0c4387dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of points by which the view of the wall slice is shifted to when applying the boundary condition.  <a href="#a5a5960af32e2aca2ef6098da0c4387dc">More...</a><br/></td></tr>
+<tr class="separator:a5a5960af32e2aca2ef6098da0c4387dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains all the global variables related to the imposing of boundary conditions, and functions to impose BCs. </p>
+<p>Depending on the location of the variable in the mesh (face-center, cell-center, etc.), the boundary condition (BC) may either be imposed directly, or through averaging. Moreover, the nature of the boundary condition (Neumann, Dirichlet, etc.) also affects the manner of imposing the BC. First of all, the wall on which the BC must be applied is passed to the constructor as an argument. This information is stored in the <a class="el" href="classboundary.html#af1a3f13a428da71bae0b905825ebc545">wallNum</a> variable, which takes the following values:</p>
+<ul>
+<li>0 = left wall along X direction</li>
+<li>1 = right wall along X direction</li>
+<li>2 = front wall along Y direction</li>
+<li>3 = rear wall along Y direction</li>
+<li>4 = bottom wall along Z direction</li>
+<li>5 = top wall along Z direction</li>
+</ul>
+<p>Next the dimension normal to the wall has to be identifed. This is necessary for shifting the view of the wall slice when applying the BC within <a class="el" href="classboundary.html#aecb34daea1bf7546634902579ea7882f">imposeBC</a>. This value is stored by the <a class="el" href="classboundary.html#a8dda600e930282fe8ba64792fef0e6cb">shiftDim</a> integer variable, which takes the following values:</p>
+<ul>
+<li>0 = X direction</li>
+<li>1 = Y direction</li>
+<li>2 = Z direction</li>
+</ul>
+<p>The view of the wall slice defined by any one of the blitz RectDomain objects in the <a class="el" href="classfield.html#a42caa56671ae99c3a0bf1b22324f8620">field::fWalls</a> has to shifted to the left or right in order to access data at the points adjacent to the wall. This is needed when averaging/interpolating the values at the wall. The integer value by which this shifting has to be done is specified by <a class="el" href="classboundary.html#a5a5960af32e2aca2ef6098da0c4387dc">shiftVal</a>, which could be either +1 or -1.</p>
+<p>Finally not all subdomains need to have the BC applied to them. The boolean variable <a class="el" href="classboundary.html#a5464da5fd4868218c7d97ff3057721b5">rankFlag</a> is set appropriately in the constructor so that <a class="el" href="classboundary.html#aecb34daea1bf7546634902579ea7882f">imposeBC</a> is calles only for those MPI ranks whose boundaries need the BC applied to them. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="afb9d6d039750ca4164d08faaf4cef3a6"></a>
 <div class="memitem">
@@ -222,6 +239,139 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>shiftDim</b></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a64ff0d3aff98c9a3c5c7397f8e61c817"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classfield.html">field</a>&amp; boundary::dField</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reference to the field onto which the boundary condition has to be applied. </p>
+
+</div>
+</div>
+<a class="anchor" id="a4c10053491b5da6c902c4e614db6352c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classgrid.html">grid</a>&amp; boundary::mesh</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A const reference to the global variables stored in the grid class to access mesh data. </p>
+
+</div>
+</div>
+<a class="anchor" id="a5464da5fd4868218c7d97ff3057721b5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool boundary::rankFlag</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The flag is true for MPI ranks on which the boundary condition has to be applied. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8dda600e930282fe8ba64792fef0e6cb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int boundary::shiftDim</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Denotes the dimension normal to the wall at which the boundary condition is applied. </p>
+
+</div>
+</div>
+<a class="anchor" id="a5a5960af32e2aca2ef6098da0c4387dc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int boundary::shiftVal</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The number of points by which the view of the wall slice is shifted to when applying the boundary condition. </p>
+
+</div>
+</div>
+<a class="anchor" id="af1a3f13a428da71bae0b905825ebc545"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int boundary::wallNum</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The const integer denotes the wall at which the boundary condition is being applied. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>lib/boundary/<a class="el" href="boundary_8h_source.html">boundary.h</a></li>
 <li>lib/boundary/<a class="el" href="boundary_8cc.html">boundary.cc</a></li>
@@ -229,7 +379,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>shiftDim</b></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 7 2020 12:04:28 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Feb 8 2020 16:51:54 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

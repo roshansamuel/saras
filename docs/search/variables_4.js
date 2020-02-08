@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['inputparams',['inputParams',['../classgrid.html#a1deb60c4b7de0c344b7601d61dfe7bfd',1,'grid']]]
+  ['globalsize',['globalSize',['../classgrid.html#aafbb9216c1b172985757d02ad9c4e1e1',1,'grid']]]
 ];

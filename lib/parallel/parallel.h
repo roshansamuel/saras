@@ -55,7 +55,7 @@ class parallel {
         void createComms();
 
     public:
-        // ALL THE INTEGERS USED BELOW ARE POSITIVE. STILL IT IS BETTER TO USE int INSTEAD OF unsigned int [1]
+        // ALL THE INTEGERS USED BELOW ARE POSITIVE. STILL IT IS BETTER TO USE int INSTEAD OF unsigned int
         /** The MPI rank of each sub-domain */
         int rank;
 
@@ -68,7 +68,9 @@ class parallel {
         //@}
 
         /** Row and column communicators */
+        //@{
         MPI_Comm MPI_ROW_COMM, MPI_COL_COMM;
+        //@}
 
         /** xRank and yRank indicates the rank in terms of sub-domain divisions along the X and Y directions respectively.
          *  Like the global rank variable, these values also start from 0 to npX - 1 and npY - 1 respectively. */

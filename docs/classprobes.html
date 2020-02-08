@@ -90,8 +90,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classprobes-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">probes Class Reference</div>  </div>
@@ -111,47 +109,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aec03084c771d82388340f296dc22936a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprobes.html#aec03084c771d82388340f296dc22936a">probeData</a> (real time)</td></tr>
 <tr class="memdesc:aec03084c771d82388340f296dc22936a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to read the variables at the probe locations and return them.  <a href="#aec03084c771d82388340f296dc22936a">More...</a><br/></td></tr>
 <tr class="separator:aec03084c771d82388340f296dc22936a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
-<tr class="memitem:a1c157f994fbc5fd5f2a8bccbc996dcb9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprobes.html#a1c157f994fbc5fd5f2a8bccbc996dcb9">getData</a> (<a class="el" href="structdataStruct.html">dataStruct</a> *outData)</td></tr>
-<tr class="memdesc:a1c157f994fbc5fd5f2a8bccbc996dcb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to read the variables locally within each sub-domain.  <a href="#a1c157f994fbc5fd5f2a8bccbc996dcb9">More...</a><br/></td></tr>
-<tr class="separator:a1c157f994fbc5fd5f2a8bccbc996dcb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a190f7431211e6f18f01dbc7b4d5acc73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprobes.html#a190f7431211e6f18f01dbc7b4d5acc73">gatherData</a> (<a class="el" href="structdataStruct.html">dataStruct</a> *outData)</td></tr>
-<tr class="memdesc:a190f7431211e6f18f01dbc7b4d5acc73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to gather the probed data to rank 0.  <a href="#a190f7431211e6f18f01dbc7b4d5acc73">More...</a><br/></td></tr>
-<tr class="separator:a190f7431211e6f18f01dbc7b4d5acc73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf8ed8f478396737a34be4145cc02e62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprobes.html#adf8ed8f478396737a34be4145cc02e62">createMPIStruct</a> ()</td></tr>
-<tr class="memdesc:adf8ed8f478396737a34be4145cc02e62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to create the derived MPI datatype to be used for transferring probed data across processors in 3D runs.  <a href="#adf8ed8f478396737a34be4145cc02e62">More...</a><br/></td></tr>
-<tr class="separator:adf8ed8f478396737a34be4145cc02e62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b03ced012fb87155d5498842d18f09a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprobes.html#a0b03ced012fb87155d5498842d18f09a">placeProbes</a> ()</td></tr>
-<tr class="memdesc:a0b03ced012fb87155d5498842d18f09a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to place all the probes in the MPI decomposed sub-domains.  <a href="#a0b03ced012fb87155d5498842d18f09a">More...</a><br/></td></tr>
-<tr class="separator:a0b03ced012fb87155d5498842d18f09a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:a721be8cef7a81ab06b6e7edb0a82bf0d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a721be8cef7a81ab06b6e7edb0a82bf0d"></a>
-const <a class="el" href="classgrid.html">grid</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>mesh</b></td></tr>
-<tr class="separator:a721be8cef7a81ab06b6e7edb0a82bf0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3750d9a7a50cb4109c886e035ae93aae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3750d9a7a50cb4109c886e035ae93aae"></a>
-std::vector&lt; <a class="el" href="classfield.html">field</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>pFields</b></td></tr>
-<tr class="separator:a3750d9a7a50cb4109c886e035ae93aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04fa4f1c157aed13cc70172eb3ad8985"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a04fa4f1c157aed13cc70172eb3ad8985"></a>
-const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>numFields</b></td></tr>
-<tr class="separator:a04fa4f1c157aed13cc70172eb3ad8985"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f819e4a123212b133a425cf185ebb82"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f819e4a123212b133a425cf185ebb82"></a>
-std::vector&lt; blitz::TinyVector<br class="typebreak"/>
-&lt; int, 3 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>globalProbes</b></td></tr>
-<tr class="separator:a1f819e4a123212b133a425cf185ebb82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72e5067da82d3fd709ffa8baee4d56f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72e5067da82d3fd709ffa8baee4d56f7"></a>
-std::vector&lt; blitz::TinyVector<br class="typebreak"/>
-&lt; int, 3 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>localProbes</b></td></tr>
-<tr class="separator:a72e5067da82d3fd709ffa8baee4d56f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6696b177aa3492c23b59fd04bfc035be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6696b177aa3492c23b59fd04bfc035be"></a>
-std::ofstream&#160;</td><td class="memItemRight" valign="bottom"><b>probeFile</b></td></tr>
-<tr class="separator:a6696b177aa3492c23b59fd04bfc035be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbf726a0571727ba9f4ba52b3491b4a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afbf726a0571727ba9f4ba52b3491b4a2"></a>
-MPI_Datatype&#160;</td><td class="memItemRight" valign="bottom"><b>mpiStruct</b></td></tr>
-<tr class="separator:afbf726a0571727ba9f4ba52b3491b4a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Handles the writing of data from probes placed in the domain. </p>
@@ -194,112 +151,6 @@ MPI_Datatype&#160;</td><td class="memItemRight" valign="bottom"><b>mpiStruct</b>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="adf8ed8f478396737a34be4145cc02e62"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void probes::createMPIStruct </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to create the derived MPI datatype to be used for transferring probed data across processors in 3D runs. </p>
-<p>The probed data consists of coordinates (integers) and the field readings (real). An MPI_Struct datatype is defined accordingly to store and transmit this data across processors. </p>
-
-</div>
-</div>
-<a class="anchor" id="a190f7431211e6f18f01dbc7b4d5acc73"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void probes::gatherData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structdataStruct.html">dataStruct</a> *&#160;</td>
-          <td class="paramname"><em>outData</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to gather the probed data to rank 0. </p>
-<p>For each variable specified in the list of fields given to the constructor, obtain the value at the probe locations. It returns a vector of strcts containing the variable values </p>
-
-</div>
-</div>
-<a class="anchor" id="a1c157f994fbc5fd5f2a8bccbc996dcb9"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void probes::getData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structdataStruct.html">dataStruct</a> *&#160;</td>
-          <td class="paramname"><em>outData</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to read the variables locally within each sub-domain. </p>
-<p>For each variable specified in the list of fields given to the constructor, obtain the value at the probe locations. Store the data in the reference pointer supplied to the function. </p>
-
-</div>
-</div>
-<a class="anchor" id="a0b03ced012fb87155d5498842d18f09a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void probes::placeProbes </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to place all the probes in the MPI decomposed sub-domains. </p>
-<p>The indices of probes provided in probesList of parser are global indices. This function gives the local indices of the probes within the sub-domains after MPI decomposition. Note that the probes are at the staggered grid points - cell centers. </p>
-
-</div>
-</div>
 <a class="anchor" id="aec03084c771d82388340f296dc22936a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -326,7 +177,7 @@ MPI_Datatype&#160;</td><td class="memItemRight" valign="bottom"><b>mpiStruct</b>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Feb 7 2020 12:04:28 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Feb 8 2020 16:51:54 for Saras by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
