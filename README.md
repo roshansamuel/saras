@@ -56,11 +56,15 @@ Similar to CMake installation above, it is best to install MPICH using the nativ
 
 ### YAML
 
+Cuurrently ``SARAS`` is compatible only with yaml-cpp 0.3 and below, since it uses ``YAML::Parser::GetNextDocument``,
+which was removed in subsequent versions.
 On Debian based systems, the YAML library can be installed by running
 
 `sudo apt-get install libyaml-cpp-dev`
 
-Otherwise, the yaml-cpp library can be downloaded from [here](http://turbulencehub.org/wp-content/uploads/Download_Files/yaml-cpp-release-0.3.0.tar.gz).
+However, this may install yaml-cpp 0.5 or newer, and the older version (which is still in available in many repositories)
+has to be specifically installed for ``SARAS`` to run.
+Otherwise, the compatible version of yaml-cpp library can be downloaded from [here](http://turbulencehub.org/wp-content/uploads/Download_Files/yaml-cpp-release-0.3.0.tar.gz).
 Please extract the archive and follow the installation instructions.
 
 ### HDF5

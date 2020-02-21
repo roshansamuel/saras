@@ -105,7 +105,7 @@ if (REAL_SINGLE)
 endif ()
 
 # Set compiler flags for normal and debug runs
-set (CMAKE_CXX_FLAGS "-Wall ${OpenMP_C_FLAGS} -O3")
+set (CMAKE_CXX_FLAGS "-Wall ${OpenMP_C_FLAGS} -Ofast")
 set (CMAKE_CXX_FLAGS_DEBUG "-Wall -g ${OpenMP_C_FLAGS} -DBZ_DEBUG")
 
 add_subdirectory (lib)

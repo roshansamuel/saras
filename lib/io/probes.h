@@ -52,13 +52,25 @@
 #include "field.h"
 #include "grid.h"
 
+/**
+ ********************************************************************************************************************************************
+ *  \struct dataStruct
+ *  \brief The data obtained from the probes is stored in struct for quick transfer across processes.
+ *
+ *  The struct can store data from up to a maximum of 10 field variables.
+ *  It also stores the global x, y and z indices of the probe location corresponding to each probe.
+ ********************************************************************************************************************************************
+ */
 typedef struct dataStruct {
+    /** Integer values of the global indices of the probe. */
+    //@{
     int x, y, z;
+    //@}
 
-    // Up to a maximum of 10 field variables can be probed presently
+    /** Array of double/single precision numbers that contains the probed data from up to 10 field variables. */
     real probeData[10];
 
-    // Default struct constructor for initializing all elements to 0
+    /** Default constructor for the struct that initializes all values to 0. */
     dataStruct(): x(0), y(0), z(0) { for (int i=0; i<10; i++) probeData[i] = 0.0; }
 } dataStruct;
 
@@ -90,7 +102,6 @@ class probes {
 
         void placeProbes();
 };
-
 /**
  ********************************************************************************************************************************************
  *  \class probes probes.h "lib/io/probes.h"
