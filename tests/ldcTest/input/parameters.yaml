@@ -29,6 +29,7 @@
     # 4 = large U, small Pr
     "RBC Type": 1
 
+    # Non-dimensional parameters
     "Reynolds Number": 1000
     "Rossby Number": 12
     "Rayleigh Number": 10000
@@ -67,7 +68,8 @@
     # Eg. Uniform spacing in X-direction, double sided tan-hyp stretching along Y and single sided tan-hyp along Z would be "UDS"
     "Mesh Type": "UUU"
 
-    # Stretching factor to be used for tangent-hyperbolic grids - considered only when Mesh Type is TanHyp
+    # Stretching factor to be used for tangent-hyperbolic grids.
+    # This option is considered only when tangent-hyperbolic stretching is specified in the Mesh Type
     "X Beta": 1.0
     "Y Beta": 1.0
     "Z Beta": 1.0
@@ -91,11 +93,14 @@
 
 # Solver parameters
 "Solver":
-    "Differentiation Scheme": "CD2"
+    # Choose from following list of differentiation stencils
+    # 1 = Second-order central-difference
+    # 2 = Fourth-order central-difference (To Be Implemented)
+    "Differentiation Scheme": 1
 
     # Choose from following list of integration schemes:
     # 1 = Implicit Crank Nicholson
-    # 2 = Euler Method (Not Implemented)
+    # 2 = Euler Method (To Be Implemented)
     "Integration Scheme": 1
 
     # Set below flag to true if restarting from a solution file
