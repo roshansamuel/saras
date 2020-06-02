@@ -56,7 +56,7 @@ Similar to CMake installation above, it is best to install MPICH using the nativ
 
 ### YAML
 
-Cuurrently ``SARAS`` is compatible only with yaml-cpp 0.3 and below, since it uses ``YAML::Parser::GetNextDocument``,
+Currently, ``SARAS`` is compatible only with yaml-cpp 0.3 and below, since it uses ``YAML::Parser::GetNextDocument``,
 which was removed in subsequent versions.
 On Debian based systems, the YAML library can be installed by running
 
@@ -111,11 +111,19 @@ The following Python modules are necessary for the Python test script to execute
 * h5py
 * yaml
 
-At the end of the test, a plot of the x and y velocity profiles is shown to the user and drawn into a ``ldc_validation.png`` file.
+At the end of the test, a plot of the x and y velocity profiles is shown to the user and saved as ``ldc_validation.png`` in the folder ``tests/ldcTest/``.
 
 ## License
 
 ``SARAS`` is an open-source package made available under the New BSD License.
+
+## Contributions and bug reports
+
+Contributions to this project are very welcome.
+If you wish to contribute, please create a branch with a [pull request](https://github.com/roshansamuel/saras/pulls) and the proposed changes can be discussed there.
+
+If you find a bug, please open a new [issue](https://github.com/roshansamuel/saras/issues/new) on the GitHub repository to report the bug.
+Please provide sufficient information for the bug to be reproduced.
 
 ## References
 
