@@ -23,12 +23,22 @@ authors:
   - name: Mahendra K. Verma
     orcid: 0000-0002-3380-4561
     affiliation: 2
+  - name: Ravi Samtaney
+    orcid: 0000-0002-4702-6473
+    affiliation: 3
+  - name: Syed Fahad Anwer
+    orcid: 0000-0003-3602-1172
+    affiliation: 4
 
 affiliations:
- - name: Department of Mechanical Engineering, Indian Institute of Technology - Kanpur
+ - name: Department of Mechanical Engineering, Indian Institute of Technology - Kanpur, Uttar Pradesh - 208016, India
    index: 1
- - name: Department of Physics, Indian Institute of Technology - Kanpur
+ - name: Department of Physics, Indian Institute of Technology - Kanpur, Uttar Pradesh - 208016, India
    index: 2
+ - name: Mechanical Engineering, Physical Science and Engineering Division, King Abdullah University of Science and Technology, Thuwal - 23955, Saudi Arabia
+   index: 3
+ - name: Department of Mechanical Engineering, ZHCET, Aligarh Muslim University, Uttar Pradesh - 202002, India
+   index: 4
 
 date: 15 January 2020
 
