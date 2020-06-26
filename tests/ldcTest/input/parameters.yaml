@@ -50,11 +50,11 @@
 
     # Choose the type of forcing (source term)
     # 0 = No forcing
-    # 1 = Random forcing (This is yet to be implemented)
+    # 1 = Random forcing (this is yet to be implemented)
     # 2 = Coriolis force 
     # 3 = Buoyancy force (Natural convection: only applicable for flows with scalar)
-    # 4 = Buoyancy + Coriolis force (Rotatig natural convection: only applicable for flows with scalar)
-    # 5 = Constant pressure gradient (along X-direction: used mainly for preiodic channel flows)
+    # 4 = Buoyancy + Coriolis force (Rotating natural convection: only applicable for flows with scalar)
+    # 5 = Constant pressure gradient (along X-direction: used mainly for periodic channel flows)
     "Force": 0
 
 
@@ -62,7 +62,7 @@
 "Mesh":
     # The grid spacing along each direction can be set according to one of the following:
     # U - Uniform spacing
-    # S - Single sided tangent-hyperbolic stretching (finest near one edge and coarsest at the opposite edge)
+    # S - Single sided tangent-hyperbolic stretching (finest near one edge and coarsest at the opposite edge) (under development)
     # D - Double sided tangent-hyperbolic stretching (finest near both edges and coarsest at the center)
     # Specify the required spacing along X, Y and Z directions by using appropriate letters from above
     # Eg. Uniform spacing in X-direction, double sided tan-hyp stretching along Y and single sided tan-hyp along Z would be "UDS"
@@ -117,9 +117,10 @@
     # Number of iterations to display output to standard I/O
     "I/O Count": 10
 
-    # Select the format in which the output file must be written
-    # 1 = AETHER Format
-    # 2 = TARANG Format
+    # Select the format in which solution data must be written at each solution write interval
+    # 1 = Write a single HDF5 file inside ./output/, containing all the variables - Vx, Vy, P, etc.
+    # 2 = Create a sub-folder inside ./output/, and write separate HDF5 files for separate variables.
+    # Option 1 is easier for post-processing, while Option 2 maybe used with large data.
     "Solution Format": 1
 
     # Time interval at which solution file must be written

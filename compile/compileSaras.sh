@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#############################################################################################################################################
+###################################################################################
  # Saras
  # 
  # Copyright (C) 2019, Mahendra K. Verma
@@ -29,7 +29,7 @@
  # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  #
- ############################################################################################################################################
+ ##################################################################################
  ##
  ##! \file compileSaras.sh
  #
@@ -39,20 +39,37 @@
  #   \date Jan 2020
  #   \copyright New BSD License
  #
- ############################################################################################################################################
+ ##################################################################################
  ##
 
-# USER SET PARAMETERS - COMMENT/UNCOMMENT AS NECESSARY
 
-PROC=4
-REAL_TYPE="DOUBLE"
-#REAL_TYPE="SINGLE"
-#PLANAR="PLANAR"
-#TIME_RUN="TIME_RUN"
-#TEST_RUN="TEST_RUN"
+############## USER SET PARAMETERS - COMMENT/UNCOMMENT AS NECESSARY ###############
+
+# If below flag is uncommented, the script automatically runs the executable after
+# compilation by issuing the mpirun command
 #EXECUTE_AFTER_COMPILE="EXECUTE"
 
-# NO USER MODIFICATIONS NECESSARY BELOW THIS LINE
+# Number of processors to be used when running SARAS. This parameter is used only
+# if the EXECUTE_AFTER_COMPILE parameter is enabled.
+PROC=4
+
+# This parameter has to be enabled to use the SARAS executable for 2D simulations.
+#PLANAR="PLANAR"
+
+# SARAS supports computations with either double or single precision floating point
+# values. This parameter must be either SINGLE or DOUBLE
+REAL_TYPE="DOUBLE"
+
+# Suppresses file-writing and I/O operations. This flag is enabled only when timing
+# the solver for scaling runs.
+#TIME_RUN="TIME_RUN"
+
+# Runs the unit-tests module of the solver. This is distinct from the tests contained
+# in the tests/ folder of the solver.
+#TEST_RUN="TEST_RUN"
+
+################# NO USER MODIFICATIONS NECESSARY BELOW THIS LINE #################
+
 
 # REMOVE PRE-EXISTING EXECUTATBLES
 rm -f ../saras

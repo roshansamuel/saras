@@ -117,9 +117,10 @@
     # Number of iterations to display output to standard I/O
     "I/O Count": 1
 
-    # Select the format in which the output file must be written
-    # 1 = AETHER Format
-    # 2 = TARANG Format
+    # Select the format in which solution data must be written at each solution write interval
+    # 1 = Write a single HDF5 file inside ./output/, containing all the variables - Vx, Vy, P, etc.
+    # 2 = Create a sub-folder inside ./output/, and write separate HDF5 files for separate variables.
+    # Option 1 is easier for post-processing, while Option 2 maybe used with large data.
     "Solution Format": 1
 
     # Time interval at which solution file must be written
