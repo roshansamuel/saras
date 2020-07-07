@@ -40,7 +40,7 @@ affiliations:
  - name: Department of Mechanical Engineering, ZHCET, Aligarh Muslim University, Uttar Pradesh - 202002, India
    index: 4
 
-date: 15 January 2020
+date: 23 June 2020
 
 bibliography: resources/paper.bib
 
@@ -55,10 +55,29 @@ hence numerical solutions become important in such cases.
 As a result, efficient numerical solutions of PDEs are important
 for understanding such systems.
 In this paper we briefly describe the design and validation
-of a finite difference solver ``SARAS``.
+of ``SARAS``, a general-purpose PDE solver based on finite difference
+method [@Anderson:book:CFD; @Ferziger:book:CFD].
 
-``SARAS`` is a general-purpose PDE solver based on finite difference
-method [@Anderson:book:CFD; @Ferziger:book:CFD], written in an object-oriented structure in C++.
+There are a number of open-source solvers for Computational Fluid Dynamics.
+Some well known solvers include OpenFOAM [@Weller:1998FOAM], Pencil Code [@Brandenburg:2002CPC],
+Gerris [@Popinet:2003JCP], SU2 [@Palacios:2013AIAA], etc. to name a few.
+However, many of them, for instance, SU2, OpenFOAM, etc. use finite-volume method
+with structured or unstructured meshes.
+On the other hand, the use of finite-difference method restricts the solver to simpler domains,
+but offers comparatively higher accuracy with lesser computational effort.
+In this regard, the Pencil Code also uses finite-difference method, but is used to
+solve compressible flows, unlike ``SARAS`` which is designed for incompressible flows.
+Moreover, ``SARAS`` is written in C++ with an object oriented structure like OpenFOAM.
+
+The design of ``SARAS`` is inspired by ``TARANG`` [@Verma:Pramana2013tarang],
+a pseudo-spectral solver developed in our lab.
+``TARANG`` has been shown to scale up to 196608 cores [@Chatterjee:JPDC2018], and ``SARAS``
+has been designed with the goal of achieving similar scaling performance.
+In solving the Rayleigh Benard Convection problem, we also observed that the computational
+efficiency of ``SARAS`` is at par with that of OpenFOAM.
+We also recently performed a comparative study between spectral and finite difference
+codes in the context of exascale computing [@Verma:SNCS2020], using ``SARAS``.
+
 In ``SARAS``, the underlying mathematical constructs like vector and scalar fields
 are defined as classes.
 Moreover, vector calculus operations associated with such fields, like gradient and

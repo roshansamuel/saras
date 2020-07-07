@@ -145,7 +145,7 @@ The user must set these parameters appropriately before executing ``saras``.
 A sample ``parameters.yaml`` file is provided with the solver in the ``./input/`` folder.
 The parameters are grouped under 5 sections, viz., ``Program``, ``Mesh``, ``Parallel``, ``Solver`` and ``Multigrid``.
 
-* The main parameters that set the boundary conditions, inital conditions, forcing/source terms, etc. are found under the ``Program`` section.
+* The main parameters that set the boundary conditions, initial conditions, forcing/source terms, etc. are found under the ``Program`` section.
 * Grid parameters like number of points, stretching parameter for non-uniform grids, etc. are found under the ``Mesh`` section.
 * ``Parallel`` section lets the user define how many MPI sub-domains to decompose the computational domain into, and the number of OpenMP threads to use.
 * Non-dimensional time-step, file write intervals, final non-dimensional time and so on are set in the ``Solver`` section.
@@ -169,7 +169,7 @@ The solver will also periodically dump the entire field data into a file named `
 This file will be read by the solver to resume computations, should it stop before completing the simulation.
 
 The solution data is written in HDF5 format, while time-series and probe data are written in ASCII format.
-Many open source visualization softwares are capable of reading HDF5 data format.
+Many open source visualization software are capable of reading HDF5 data format.
 Moreover, Python can also read HDF5 files using the ``h5py`` module.
 
 ## License
