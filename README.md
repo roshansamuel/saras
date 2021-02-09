@@ -40,9 +40,13 @@ After navigating to the temporary directory, download the packages using ``wget`
 For instance, on MacOS, the following lines will download ``CMake``, ``Blitz++``, ``yaml-cpp``, ``MPICH`` and ``HDF5`` packages respectively:
 
 `curl -O https://turbulencehub.org/wp-content/uploads/Download_Files/cmake-2.8.12.tar.gz`
+
 `curl -O https://turbulencehub.org/wp-content/uploads/Download_Files/blitz-1.0.1.tar.gz`
+
 `curl -O https://turbulencehub.org/wp-content/uploads/Download_Files/yaml-cpp-release-0.3.0.tar.gz`
+
 `curl -O https://turbulencehub.org/wp-content/uploads/Download_Files/mpich-3.1.3.tar.gz`
+
 `curl -O https://turbulencehub.org/wp-content/uploads/Download_Files/hdf5-1.8.20.tar.bz2`
 
 On Linux, please replace ``curl -O`` with ``wget``.
@@ -69,7 +73,9 @@ The next steps will assume that the folder ``local/`` exists in the user's home 
 Navigate to the folder created by extracting the ``CMake`` package, configure the installation script, and install the package:
 
 `cd cmake-2.8.12/`
+
 `./configure --prefix=$HOME/local`
+
 `make -j4 install`
 
 Note that the option ``-j4`` given to ``make`` will use 4 cores of your system.
@@ -82,11 +88,17 @@ For this, the path variables have to be updated to let the system know that ``cm
 Accordingly, set the following environment variables:
 
 `export PATH=$HOME/local/bin:$PATH`
+
 `export PKG_CONFIG_PATH=$HOME/local/lib/pkgconfig:$PKG_CONFIG_PATH`
+
 `export HDF5_ROOT=$HOME/local`
+
 `export CPATH=$HOME/local/include/:$CPATH`
+
 `export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH`
+
 `export LIBRARY_PATH=$HOME/local/lib:$LIBRARY_PATH`
+
 `export MANPATH=$HOME/local/share/man/:$MANPATH`
 
 Please note that the environment variables set here (and the $LANG variable set above if needed), exist only for the duration of the terminal session.
@@ -98,7 +110,9 @@ To permanently add the path variables, the above lines may be appended to the sh
 Navigate to the folder created by extracting the ``Blitz++`` package, and install the package as done for ``CMake``:
 
 `cd ../blitz-1.0.1/`
+
 `./configure --prefix=$HOME/local`
+
 `make -j4 install`
 
 ### Install yaml-cpp
@@ -106,7 +120,9 @@ Navigate to the folder created by extracting the ``Blitz++`` package, and instal
 Installing the ``yaml-cpp`` package will require ``cmake``, and hence uses a slightly different syntax.
 
 `cd ../yaml-cpp-release-0.3.0/`
+
 `cmake -DCMAKE_INSTALL_PREFIX=$HOME/local`
+
 `make -j4 install`
 
 With ``cmake``, the ``-DCMAKE_INSTALL_PREFIX`` argument performs the same function as ``--prefix`` for ``make``, namely specifying the install directory.
@@ -120,7 +136,9 @@ The older version (which is still in available in many repositories) has to be s
 Repeat the same steps used to install ``cmake`` and ``blitz`` from the folder into which the ``MPICH`` package was extracted:
 
 `cd ../mpich-3.1.3/`
+
 `./configure --prefix=$HOME/local`
+
 `make -j4 install`
 
 ### Install HDF5 library
@@ -130,7 +148,9 @@ Hence it must be installed only after installing ``MPICH`` as done above.
 A few additional build flags are also provided when building the ``HDF5`` library:
 
 `cd ../hdf5-1.8.20/`
+
 `CC=mpicc CXX=mpicxx ./configure --prefix=$HOME/local --enable-parallel --without-zlib`
+
 `make -j4 install`
 
 Note that while building the ``HDF5`` library, it is being explicitly specified that the MPI compiler must be used.
@@ -142,7 +162,9 @@ They have been tested with ``gcc`` on Linux, ``homebrew-gcc`` as well as ``clang
 Now the ``saras`` repository can be cloned into your machine, and compiled:
 
 `git clone https://github.com/roshansamuel/saras.git`
+
 `cd saras/compile/`
+
 `bash compileSaras.sh`
 
 The build script, ``compileSaras.sh`` automatically builds ``SARAS`` with a few default parameters.
@@ -208,7 +230,7 @@ Following are the steps to get a case up and running:
 Based on the dimensionality of the problem being solved, and the precision of floating point numbers to be used,
 set the ``PLANAR`` and ``REAL_TYPE`` variables in the build script - ``compileSaras.sh``.
 Executing this shell script will produce the ``saras`` executable file as mentioned above.
-It is best to disable the ``EXECUTE_AFTER_COMPILE`` flag so that script doesn't run the executable immediately after compilation.
+It is best to disable the ``EXECUTE_AFTER_COMPILE`` flag so that the script doesn't run the executable immediately after compilation.
 
 ### Set the parameters file
 
