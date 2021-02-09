@@ -73,6 +73,8 @@ The design of ``SARAS`` is inspired by ``TARANG`` [@Verma:Pramana2013tarang],
 a pseudo-spectral solver developed in our lab.
 ``TARANG`` has been shown to scale up to 196608 cores [@Chatterjee:JPDC2018], and ``SARAS``
 has been designed with the goal of achieving similar scaling performance.
+We are planning to conduct a scaling analysis of ``SARAS`` and compare its performance with ``TARANG``
+in the near future.
 In solving the Rayleigh Benard Convection problem, we also observed that the computational
 efficiency of ``SARAS`` is at par with that of OpenFOAM.
 We also recently performed a comparative study between spectral and finite difference
