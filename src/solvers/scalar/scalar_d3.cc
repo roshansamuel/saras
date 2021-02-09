@@ -53,7 +53,7 @@
  *          vector fields necessary for solving the NS equations.
  *          The various coefficients for solving the equations are also set by a call to the \ref setCoefficients function.
  *          Based on the problem type specified by the user in the parameters file, and stored by the \ref parser class as
- *          \ref parser#probType "probType", the appropriate initial and boundary conditions are specified.
+ *          \ref parser#probType "probType", the appropriate boundary conditions are specified.
  *
  * \param   mesh is a const reference to the global data contained in the grid class
  * \param   solParam is a const reference to the user-set parameters contained in the parser class
@@ -183,7 +183,7 @@ void scalar_d3::solvePDE() {
     // TIME-INTEGRATION LOOP
     while (true) {
         // MAIN FUNCTION CALLED IN EACH LOOP TO UPDATE THE FIELDS AT EACH TIME-STEP
-        computeTimeStep();
+        timeAdvance();
         if (inputParams.useCFL) {
             V.computeTStp(dt);
             if (dt > inputParams.tStp) {
@@ -240,7 +240,7 @@ void scalar_d3::solvePDE() {
 }
 
 
-void scalar_d3::computeTimeStep() {
+void scalar_d3::timeAdvance() {
 #ifdef TIME_RUN
     struct timeval begin, end;
 #endif
@@ -411,7 +411,7 @@ void scalar_d3::solveVx() {
 
         maxError = velocityLaplacian.vxMax();
 
-        if (maxError < inputParams.tolerance) {
+        if (maxError < inputParams.cnTolerance) {
             break;
         }
 
@@ -469,7 +469,7 @@ void scalar_d3::solveVy() {
 
         maxError = velocityLaplacian.vyMax();
 
-        if (maxError < inputParams.tolerance) {
+        if (maxError < inputParams.cnTolerance) {
             break;
         }
 
@@ -527,7 +527,7 @@ void scalar_d3::solveVz() {
 
         maxError = velocityLaplacian.vzMax();
 
-        if (maxError < inputParams.tolerance) {
+        if (maxError < inputParams.cnTolerance) {
             break;
         }
 
@@ -585,7 +585,7 @@ void scalar_d3::solveT() {
 
         maxError = scalarLaplacian.fxMax();
 
-        if (maxError < inputParams.tolerance) {
+        if (maxError < inputParams.cnTolerance) {
             break;
         }
 

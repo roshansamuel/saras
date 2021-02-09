@@ -104,6 +104,12 @@ if (REAL_SINGLE)
     add_definitions(-DREAL_SINGLE)
 endif ()
 
+# Add compiler flag for testing the Poisson library
+if (TEST_POISSON)
+    message (STATUS "Compiling Saras to test the Poisson library")
+    add_definitions(-DTEST_POISSON)
+endif ()
+
 # Set compiler flags for normal and debug runs
 set (CMAKE_CXX_FLAGS "-Wall ${OpenMP_C_FLAGS} -Ofast")
 set (CMAKE_CXX_FLAGS_DEBUG "-Wall -g ${OpenMP_C_FLAGS} -DBZ_DEBUG")
@@ -125,3 +131,6 @@ unset (REAL_DOUBLE CACHE)
 
 # Remove the REAL_SINGLE variable from cache to force user to manually set the precision each time the solver is compiled
 unset (REAL_SINGLE CACHE)
+
+# Remove the TEST_POISSON variable from cache to force user to manually set the flag for testing Poisson solver
+unset (TEST_POISSON CACHE)

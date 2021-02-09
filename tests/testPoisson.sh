@@ -31,22 +31,19 @@
  #
  ############################################################################################################################################
  ##
- ##! \file testSaras.sh
+ ##! \file testPoisson.sh
  #
- #   \brief Shell script to automatically compile and run tests on SARAS
+ #   \brief Shell script to automatically compile and run tests on the Poisson library of SARAS
  #
  #   \author Roshan Samuel
- #   \date Jan 2020
+ #   \date Mar 2020
  #   \copyright New BSD License
  #
  ############################################################################################################################################
  ##
 
-# Test for 2D LDC and comparison with Ghia et al's (1982, J. Comput. Phys., 48, 387 - 411) result
+# Test of Poisson library with Dirichlet BC
 PROC=4
-
-# REMOVE PRE-EXISTING EXECUTATBLES
-rm -f ldcTest/saras
 
 # If build directory doesn't exist, create it
 if [ ! -d build ]; then
@@ -56,20 +53,23 @@ fi
 # Switch to build directory
 cd build
 
-# Run cmake with necessary flags for 2D LDC test
-CC=mpicc CXX=mpicxx cmake ../../ -DPLANAR=ON -DREAL_DOUBLE=ON
+# Run cmake with necessary flags for 2D Poisson test
+#CC=mpicc CXX=mpicxx cmake ../../ -DPLANAR=ON -DTEST_POISSON=ON -DREAL_DOUBLE=ON
+
+# Run cmake with necessary flags for 3D Poisson test
+CC=mpicc CXX=mpicxx cmake ../../ -DTEST_POISSON=ON -DREAL_DOUBLE=ON
 
 # Compile
 make -j8
 
-# Move the executable to the directory where the test will be performed
-mv ../../saras ../../tests/ldcTest/
+# Remove pre-existing executatbles
+rm -f ../../tests/mgTest/saras
 
-# Switch to ldcTest directory
-cd ../../tests/ldcTest/
+# Move the executable to the directory where the test will be performed
+mv ../../saras ../../tests/mgTest/
+
+# Switch to mgTest directory
+cd ../../tests/mgTest/
 
 # Run the test case
 mpirun -np $PROC ./saras
-
-# Run the python script to read the output file and compare with Ghia results
-python validate_ldc.py

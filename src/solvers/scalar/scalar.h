@@ -50,8 +50,10 @@
 
 class scalar: public hydro {
     public:
+        /** The scalar field that stores the temperature field */
         sfield T;
 
+        /** Instance of force class to handle temperature field forcing */
         force *tForcing;
 
         real nu, kappa; 
@@ -106,7 +108,7 @@ class scalar_d2: public scalar {
 
         void solveT();
 
-        void computeTimeStep();
+        void timeAdvance();
 };
 
 /**
@@ -142,7 +144,7 @@ class scalar_d3: public scalar {
 
         void solveT();
 
-        void computeTimeStep();
+        void timeAdvance();
 };
 
 /**

@@ -51,7 +51,7 @@
  *          vector fields necessary for solving the NS equations.
  *          The various coefficients for solving the equations are also set by a call to the \ref setCoefficients function.
  *          Based on the problem type specified by the user in the parameters file, and stored by the \ref parser class as
- *          \ref parser#probType "probType", the appropriate initial and boundary conditions are specified.
+ *          \ref parser#probType "probType", the appropriate boundary conditions are specified.
  *
  * \param   mesh is a const reference to the global data contained in the grid class
  * \param   solParam is a const reference to the user-set parameters contained in the parser class
@@ -88,6 +88,8 @@ hydro_d2::hydro_d2(const grid &mesh, const parser &solParam, parallel &mpiParam)
         // INITIALIZE VARIABLES
         initial *initCond;
         switch (inputParams.icType) {
+            case 0: initCond = new zeroInitial(mesh);
+                break;
             case 1: initCond = new taylorGreen(mesh);
                 break;
             case 2: initCond = new channelSine(mesh);
@@ -111,6 +113,7 @@ hydro_d2::hydro_d2(const grid &mesh, const parser &solParam, parallel &mpiParam)
     imposeWBCs();
 }
 
+
 void hydro_d2::solvePDE() {
     real fwTime, prTime, rsTime;
     //set dt equal to input time step
@@ -119,7 +122,7 @@ void hydro_d2::solvePDE() {
     // Fields to be written into HDF5 file are passed to writer class as a vector
     std::vector<field> writeFields;
 
-    // Populate the vector with required fields
+    // Populate the vector with required scalar fields
     writeFields.push_back(V.Vx);
     writeFields.push_back(V.Vz);
     writeFields.push_back(P.F);
@@ -173,7 +176,7 @@ void hydro_d2::solvePDE() {
     // TIME-INTEGRATION LOOP
     while (true) {
         // MAIN FUNCTION CALLED IN EACH LOOP TO UPDATE THE FIELDS AT EACH TIME-STEP
-        computeTimeStep();
+        timeAdvance();
         if (inputParams.useCFL) {
             V.computeTStp(dt);
             if (dt > inputParams.tStp) {
@@ -215,7 +218,8 @@ void hydro_d2::solvePDE() {
     }
 }
 
-void hydro_d2::computeTimeStep() {
+
+void hydro_d2::timeAdvance() {
     nseRHS = 0.0;
 
     // CALCULATE RHS OF NSE FROM THE NON LINEAR TERMS AND HALF THE VISCOUS TERMS
@@ -248,11 +252,24 @@ void hydro_d2::computeTimeStep() {
     V.divergence(mgRHS, P);
     mgRHS *= 1.0/dt;
 
+    // IF THE POISSON SOLVER IS BEING TESTED, THE RHS IS SET TO ONE.
+    // THIS IS FOR TESTING ONLY AND A SINGLE TIME ADVANCE IS PERFORMED IN THIS TEST
+#ifdef TEST_POISSON
+    mgRHS.F = 1.0;
+#endif
+
     // USING THE CALCULATED mgRHS, EVALUATE Pp USING MULTI-GRID METHOD
     mgSolver.mgSolve(Pp, mgRHS);
 
     // SYNCHRONISE THE PRESSURE CORRECTION ACROSS PROCESSORS
     Pp.syncData();
+
+    // IF THE POISSON SOLVER IS BEING TESTED, THE PRESSURE IS SET TO ZERO.
+    // THIS WAY, AFTER THE SOLUTION OF MG SOLVER, Pp, IS DIRECTLY WRITTEN INTO P AND AVAILABLE FOR PLOTTING
+    // THIS IS FOR TESTING ONLY AND A SINGLE TIME ADVANCE IS PERFORMED IN THIS TEST
+#ifdef TEST_POISSON
+    P.F = 0.0;
+#endif
 
     // ADD THE PRESSURE CORRECTION CALCULATED FROM THE POISSON SOLVER TO P
     P += Pp;
@@ -302,7 +319,7 @@ void hydro_d2::solveVx() {
 
         maxError = velocityLaplacian.vxMax();
 
-        if (maxError < inputParams.tolerance) {
+        if (maxError < inputParams.cnTolerance) {
             break;
         }
 
@@ -353,7 +370,7 @@ void hydro_d2::solveVz() {
 
         maxError = velocityLaplacian.vzMax();
 
-        if (maxError < inputParams.tolerance) {
+        if (maxError < inputParams.cnTolerance) {
             break;
         }
 

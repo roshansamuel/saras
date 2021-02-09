@@ -42,8 +42,16 @@
  ############################################################################################################################################
  ##
 
+ptFile = True
+
+if ptFile:
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+else:
+    import matplotlib.pyplot as plt
+
 from scipy.interpolate import griddata
-import matplotlib.pyplot as plt
 import numpy as np
 import h5py as hp
 import yaml as yl
@@ -52,8 +60,6 @@ import yaml as yl
 plt.rcParams["font.family"] = "Times New Roman"
 plt.rcParams["mathtext.fontset"] = 'cm'
 plt.rcParams["font.weight"] = "medium"
-
-ptFile = False
 
 def init():
     global U, W
@@ -202,7 +208,7 @@ def checkTolerance():
     avgError = sum(np.absolute(v_ghia[:,2] - intpData))/len(intpData)
     avgValue = sum(np.absolute(v_ghia[:,2]))/len(intpData)
 
-    print(r"Average absolute value of vertical velocity, Uz = " + str(avgValue) + "\n")
+    print("Average absolute value of vertical velocity, Uz = " + str(avgValue) + "\n")
     print("Average absolute value of deviation = " + str(avgError) + "\n")
 
 

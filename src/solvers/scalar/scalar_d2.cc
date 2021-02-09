@@ -50,7 +50,7 @@
  *          vector fields necessary for solving the NS equations.
  *          The various coefficients for solving the equations are also set by a call to the \ref setCoefficients function.
  *          Based on the problem type specified by the user in the parameters file, and stored by the \ref parser class as
- *          \ref parser#probType "probType", the appropriate initial and boundary conditions are specified.
+ *          \ref parser#probType "probType", the appropriate boundary conditions are specified.
  *
  * \param   mesh is a const reference to the global data contained in the grid class
  * \param   solParam is a const reference to the user-set parameters contained in the parser class
@@ -166,7 +166,7 @@ void scalar_d2::solvePDE() {
     // TIME-INTEGRATION LOOP
     while (true) {
         // MAIN FUNCTION CALLED IN EACH LOOP TO UPDATE THE FIELDS AT EACH TIME-STEP
-        computeTimeStep();
+        timeAdvance();
         if (inputParams.useCFL) {
             V.computeTStp(dt);
             if (dt > inputParams.tStp) {
@@ -209,7 +209,7 @@ void scalar_d2::solvePDE() {
 }
 
 
-void scalar_d2::computeTimeStep() {
+void scalar_d2::timeAdvance() {
     // BELOW FLAG MAY BE TURNED OFF FOR DEBUGGING/DIGNOSTIC RUNS ONLY
     // IT IS USED TO TURN OFF COMPUTATION OF NON-LINEAR TERMS
     // CURRENTLY IT IS AVAILABLE ONLY FOR THE 2D SCALAR SOLVER
@@ -351,7 +351,7 @@ void scalar_d2::solveVx() {
 
         maxError = velocityLaplacian.vxMax();
 
-        if (maxError < inputParams.tolerance) {
+        if (maxError < inputParams.cnTolerance) {
             break;
         }
 
@@ -403,7 +403,7 @@ void scalar_d2::solveVz() {
 
         maxError = velocityLaplacian.vzMax();
 
-        if (maxError < inputParams.tolerance) {
+        if (maxError < inputParams.cnTolerance) {
             break;
         }
 
@@ -454,7 +454,7 @@ void scalar_d2::solveT() {
 
         maxError = scalarLaplacian.fxMax();
 
-        if (maxError < inputParams.tolerance) {
+        if (maxError < inputParams.cnTolerance) {
             break;
         }
 

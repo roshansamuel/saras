@@ -75,7 +75,7 @@ int main() {
             if (inputParams.probType == 1) {
                 std::cout << std::endl << "Solving NSE for lid-driven cavity problem" << std::endl;
             } else if (inputParams.probType == 2) {
-                std::cout << std::endl << "Solving NSE for Taylor-Green vortices" << std::endl;
+                std::cout << std::endl << "Solving NSE for decaying flow simulation" << std::endl;
             } else if (inputParams.probType == 3) {
                 std::cout << std::endl << "Solving NSE for channel flow problem" << std::endl;
             } else if (inputParams.probType == 4) {

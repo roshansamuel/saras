@@ -2,7 +2,7 @@
 "Program":
     # Choose from following list of problem types:
     # 1 = Hydrodynamics: Lid-Driven Cavity
-    # 2 = Hydrodynamics: Taylor Green Vortices
+    # 2 = Hydrodynamics: Decaying Flow
     # 3 = Hydrodynamics: Channel Flow
     # 4 = Hydrodynamics: Forced Channel Flow
     # 5 = Flows with scalar: Heated bottom plate 
@@ -11,6 +11,7 @@
     "Problem Type": 2
 
     # Choose from the following initial conditions
+    # 0 = Zero-initial condition
     # 1 = Taylor Green Vortices
     # 2 = Sinusoidal Perturbation (for Channel Flows)
     # 3 = Random Perturbation (for Channel Flows)
@@ -50,7 +51,7 @@
 
     # Choose the type of forcing (source term)
     # 0 = No forcing
-    # 1 = Random forcing (this is yet to be implemented)
+    # 1 = Random forcing (This is yet to be implemented)
     # 2 = Coriolis force 
     # 3 = Buoyancy force (Natural convection: only applicable for flows with scalar)
     # 4 = Buoyancy + Coriolis force (Rotating natural convection: only applicable for flows with scalar)
@@ -77,8 +78,8 @@
     # Choose the grid sizes (for the staggered grid) as indices from the list below
     # These sizes are set to allow multigrid operations on the staggered grid
     # 2D simulations can be run by setting Y Index to 0
-    # Grid sizes:   2 3 5 9 17 33 65 129 257 513 1025 2049 4097 8193 16385]
-    # Size index:   0 1 2 3  4  5  6  7   8   9   10   11   12   13    14
+    # Grid sizes: 2 3 5 9 17 33 65 129 257 513 1025 2049 4097 8193 16385]
+    # Size index: 0 1 2 3  4  5  6  7   8   9   10   11   12   13    14
     "X Index": 6
     "Y Index": 6
     "Z Index": 6
@@ -99,9 +100,12 @@
     "Differentiation Scheme": 1
 
     # Choose from following list of integration schemes:
-    # 1 = Implicit Crank Nicholson
+    # 1 = Implicit Crank-Nicholson
     # 2 = Euler Method (To Be Implemented)
     "Integration Scheme": 1
+
+    # Tolerance used in iterative method (if Implicit Crank-Nicholson scheme is chosen above)
+    "Solve Tolerance": 1.0e-6
 
     # Set below flag to true if restarting from a solution file
     # If flag is true, solver will read the last written solution file in output directory for restart
@@ -112,7 +116,7 @@
     # If above flag is true, then set the value of Courant number below
     "Courant Number": 0.1
     "Time-Step": 0.001
-    "Final Time": 0.05
+    "Final Time": 0.1
 
     # Number of iterations to display output to standard I/O
     "I/O Count": 1
@@ -120,11 +124,11 @@
     # Select the format in which solution data must be written at each solution write interval
     # 1 = Write a single HDF5 file inside ./output/, containing all the variables - Vx, Vy, P, etc.
     # 2 = Create a sub-folder inside ./output/, and write separate HDF5 files for separate variables.
-    # Option 1 is easier for post-processing, while Option 2 maybe used with large data.
+    # Option 1 is easier for post-processing, while Option 2 may be used with large data.
     "Solution Format": 1
 
     # Time interval at which solution file must be written
-    "Solution Write Interval": 0.05
+    "Solution Write Interval": 0.1
 
     # Time interval at which restart file must be written
     "Restart Write Interval": 0.02
@@ -144,15 +148,30 @@
 
 # Poisson solver parameters
 "Multigrid":
-    # Tolerance used in Jacobi iterations
-    "Jacobi Tolerance": 1.0e-6
     # Number of restriction/prolongation steps in each V-Cycle
     "V-Cycle Depth": 3
     # Number of V-Cycles to be performed
     "V-Cycle Count": 5
-    # Number of smoothing iterations to be performed before V-Cycle
-    "Pre-Smoothing Count": 10
-    # Number of smoothing iterations to be performed after V-Cycle
-    "Post-Smoothing Count": 10
-    # Array of numbers of smoothing iterations to be performed in between prolongation operations of V-Cycle at different levels *from coarsest mesh to finest mesh*
-    "Inter-Smoothing Count": [10, 10, 10, 10]
+
+    # Tolerance used in iterative method when solving at coarsest level
+    "Solve Tolerance": 1.0e-6
+
+    # Iterative method to be used for smoothing
+    # 0 = Jacobi iteration
+    # 1 = Gauss-Seidel iteration
+    "Smoothing Method": 1
+
+    # Number of smoothing iterations to be performed after restriction operations
+    "Pre-Smoothing Count": 4
+    # Number of smoothing iterations to be performed after prolongation operations
+    "Post-Smoothing Count": 4
+
+    # Type of residual to be computed at end of each V-Cycle of the multigrid method
+    # This value can be set as below:
+    # 0 = Do not evaluate error
+    # 1 = Compute and print Mean Absolute Error (MAE)
+    # 2 = Compute and print Root Mean Square Error (RMSE)
+    "Residual Type": 1
+
+    # Flag to enable printing of the residual computed using above method (used mainly to test multigrid solver)
+    "Print Residual": false
