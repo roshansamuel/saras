@@ -1,7 +1,7 @@
 # Saras - Finite difference solver
 
 Saras is an OpenMP-MPI hybrid parallelized Navier-Stokes equation solver written in C++.
-It uses the finite-difference method for calculating spatial derivatives and parallelized geometric multigrid method for solving
+It uses the finite-difference method for calculating spatial derivatives and parallelized geometric multi-grid method for solving
 the pressure Poisson equation.
 
 All the source and library files for the Saras solver are contained in the following directories:
@@ -13,73 +13,154 @@ All the source and library files for the Saras solver are contained in the follo
 
 ## Installing SARAS
 
-To install ``SARAS``, you need to first clone the git repository into your local machine
+``SARAS`` relies on a few libraries for its calculations.
+Therefore the first step towards building ``SARAS`` is to install the following dependencies:
+
+* ``blitz`` - All array manipulations are performed using the Blitz++ library
+* ``cmake`` - Necessary to build the ``saras`` executable
+* ``mpich`` - For parallel computation using MPI
+* ``yaml`` - The input parameters are stored in a YAML file which needs to be parsed using yaml-cpp library.
+* ``hdf5`` - The output files are written in HDF5 format
+
+Packages like ``cmake``, ``mpich`` and ``hdf5`` can be installed from the OS package manager,
+while ``yaml`` and ``blitz`` can be downloaded and installed manually.
+
+However, we provide below an alternative series of steps that will install all the libraries in the user's home directory.
+This method has three advantages:
+
+* It does not require administrator (``sudo``) privileges,
+* It will not disturb pre-existing packages already installed on the system
+* The method has been tested on both Linux (Ubuntu 14.04 and above), and MacOS (Mojave)
+
+### Download all the dependencies
+
+All the required packages can be downloaded from our [lab website](http://turbulencehub.org), and installed over a terminal.
+It is advisable to create a temporary directory where the packages can be downloaded and extracted.
+After navigating to the temporary directory, download the packages using ``wget`` on Linux, or ``curl`` on MacOS.
+For instance, on MacOS, the following lines will download ``CMake``, ``Blitz++``, ``yaml-cpp``, ``MPICH`` and ``HDF5`` packages respectively:
+
+`curl -O https://turbulencehub.org/wp-content/uploads/Download_Files/cmake-2.8.12.tar.gz`
+`curl -O https://turbulencehub.org/wp-content/uploads/Download_Files/blitz-1.0.1.tar.gz`
+`curl -O https://turbulencehub.org/wp-content/uploads/Download_Files/yaml-cpp-release-0.3.0.tar.gz`
+`curl -O https://turbulencehub.org/wp-content/uploads/Download_Files/mpich-3.1.3.tar.gz`
+`curl -O https://turbulencehub.org/wp-content/uploads/Download_Files/hdf5-1.8.20.tar.bz2`
+
+On Linux, please replace ``curl -O`` with ``wget``.
+If you are installing on a remote machine which doesn't have direct internet access,
+the packages can be downloaded using the links listed above, and transferred over ssh or ftp.
+
+### Extract all the packages
+
+The ``tar`` command (available by default on both Linux and MacOS) can be used to extract the above archives.
+For instance, ``CMake`` can be extracted by the command:
+
+`tar -xf cmake-2.8.12.tar.gz`
+
+On MacOS, if the above command fails with the error ``Failed to set default locale``, the $LANG environment variable has to be set as shown below:
+
+`export LANG=en_US.UTF-8`
+
+Once all the downloaded packages have been extracted, create an install location in the user's home folder if it doesn't exist already.
+Usually, packages are installed in ``$HOME/local/`` directory.
+The next steps will assume that the folder ``local/`` exists in the user's home directory.
+
+### Install CMake
+
+Navigate to the folder created by extracting the ``CMake`` package, configure the installation script, and install the package:
+
+`cd cmake-2.8.12/`
+`./configure --prefix=$HOME/local`
+`make -j4 install`
+
+Note that the option ``-j4`` given to ``make`` will use 4 cores of your system.
+If more cores are available, the process can be speeded-up by specifying a higher number.
+
+### Export path variables
+
+Once ``CMake`` has been installed in ``$HOME/local`` it should be made available for the next steps of installation.
+For this, the path variables have to be updated to let the system know that ``cmake`` is installed in ``$HOME/local``.
+Accordingly, set the following environment variables:
+
+`export PATH=$HOME/local/bin:$PATH`
+`export PKG_CONFIG_PATH=$HOME/local/lib/pkgconfig:$PKG_CONFIG_PATH`
+`export HDF5_ROOT=$HOME/local`
+`export CPATH=$HOME/local/include/:$CPATH`
+`export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH`
+`export LIBRARY_PATH=$HOME/local/lib:$LIBRARY_PATH`
+`export MANPATH=$HOME/local/share/man/:$MANPATH`
+
+Please note that the environment variables set here (and the $LANG variable set above if needed), exist only for the duration of the terminal session.
+If the session is terminated by closing the terminal or logging out, the variables will be reset.
+To permanently add the path variables, the above lines may be appended to the shell profile file (like ``bashrc`` or ``bash_profile``).
+
+### Install Blitz++
+
+Navigate to the folder created by extracting the ``Blitz++`` package, and install the package as done for ``CMake``:
+
+`cd ../blitz-1.0.1/`
+`./configure --prefix=$HOME/local`
+`make -j4 install`
+
+### Install yaml-cpp
+
+Installing the ``yaml-cpp`` package will require ``cmake``, and hence uses a slightly different syntax.
+
+`cd ../yaml-cpp-release-0.3.0/`
+`cmake -DCMAKE_INSTALL_PREFIX=$HOME/local`
+`make -j4 install`
+
+With ``cmake``, the ``-DCMAKE_INSTALL_PREFIX`` argument performs the same function as ``--prefix`` for ``make``, namely specifying the install directory.
+
+Currently, ``SARAS`` is compatible only with yaml-cpp 0.3 and below, since it uses ``YAML::Parser::GetNextDocument``, which was removed in subsequent versions.
+If ``yaml-cpp`` is installed using a package manager, the OS may install yaml-cpp 0.5 or newer.
+The older version (which is still in available in many repositories) has to be specifically installed for ``SARAS`` to run.
+
+### Install MPICH
+
+Repeat the same steps used to install ``cmake`` and ``blitz`` from the folder into which the ``MPICH`` package was extracted:
+
+`cd ../mpich-3.1.3/`
+`./configure --prefix=$HOME/local`
+`make -j4 install`
+
+### Install HDF5 library
+
+The ``HDF5`` library requires ``MPICH`` so that it can perform parallel file I/O operations.
+Hence it must be installed only after installing ``MPICH`` as done above.
+A few additional build flags are also provided when building the ``HDF5`` library:
+
+`cd ../hdf5-1.8.20/`
+`CC=mpicc CXX=mpicxx ./configure --prefix=$HOME/local --enable-parallel --without-zlib`
+`make -j4 install`
+
+Note that while building the ``HDF5`` library, it is being explicitly specified that the MPI compiler must be used.
+
+### Clone and install SARAS
+
+With luck, the above steps will have installed all the dependencies required by ``SARAS``.
+They have been tested with ``gcc`` on Linux, ``homebrew-gcc`` as well as ``clang`` on MacOS.
+Now the ``saras`` repository can be cloned into your machine, and compiled:
 
 `git clone https://github.com/roshansamuel/saras.git`
-
-On LINUX systems which use the Bash shell, ``SARAS`` can be compiled by simply running the ``compileSaras.sh`` shell script in the `compile/` folder, as below
-
+`cd saras/compile/`
 `bash compileSaras.sh`
 
-The first few lines of the ``compileSaras.sh`` script can be used to set certain compilation parameters and flags:
+The build script, ``compileSaras.sh`` automatically builds ``SARAS`` with a few default parameters.
+It has been tested to work on both Linux and MacOS.
+If the compilation is successful, the ``saras`` executable will be built and linked in the root ``saras/`` folder.
+
+Note that the first few lines of the ``compileSaras.sh`` script can be used to set certain compilation parameters and flags:
 
 * ``PROC`` - Number of processors to be used when running ``SARAS``. This parameter is used only if the ``EXECUTE_AFTER_COMPILE`` parameter is uncommented.
 * ``REAL_TYPE`` - ``SARAS`` supports computations with both double and single precision floating point values. This parameter must be either ``SINGLE`` or ``DOUBLE``
 * ``PLANAR`` - This parameter has to be enabled to use the ``SARAS`` executable for 2D simulations.
 * ``TIME_RUN`` - Suppresses file-writing and I/O operations. This flag is enabled only when timing the solver for scaling runs.
-* ``TEST_RUN`` - Runs the unit-tests module of the solver. This is distinct from the tests contained in the ``tests/`` folder of the solver.
 * ``EXECUTE_AFTER_COMPILE`` - The script automatically runs the executable by issuing the ``mpirun`` command. This flag is enabled mainly during development for quickly compiling and running the solver.
 
-Before compilation, a few dependencies have to installed first.
-
-* ``blitz`` - All array manipulations are performed using the Blitz++ library
-* ``cmake`` - Necessary to make the executable from the source files
-* ``mpich`` - The compiler used is mpic++
-* ``yaml`` - The input parameters are stored in the parameters.yaml file which needs the yaml-cpp library to parse.
-* ``hdf5`` - The output files are written in HDF5 format
-
-### Blitz++
-
-To install the Blitz++ library, please download the library from [here](http://turbulencehub.org/wp-content/uploads/Download_Files/blitz-1.0.1.tar.gz), and extract the archive.
-Follow the installation instructions in the archive.
-
-### CMake
-
-On LINUX systems which use Debian package manager, please use the package manager itself to install CMake.
-For example, on Ubuntu systems, CMake can be installed by running
-
-`sudo apt-get install cmake`
-
-### MPICH
-
-Similar to CMake installation above, it is best to install MPICH using the native package manager.
-
-### YAML
-
-Currently, ``SARAS`` is compatible only with yaml-cpp 0.3 and below, since it uses ``YAML::Parser::GetNextDocument``,
-which was removed in subsequent versions.
-On Debian based systems, the YAML library can be installed by running
-
-`sudo apt-get install libyaml-cpp-dev`
-
-However, this may install yaml-cpp 0.5 or newer, and the older version (which is still in available in many repositories)
-has to be specifically installed for ``SARAS`` to run.
-Otherwise, the compatible version of yaml-cpp library can be downloaded from [here](http://turbulencehub.org/wp-content/uploads/Download_Files/yaml-cpp-release-0.3.0.tar.gz).
-Please extract the archive and follow the installation instructions.
-
-### HDF5
-
-The HDF5 library has to be installed with parallel writing enabled for the file writing functions of ``SARAS`` to work.
-The library can either be downloaded and manually installed from [here](http://turbulencehub.org/wp-content/uploads/Download_Files/hdf5-1.8.20.tar.bz2),
-or the native package manager of the OS can be used to locate and install the library.
-
-More instructions on installing the libraries listed above can be found [here](http://turbulencehub.org/index.php/codes/tarang/installing-tarang/).
-If any of the above libraries is being installed to the home directory,
-please make sure to update the relevant paths in the shell configuration file (``~/.bashrc``)
 
 ## Running SARAS
 
-``SARAS`` can be executed by issuing the ``mpirun`` command at the root folder of the solver (assuming that MPICH is installed as mentioned above).
+``SARAS`` can be executed by issuing the ``mpirun`` command at the root folder of the solver.
 
 ``mpirun -np <number_of_processors> ./saras``
 
@@ -112,30 +193,22 @@ The following Python modules are necessary for the Python test script to execute
 * yaml
 
 At the end of the test, a plot of the x and y velocity profiles is shown to the user and saved as ``ldc_validation.png`` in the folder ``tests/ldcTest/``.
+Additionally, the convergence of the multi-grid Poisson solver of ``SARAS`` can also be tested.
+This test is also available in the ``tests/`` folder.
 
 ## Setting up a new case in SARAS
 
 2D and 3D cases require separate executables of ``SARAS``.
-Once the dimensionality of the case is decided, ``SARAS`` has to compiled with appropriate compilation flags.
-The executable file may then be shifted to a work folder where it will be run.
+The executable has to be placed in a folder with two sub-folders: ``input/`` and ``output/``.
+``SARAS`` will read parameters from the ``input/`` folder, and write solution data into the ``output/`` folder.
+Following are the steps to get a case up and running:
 
 ### Get the executable file
 
-Users on UNIX systems are encouraged to use the BASH script, ``compileSaras.sh``, in the ``./compile/`` folder to compile ``SARAS``.
-Immediately below the license header at the top of the script, there are 6 flags which the user can enable/disable.
-A flag can be enabled or disabled by uncommenting or commenting it respectively.
-
+Based on the dimensionality of the problem being solved, and the precision of floating point numbers to be used,
+set the ``PLANAR`` and ``REAL_TYPE`` variables in the build script - ``compileSaras.sh``.
+Executing this shell script will produce the ``saras`` executable file as mentioned above.
 It is best to disable the ``EXECUTE_AFTER_COMPILE`` flag so that script doesn't run the executable immediately after compilation.
-If the ``EXECUTE_AFTER_COMPILE`` flag is disabled, the ``PROC`` variable, which sets the number of processes to run the executable with, can be ignored.
-The user must enable or disable the ``PLANAR`` flag depending on whether the case is 2D or 3D respectively.
-
-The ``REAL_TYPE`` flag has the default value of ``DOUBLE``.
-This indicates that the executable will use double precision floating point numbers.
-To use single precision floats, set the flag to ``SINGLE``.
-The remaining two flags, ``TIME_RUN`` and ``TEST_RUN``, are used in special cases only and is best left to their default disabled states.
-
-Once the above shell script variables have been set, the script can be executed at the command line to compile ``SARAS``.
-If the compilation occurs without hiccups, an executable file named ``saras`` will appear in the root folder of the solver.
 
 ### Set the parameters file
 
@@ -149,7 +222,7 @@ The parameters are grouped under 5 sections, viz., ``Program``, ``Mesh``, ``Para
 * Grid parameters like number of points, stretching parameter for non-uniform grids, etc. are found under the ``Mesh`` section.
 * ``Parallel`` section lets the user define how many MPI sub-domains to decompose the computational domain into, and the number of OpenMP threads to use.
 * Non-dimensional time-step, file write intervals, final non-dimensional time and so on are set in the ``Solver`` section.
-* Finally, ``Multigrid`` section lets the user tweak the parameters of the Geometric Multigrid solver used to solve the pressure Poisson equation.
+* Finally, ``Multigrid`` section lets the user tweak the parameters of the Geometric Multi-grid solver used to solve the pressure Poisson equation.
 
 Each parameter has documentation written into the ``parameters.yaml`` file itself.
 
@@ -161,9 +234,7 @@ Each parameter has documentation written into the ``parameters.yaml`` file itsel
 
 ### Running and processing data
 
-The folder where the executable ``saras`` will be run must contain two subfolders - ``./input/`` and ``./output/``.
 The ``parameters.yaml`` must be saved in ``./input/``, and the solver will write data into ``./output/``.
-
 Based on the values in ``parameters.yaml``, the solver will write solution data, time series, probe measurements, etc. in the ``./output/`` folder.
 The solver will also periodically dump the entire field data into a file named ``restartFile.h5``, in the ``./output/`` folder.
 This file will be read by the solver to resume computations, should it stop before completing the simulation.
