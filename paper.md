@@ -126,7 +126,7 @@ $$
 \mathbf{u}^* - \Delta t\left[\frac{\nu\nabla^2\mathbf{u}^*}{2} \right ] = \mathbf{u}_{n} + \Delta t\left[\frac{\nu\nabla^2\mathbf{u}_n}{2} - \mathbf{u}_n.\nabla\mathbf{u}_n - \nabla p_n\right].
 $$
 The above equation has to be solved iteratively, and this is achieved through
-OpenMP-parallelized Jacobi iterations.
+Jacobi iterations.
 The intermediate velocity field, $\mathbf{u}^*$, does not satisfy the continuity equation,
 and requires appropriate correction.
 This correction is obtained from the pressure correction term, which is calculated using the pressure Poisson equation,

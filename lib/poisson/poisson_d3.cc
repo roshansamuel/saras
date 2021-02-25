@@ -93,7 +93,6 @@ void multigrid_d3::computeResidual() {
     // Compute Laplacian of the pressure field and subtract it from the RHS of Poisson equation to obtain the residual
     // This residual is temporarily stored into tmpDataArray, from which it will be coarsened into residualData array.
     // Needed update: Substitute the below OpenMP parallel loop with vectorized Blitz operation and check for speed increase.
-#pragma omp parallel for num_threads(inputParams.nThreads) default(none)
     for (int i = 0; i <= xEnd(vLevel); ++i) {
         for (int j = 0; j <= yEnd(vLevel); ++j) {
             for (int k = 0; k <= zEnd(vLevel); ++k) {
@@ -151,7 +150,6 @@ void multigrid_d3::smooth(const int smoothCount) {
             }
         } else {
             // JACOBI ITERATIVE SMOOTHING
-#pragma omp parallel for num_threads(inputParams.nThreads) default(none)
             for (int i = 0; i <= xEnd(vLevel); ++i) {
                 for (int j = 0; j <= yEnd(vLevel); ++j) {
                     for (int k = 0; k <= zEnd(vLevel); ++k) {

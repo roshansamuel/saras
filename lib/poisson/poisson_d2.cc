@@ -92,7 +92,6 @@ void multigrid_d2::computeResidual() {
 
     // Compute Laplacian of the pressure field and subtract it from the RHS of Poisson equation to obtain the residual
     // This residual is temporarily stored into tmpDataArray, from which it will be coarsened into residualData array.
-#pragma omp parallel for num_threads(inputParams.nThreads) default(none)
     for (int i = 0; i <= xEnd(vLevel); ++i) {
         for (int k = 0; k <= zEnd(vLevel); ++k) {
             tmpDataArray(vLevel)(i, 0, k) =  residualData(vLevel)(i, 0, k) -
@@ -129,7 +128,6 @@ void multigrid_d2::smooth(const int smoothCount) {
             }
         } else {
             // JACOBI ITERATIVE SMOOTHING
-#pragma omp parallel for num_threads(inputParams.nThreads) default(none)
             for (int i = 0; i <= xEnd(vLevel); ++i) {
                 for (int k = 0; k <= zEnd(vLevel); ++k) {
                     tmpDataArray(vLevel)(i, 0, k) = (hz2(vLevel) * xix2(vLevel)(i) * (pressureData(vLevel)(i + 1, 0, k) + pressureData(vLevel)(i - 1, 0, k))*2.0 +

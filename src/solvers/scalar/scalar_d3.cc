@@ -375,7 +375,6 @@ void scalar_d3::solveVx() {
     real maxError = 0.0;
 
     while (true) {
-#pragma omp parallel for num_threads(inputParams.nThreads) default(none)
         for (int iX = V.Vx.fBulk.lbound(0); iX <= V.Vx.fBulk.ubound(0); iX++) {
             for (int iY = V.Vx.fBulk.lbound(1); iY <= V.Vx.fBulk.ubound(1); iY++) {
                 for (int iZ = V.Vx.fBulk.lbound(2); iZ <= V.Vx.fBulk.ubound(2); iZ++) {
@@ -394,7 +393,6 @@ void scalar_d3::solveVx() {
 
         imposeUBCs();
 
-#pragma omp parallel for num_threads(inputParams.nThreads) default(none)
         for (int iX = V.Vx.fBulk.lbound(0); iX <= V.Vx.fBulk.ubound(0); iX++) {
             for (int iY = V.Vx.fBulk.lbound(1); iY <= V.Vx.fBulk.ubound(1); iY++) {
                 for (int iZ = V.Vx.fBulk.lbound(2); iZ <= V.Vx.fBulk.ubound(2); iZ++) {
@@ -433,7 +431,6 @@ void scalar_d3::solveVy() {
     real maxError = 0.0;
 
     while (true) {
-#pragma omp parallel for num_threads(inputParams.nThreads) default(none)
         for (int iX = V.Vy.fBulk.lbound(0); iX <= V.Vy.fBulk.ubound(0); iX++) {
             for (int iY = V.Vy.fBulk.lbound(1); iY <= V.Vy.fBulk.ubound(1); iY++) {
                 for (int iZ = V.Vy.fBulk.lbound(2); iZ <= V.Vy.fBulk.ubound(2); iZ++) {
@@ -452,7 +449,6 @@ void scalar_d3::solveVy() {
 
         imposeVBCs();
 
-#pragma omp parallel for num_threads(inputParams.nThreads) default(none)
         for (int iX = V.Vy.fBulk.lbound(0); iX <= V.Vy.fBulk.ubound(0); iX++) {
             for (int iY = V.Vy.fBulk.lbound(1); iY <= V.Vy.fBulk.ubound(1); iY++) {
                 for (int iZ = V.Vy.fBulk.lbound(2); iZ <= V.Vy.fBulk.ubound(2); iZ++) {
@@ -491,7 +487,6 @@ void scalar_d3::solveVz() {
     real maxError = 0.0;
 
     while (true) {
-#pragma omp parallel for num_threads(inputParams.nThreads) default(none)
         for (int iX = V.Vz.fBulk.lbound(0); iX <= V.Vz.fBulk.ubound(0); iX++) {
             for (int iY = V.Vz.fBulk.lbound(1); iY <= V.Vz.fBulk.ubound(1); iY++) {
                 for (int iZ = V.Vz.fBulk.lbound(2); iZ <= V.Vz.fBulk.ubound(2); iZ++) {
@@ -510,7 +505,6 @@ void scalar_d3::solveVz() {
 
         imposeWBCs();
 
-#pragma omp parallel for num_threads(inputParams.nThreads) default(none)
         for (int iX = V.Vz.fBulk.lbound(0); iX <= V.Vz.fBulk.ubound(0); iX++) {
             for (int iY = V.Vz.fBulk.lbound(1); iY <= V.Vz.fBulk.ubound(1); iY++) {
                 for (int iZ = V.Vz.fBulk.lbound(2); iZ <= V.Vz.fBulk.ubound(2); iZ++) {
@@ -549,7 +543,6 @@ void scalar_d3::solveT() {
     real maxError = 0.0;
 
     while (true) {
-#pragma omp parallel for num_threads(inputParams.nThreads) default(none)
         for (int iX = T.F.fBulk.lbound(0); iX <= T.F.fBulk.ubound(0); iX++) {
             for (int iY = T.F.fBulk.lbound(1); iY <= T.F.fBulk.ubound(1); iY++) {
                 for (int iZ = T.F.fBulk.lbound(2); iZ <= T.F.fBulk.ubound(2); iZ++) {
@@ -568,7 +561,6 @@ void scalar_d3::solveT() {
 
         imposeTBCs();
 
-#pragma omp parallel for num_threads(inputParams.nThreads) default(none)
         for (int iX = T.F.fBulk.lbound(0); iX <= T.F.fBulk.ubound(0); iX++) {
             for (int iY = T.F.fBulk.lbound(1); iY <= T.F.fBulk.ubound(1); iY++) {
                 for (int iZ = T.F.fBulk.lbound(2); iZ <= T.F.fBulk.ubound(2); iZ++) {

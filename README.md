@@ -1,6 +1,6 @@
 # Saras - Finite difference solver
 
-Saras is an OpenMP-MPI hybrid parallelized Navier-Stokes equation solver written in C++.
+Saras is an MPI parallelized Navier-Stokes equation solver written in C++.
 It uses the finite-difference method for calculating spatial derivatives and parallelized geometric multi-grid method for solving
 the pressure Poisson equation.
 
@@ -236,7 +236,7 @@ The parameters are grouped under 5 sections, viz., ``Program``, ``Mesh``, ``Para
 
 * The main parameters that set the boundary conditions, initial conditions, forcing/source terms, etc. are found under the ``Program`` section.
 * Grid parameters like number of points, stretching parameter for non-uniform grids, etc. are found under the ``Mesh`` section.
-* ``Parallel`` section lets the user define how many MPI sub-domains to decompose the computational domain into, and the number of OpenMP threads to use.
+* ``Parallel`` section lets the user define how many MPI sub-domains to decompose the computational domain.
 * Non-dimensional time-step, file write intervals, final non-dimensional time and so on are set in the ``Solver`` section.
 * Finally, ``Multigrid`` section lets the user tweak the parameters of the Geometric Multi-grid solver used to solve the pressure Poisson equation.
 

@@ -62,10 +62,6 @@ message (STATUS "The parent directory is ${PARENT_DIR}")
 message (STATUS "Install folder is ${INSTALL_DIR}")
 message (STATUS "All headers are in ${HEADER_DIR}")
 
-# Search for OpenMP package to enable hybrid parallelization and set the correct OpenMP compiler flag
-find_package (OpenMP)
-message (STATUS "Compiler flag for OpenMP is ${OpenMP_C_FLAGS}")
-
 # Check if user defined flags are set
 if (NOT DEFINED PLANAR)
     message (STATUS "PLANAR flag not set. Compiling for default 3D run")
@@ -111,8 +107,8 @@ if (TEST_POISSON)
 endif ()
 
 # Set compiler flags for normal and debug runs
-set (CMAKE_CXX_FLAGS "-Wall ${OpenMP_C_FLAGS} -Ofast")
-set (CMAKE_CXX_FLAGS_DEBUG "-Wall -g ${OpenMP_C_FLAGS} -DBZ_DEBUG")
+set (CMAKE_CXX_FLAGS "-Wall -Ofast")
+set (CMAKE_CXX_FLAGS_DEBUG "-Wall -g -DBZ_DEBUG")
 
 add_subdirectory (lib)
 add_subdirectory (src)
