@@ -109,6 +109,9 @@ cd ../blitz-1.0.1/
 make -j4 install
 ```
 
+At the final step in ``make install``, the Blitz++ installer uses python2.
+If you are using python3, please switch the environment to use python2 temporarily for this step of the installation.
+
 ### Install yaml-cpp
 
 Installing the ``yaml-cpp`` package will require ``cmake``, and hence uses a slightly different syntax.
@@ -135,6 +138,11 @@ cd ../mpich-3.1.3/
 make -j4 install
 ```
 
+If the ``configure`` step throws the error ``The Fortran compiler gfortran will not compile files that call the same routine with arguments of different types.``,
+please set the following flag, and rerun the configure script.
+
+`export FFLAGS="-w -fallow-argument-mismatch -O2"`
+
 ### Install HDF5 library
 
 The ``HDF5`` library requires ``MPICH`` so that it can perform parallel file I/O operations.
@@ -148,6 +156,9 @@ make -j4 install
 ```
 
 Note that while building the ``HDF5`` library, it is being explicitly specified that the MPI compiler must be used.
+On some systems, it might be necessary to add an extra compiler flag before running ``make`` in order to install ``HDF5`` properly:
+
+`export CFLAGS=-Wno-error=implicit-function-declaration`
 
 ### Clone and install SARAS
 
