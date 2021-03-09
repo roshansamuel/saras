@@ -93,20 +93,40 @@ if [ -z $PLANAR ]; then
                 CC=mpicc CXX=mpicxx cmake ../../ -DREAL_SINGLE=ON
             fi
         else
-            CC=mpicc CXX=mpicxx cmake ../../ -DTIME_RUN=ON
+            if [ "$REAL_TYPE" == "DOUBLE" ]; then
+                CC=mpicc CXX=mpicxx cmake ../../ -DTIME_RUN=ON -DREAL_DOUBLE=ON
+            else
+                CC=mpicc CXX=mpicxx cmake ../../ -DTIME_RUN=ON -DREAL_SINGLE=ON
+            fi
         fi
     else
-        CC=mpicc CXX=mpicxx cmake ../../ -DTEST_RUN=ON
+        if [ "$REAL_TYPE" == "DOUBLE" ]; then
+            CC=mpicc CXX=mpicxx cmake ../../ -DTEST_RUN=ON -DREAL_DOUBLE=ON
+        else
+            CC=mpicc CXX=mpicxx cmake ../../ -DTEST_RUN=ON -DREAL_SINGLE=ON
+        fi
     fi
 else
     if [ -z $TEST_RUN ]; then
         if [ -z $TIME_RUN ]; then
-            CC=mpicc CXX=mpicxx cmake ../../ -DPLANAR=ON
+            if [ "$REAL_TYPE" == "DOUBLE" ]; then
+                CC=mpicc CXX=mpicxx cmake ../../ -DPLANAR=ON -DREAL_DOUBLE=ON
+            else
+                CC=mpicc CXX=mpicxx cmake ../../ -DPLANAR=ON -DREAL_SINGLE=ON
+            fi
         else
-            CC=mpicc CXX=mpicxx cmake ../../ -DPLANAR=ON -DTIME_RUN=ON
+            if [ "$REAL_TYPE" == "DOUBLE" ]; then
+                CC=mpicc CXX=mpicxx cmake ../../ -DPLANAR=ON -DTIME_RUN=ON -DREAL_DOUBLE=ON
+            else
+                CC=mpicc CXX=mpicxx cmake ../../ -DPLANAR=ON -DTIME_RUN=ON -DREAL_SINGLE=ON
+            fi
         fi
     else
-        CC=mpicc CXX=mpicxx cmake ../../ -DTEST_RUN=ON -DPLANAR=ON
+        if [ "$REAL_TYPE" == "DOUBLE" ]; then
+            CC=mpicc CXX=mpicxx cmake ../../ -DPLANAR=ON -DTEST_RUN=ON -DREAL_DOUBLE=ON
+        else
+            CC=mpicc CXX=mpicxx cmake ../../ -DPLANAR=ON -DTEST_RUN=ON -DREAL_SINGLE=ON
+        fi
     fi
 fi
 

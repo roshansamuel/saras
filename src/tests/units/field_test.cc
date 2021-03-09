@@ -78,10 +78,10 @@ void fieldTest(grid &gridData) {
 static void taylorGreen(vfield &V, grid &mesh) {
     // X-Velocity
 #ifndef PLANAR
-    for (int i=V.Vx.F.F.lbound(0); i <= V.Vx.F.F.ubound(0); i++) {
-        for (int j=V.Vx.F.F.lbound(1); j <= V.Vx.F.F.ubound(1); j++) {
-            for (int k=V.Vx.F.F.lbound(2); k <= V.Vx.F.F.ubound(2); k++) {
-                V.Vx.F.F(i, j, k) = sin(2.0*M_PI*mesh.xColloc(i)/mesh.xLen)*
+    for (int i=V.Vx.F.lbound(0); i <= V.Vx.F.ubound(0); i++) {
+        for (int j=V.Vx.F.lbound(1); j <= V.Vx.F.ubound(1); j++) {
+            for (int k=V.Vx.F.lbound(2); k <= V.Vx.F.ubound(2); k++) {
+                V.Vx.F(i, j, k) = sin(2.0*M_PI*mesh.xColloc(i)/mesh.xLen)*
                                     cos(2.0*M_PI*mesh.yStaggr(j)/mesh.yLen)*
                                     cos(2.0*M_PI*mesh.zStaggr(k)/mesh.zLen);
             }
@@ -89,9 +89,9 @@ static void taylorGreen(vfield &V, grid &mesh) {
     }
 #else
     int j = 0;
-    for (int i=V.Vx.F.F.lbound(0); i <= V.Vx.F.F.ubound(0); i++) {
-        for (int k=V.Vx.F.F.lbound(2); k <= V.Vx.F.F.ubound(2); k++) {
-            V.Vx.F.F(i, j, k) = sin(2.0*M_PI*mesh.xColloc(i)/mesh.xLen)*
+    for (int i=V.Vx.F.lbound(0); i <= V.Vx.F.ubound(0); i++) {
+        for (int k=V.Vx.F.lbound(2); k <= V.Vx.F.ubound(2); k++) {
+            V.Vx.F(i, j, k) = sin(2.0*M_PI*mesh.xColloc(i)/mesh.xLen)*
                                 cos(2.0*M_PI*mesh.zStaggr(k)/mesh.zLen);
         }
     }
@@ -99,26 +99,26 @@ static void taylorGreen(vfield &V, grid &mesh) {
 
     // Y-Velocity
 #ifndef PLANAR
-    for (int i=V.Vy.F.F.lbound(0); i <= V.Vy.F.F.ubound(0); i++) {
-        for (int j=V.Vy.F.F.lbound(1); j <= V.Vy.F.F.ubound(1); j++) {
-            for (int k=V.Vy.F.F.lbound(2); k <= V.Vy.F.F.ubound(2); k++) {
-                V.Vy.F.F(i, j, k) = -cos(2.0*M_PI*mesh.xStaggr(i)/mesh.xLen)*
+    for (int i=V.Vy.F.lbound(0); i <= V.Vy.F.ubound(0); i++) {
+        for (int j=V.Vy.F.lbound(1); j <= V.Vy.F.ubound(1); j++) {
+            for (int k=V.Vy.F.lbound(2); k <= V.Vy.F.ubound(2); k++) {
+                V.Vy.F(i, j, k) = -cos(2.0*M_PI*mesh.xStaggr(i)/mesh.xLen)*
                                      sin(2.0*M_PI*mesh.yColloc(j)/mesh.yLen)*
                                      cos(2.0*M_PI*mesh.zStaggr(k)/mesh.zLen);
             }
         }
     }
 #else
-    V.Vy.F.F = 0.0;
+    V.Vy.F = 0.0;
 #endif
 
     // Z-Velocity
 #ifndef PLANAR
-    V.Vz.F.F = 0.0;
+    V.Vz.F = 0.0;
 #else
-    for (int i=V.Vz.F.F.lbound(0); i <= V.Vz.F.F.ubound(0); i++) {
-        for (int k=V.Vz.F.F.lbound(2); k <= V.Vz.F.F.ubound(2); k++) {
-            V.Vz.F.F(i, j, k) = -cos(2.0*M_PI*mesh.xStaggr(i)/mesh.xLen)*
+    for (int i=V.Vz.F.lbound(0); i <= V.Vz.F.ubound(0); i++) {
+        for (int k=V.Vz.F.lbound(2); k <= V.Vz.F.ubound(2); k++) {
+            V.Vz.F(i, j, k) = -cos(2.0*M_PI*mesh.xStaggr(i)/mesh.xLen)*
                                  sin(2.0*M_PI*mesh.zColloc(k)/mesh.zLen);
         }
     }

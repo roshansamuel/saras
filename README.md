@@ -215,6 +215,7 @@ and plots the velocity profiles along with the data from Ghia et al's result.
 The following Python modules are necessary for the Python test script to execute successfully
 
 * numpy
+* scipy
 * matplotlib
 * h5py
 * yaml
