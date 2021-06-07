@@ -1,12 +1,12 @@
 # Saras - Finite difference solver
 
-Saras is an MPI parallelized Navier-Stokes equation solver written in C++.
+SARAS is an MPI parallelized Navier-Stokes equation solver written in C++.
 It uses the finite-difference method for calculating spatial derivatives and parallelized geometric multi-grid method for solving
 the pressure Poisson equation.
 
-All the source and library files for the Saras solver are contained in the following directories:
+All the relevant files of the solver are contained in the following directories:
 
-* ``./src/`` - contains all the different solvers available in Saras
+* ``./src/`` - contains the different solvers available in SARAS
 * ``./lib/`` - contains all the libraries used by the solvers in ``./src/`` folder
 * ``./input/`` - contains the parameters to be read by the solver
 * ``./output/`` - the solution files are written into this folder, it also contains Python post-processing scripts
@@ -26,9 +26,10 @@ Packages like ``cmake``, ``mpich``, ``yaml-cpp``, and ``hdf5`` can be installed 
 However, the ``blitz`` package will have to be downloaded and installed manually.
 
 If you do not have the administrator privileges required to install packages using the OS package manager,
-you can also install them in your home folder.
+you can install them in your home folder instead.
 This also offers the potential advantage of not disturbing pre-existing packages already installed on the system.
 The steps listed below explain this method of installation.
+
 That said, libraries like ``cmake``, ``MPICH`` and ``HDF5`` are normally available on most computing systems.
 Please check if these packages are already installed, and if they are, you can skip their installation steps.
 
@@ -37,7 +38,10 @@ Please check if these packages are already installed, and if they are, you can s
 All the required packages can be downloaded and installed over a terminal.
 It is advisable to create a temporary directory where the packages can be downloaded and extracted.
 After navigating to the temporary directory, download the packages using ``wget`` command on Linux, or ``curl`` command on MacOS.
-``CMake``, ``MPICH`` and ``HDF5`` packages can be downloaded from their respective sites, and extracted by the ``tar`` command.
+[CMake](https://cmake.org/download/),
+[MPICH](https://www.mpich.org/downloads/) and
+[HDF5](https://portal.hdfgroup.org/display/support/HDF5+1.8.21)
+packages can be downloaded from their respective sites, and extracted by the ``tar`` command.
 
 ```
 wget https://github.com/Kitware/CMake/releases/download/v3.20.3/cmake-3.20.3.tar.gz
@@ -64,7 +68,7 @@ the packages can be downloaded using the links listed above, and transferred ove
 > the $LANG environment variable has to be set.
 > For this you need to execute the command: `export LANG=en_US.UTF-8`
 
-Once all the downloaded packages have been extracted, create an install location in the user's home folder if it doesn't exist already.
+Once all the downloaded packages have been extracted, create an install location in your home folder if it doesn't exist already.
 Usually, packages are installed in ``$HOME/local/`` directory.
 The next steps will assume that the folder ``local/`` exists in the user's home directory.
 
@@ -90,7 +94,6 @@ Accordingly, set the following environment variables:
 ```
 export PATH=$HOME/local/bin:$PATH
 export PKG_CONFIG_PATH=$HOME/local/lib/pkgconfig:$PKG_CONFIG_PATH
-export HDF5_ROOT=$HOME/local
 export CPATH=$HOME/local/include/:$CPATH
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 export LIBRARY_PATH=$HOME/local/lib:$LIBRARY_PATH
@@ -105,7 +108,7 @@ To permanently add the path variables, the above lines may be appended to the sh
 
 Installing the ``yaml-cpp`` package will require ``cmake``.
 It is best to build the package within a temporary ``build/`` directory to avoid disturbing the source files.
-After navigating to the folder created by cloning the ``yaml-cpp`` Git repository, execute the following steps:
+After navigating to the folder created by cloning the ``yaml-cpp`` repository, execute the following steps:
 
 ```
 mkdir build
@@ -118,9 +121,9 @@ With ``cmake``, the ``-DCMAKE_INSTALL_PREFIX`` argument performs the same functi
 
 > ``SARAS`` is now compatible with the latest versions of ``yaml-cpp``.
 > The older ``yaml-cpp 0.3`` uses ``YAML::Parser::GetNextDocument`` to parse the YAML file.
-> However, this function is not secure and hence deprecated in later versions of ``yaml-cpp``.
+> However, this function is not secure and hence deprecated in later versions.
 > If you have an older version of ``yaml-cpp`` installed on your system, you can still run ``SARAS`` with the older package.
-> To enable this, the user has to pass the ``-DYAML_LEGACY`` flag to ``CMake`` when building ``SARAS``.
+> To enable this, the user has to pass the ``-DYAML_LEGACY`` flag to ``CMake`` when building ``SARAS`` later.
 
 ### Install MPICH
 
@@ -139,8 +142,8 @@ make -j4 install
 
 ### Install Blitz++
 
-Although the older versions of ``Blitz`` used a configure script to build the package, the latest versions ``CMake`` instead.
-As done while installing ``yaml-cpp``, you will have to build the package within a temporary ``build/`` directory:
+Although older versions of ``Blitz`` used a configure script to build the package, the latest versions use ``CMake`` instead.
+Similar to the installation of ``yaml-cpp``, you will have to build the package within a temporary ``build/`` directory.
 After navigating to the folder created by cloning the ``blitz`` repository, execute the following commands:
 
 ```
@@ -155,13 +158,14 @@ If the above steps fail due to ``CMake`` version mismatch, you will have to upgr
 If you installed ``CMake`` as done in the steps above, you will not face this issue,
 since the latest version of ``CMake`` was downloaded for the installation process described above.
 
-> At the final step in ``make install``, the Blitz++ installer uses python2.
-> If you are using python3, please switch the environment to use python2 temporarily for this step of the installation.
+> At the final step in ``make install``, the Blitz++ installer may require ``python2``.
+> If you encounter an error due to Python version mismatch,
+> please switch the environment to use ``python2`` temporarily for this step of the installation.
 
 ### Install HDF5 library
 
 The ``HDF5`` library requires ``MPICH`` so that it can perform parallel file I/O operations.
-Hence it must be installed only after installing ``MPICH`` as done above.
+Hence it must be installed only after installing ``MPICH`` (if ``MPICH`` was not already available on your system).
 A few additional build flags are also provided when building the ``HDF5`` library:
 
 ```
@@ -194,14 +198,15 @@ CC=mpicc CXX=mpicxx cmake ../
 make -j4
 ```
 
+``CMake`` will build the ``saras`` executable in the root folder of the solver.
 The following flags can be passed to ``CMake`` to enable/disable different features of ``SARAS``:
 
-* ``DPLANAR=ON`` - This compiles ``SARAS`` for 2D simulations. By default, ``SARAS`` is compiled for 3D runs
-* ``DREAL_SINGLE=ON`` - ``SARAS`` can compute with single-precision numbers. By default, ``SARAS`` uses double-precision
-* ``DTIME_RUN=ON`` - This flag suppresses file-writing and I/O when compiling the solver for scaling studies
-* ``DYAML_LEGACY=ON`` - As described previously, this flag allows ``SARAS`` to use older version of ``yaml-cpp``
+* ``-DPLANAR=ON`` - This compiles ``SARAS`` for 2D simulations. By default, ``SARAS`` is compiled for 3D runs
+* ``-DREAL_SINGLE=ON`` - ``SARAS`` can compute in single-precision. By default, ``SARAS`` uses double-precision
+* ``-DTIME_RUN=ON`` - This flag suppresses file-writing and I/O when compiling the solver for scaling studies
+* ``-DYAML_LEGACY=ON`` - As described previously, this flag allows ``SARAS`` to use older versions of ``yaml-cpp``
 
-For example, to build ``SARAS`` for a 2D simulation using single-precision calculations, the solver will be built as:
+For example, to build ``SARAS`` for a 2D simulation using single-precision calculations, the solver will be configured as:
 
 ```
 CC=mpicc CXX=mpicxx cmake -DPLANAR=ON -DREAL_SINGLE=ON ../
@@ -233,7 +238,7 @@ The test can be executed by running the following command within the ``tests/`` 
 ``bash testSaras.sh``
 
 The test uses 4 cores and takes about 12 minutes to complete on an Intel workstation.
-At the end of the test, the Python script ``validate_ldc.py``, found in ``tests/ldcTest/`` reads the output from ``SARAS``,
+At the end of the test, the Python script ``validate_ldc.py``, found in ``tests/ldcTest/`` reads the output,
 and plots the velocity profiles along with the data from Ghia et al's result.
 
 The following Python modules are necessary for the Python test script to execute successfully
@@ -250,13 +255,13 @@ This test is also available in the ``tests/`` folder.
 
 ## Setting up a new case in SARAS
 
-After generating the ``saras`` executable file as described in the section on Installing SARAS,
+After generating the ``saras`` executable file as described in the section on [Installing SARAS](#clone-and-install-saras),
 The executable has to be placed in a folder with two sub-folders: ``input/`` and ``output/``.
 ``SARAS`` will read parameters from the ``input/`` folder, and write solution data into the ``output/`` folder.
 
 ### Set the parameters file
 
-When ``saras`` is executed, it will first read the case parameters from a YAML file named ``parameters.yaml``.
+The parameters of a case to be simulated with ``SARAS`` are specified in a YAML file named ``parameters.yaml``.
 The user must set these parameters appropriately before executing ``saras``.
 
 A sample ``parameters.yaml`` file is provided with the solver in the ``./input/`` folder.
@@ -278,9 +283,9 @@ Each parameter has documentation written into the ``parameters.yaml`` file itsel
 
 ### Running and processing data
 
-The ``parameters.yaml`` must be saved in ``./input/``, and the solver will write data into ``./output/``.
-Based on the values in ``parameters.yaml``, the solver will write solution data, time series, probe measurements, etc. in the ``./output/`` folder.
-The solver will also periodically dump the entire field data into a file named ``restartFile.h5``, in the ``./output/`` folder.
+The solver will write the solution data files into ``./output/`` folder.
+Based on the values in ``parameters.yaml``, the solver may write solution data, time series, probe measurements, etc. in this folder.
+The solver will also periodically dump the entire field data into a file named ``restartFile.h5``.
 This file will be read by the solver to resume computations, should it stop before completing the simulation.
 
 The solution data is written in HDF5 format, while time-series and probe data are written in ASCII format.
