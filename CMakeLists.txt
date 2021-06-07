@@ -44,10 +44,29 @@
 cmake_minimum_required (VERSION 2.8.3)
 project (saras)
 
-get_filename_component (INSTALL_DIR ${CMAKE_BINARY_DIR} PATH)
-get_filename_component (PARENT_DIR ${INSTALL_DIR} PATH)
+if ("${CMAKE_CURRENT_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_BINARY_DIR}")
+    MESSAGE(FATAL_ERROR "\nERROR! ${PROJECT_NAME} does not support in-source builds!\n"
+            "CMAKE_CURRENT_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}\n"
+            "CMAKE_CURRENT_BINARY_DIR=${CMAKE_CURRENT_BINARY_DIR}\n"
+            "NEXT STEPS:\n"
+            "(1) Delete the CMakeCache.txt file and the CMakeFiles/ directory"
+            "    under the source directory for ${PROJECT_NAME}, otherwise you"
+            "    will not be able to configure ${PROJECT_NAME} correctly!\n"
+            "      * For example, on linux machines do:\n"
+            "        $ rm -r CMakeCache.txt CMakeFiles/\n"
+            "(2) Create a different directory and configure ${PROJECT_NAME} in that directory.\n"
+            "      * For example, on linux machines do:\n"
+            "        $ mkdir MY_BUILD\n"
+            "        $ cd MY_BUILD\n"
+            "        $ cmake [OPTIONS] ..\n")
+endif ()
 
+set (PARENT_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set (HEADER_DIR ${PARENT_DIR}/lib)
+
+message (STATUS "The parent directory is ${PARENT_DIR}")
+message (STATUS "Install folder is ${CMAKE_CURRENT_BINARY_DIR}")
+message (STATUS "All headers are in ${HEADER_DIR}")
 
 include_directories (${HEADER_DIR}/parallel
                      ${HEADER_DIR}/boundary
@@ -57,10 +76,6 @@ include_directories (${HEADER_DIR}/parallel
                      ${HEADER_DIR}/field
                      ${HEADER_DIR}/grid
                      ${HEADER_DIR}/io)
-
-message (STATUS "The parent directory is ${PARENT_DIR}")
-message (STATUS "Install folder is ${INSTALL_DIR}")
-message (STATUS "All headers are in ${HEADER_DIR}")
 
 # Search for yaml-cpp library
 find_package(yaml-cpp)
@@ -72,14 +87,19 @@ if (yaml-cpp_FOUND)
         add_definitions(-DYAML_LEGACY)
     endif ()
 else ()
-    message (FATAL_ERROR "Did not find YAML-Cpp library")
+    find_library(YAML_FOUND yaml-cpp libyaml-cpp)
+    if (YAML_FOUND)
+        message (STATUS "Found YAML Cpp with find_library(). You may have to configure with DYAML_LEGACY")
+    else ()
+        message (WARNING "Could not determine YAML-Cpp version. You may have to configure with DYAML_LEGACY")
+    endif ()
 endif ()
 
-# Check if user defined flags are set
-if (NOT DEFINED PLANAR)
-    message (STATUS "PLANAR flag not set. Compiling for default 3D run")
-    set (PLANAR OFF)
-endif ()
+# Add compiler flag to use older yaml-cpp commands
+if (YAML_LEGACY)
+    message (STATUS "Compiling Saras for older YAML Cpp library")
+    add_definitions(-DYAML_LEGACY)
+endif()
 
 # Add compiler flag for 2D/3D runs as requested by user while running cmake
 if (PLANAR)
@@ -87,6 +107,15 @@ if (PLANAR)
     add_definitions(-DPLANAR)
 else ()
     message (STATUS "Compiling Saras for 3D simulations")
+endif ()
+
+# Add compiler flag for using single precision calculations
+if (REAL_SINGLE)
+    message (STATUS "Compiling Saras to solve with single precision calculations")
+    add_definitions(-DREAL_SINGLE)
+else ()
+    message (STATUS "Compiling Saras to solve with double precision calculations")
+    add_definitions(-DREAL_DOUBLE)
 endif ()
 
 # Add compiler flag for test runs as requested by user while running cmake
@@ -99,18 +128,6 @@ endif ()
 if (TIME_RUN)
     message (STATUS "Compiling Saras with additional timing calls")
     add_definitions(-DTIME_RUN)
-endif ()
-
-# Add compiler flag for using double precision calculations
-if (REAL_DOUBLE)
-    message (STATUS "Compiling Saras to solve with double precision calculations")
-    add_definitions(-DREAL_DOUBLE)
-endif ()
-
-# Add compiler flag for using single precision calculations
-if (REAL_SINGLE)
-    message (STATUS "Compiling Saras to solve with single precision calculations")
-    add_definitions(-DREAL_SINGLE)
 endif ()
 
 # Add compiler flag for testing the Poisson library
@@ -147,3 +164,4 @@ unset (TEST_POISSON CACHE)
 # Remove variables associated with finding yaml-cpp version from cache
 unset (yaml-cpp_FOUND CACHE)
 unset (yaml-cpp_VERSION CACHE)
+unset (YAML_LEGACY CACHE)

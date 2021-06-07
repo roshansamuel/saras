@@ -8,59 +8,61 @@ All the source and library files for the Saras solver are contained in the follo
 
 * ``./src/`` - contains all the different solvers available in Saras
 * ``./lib/`` - contains all the libraries used by the solvers in ``./src/`` folder
-* ``./compile/`` - contains the installation script to build and compile the solver
-* ``./output/`` - the solution files written by the solver are contained in this folder, it also contains Python post-processing scripts
+* ``./input/`` - contains the parameters to be read by the solver
+* ``./output/`` - the solution files are written into this folder, it also contains Python post-processing scripts
 
 ## Installing SARAS
 
 ``SARAS`` relies on a few libraries for its calculations.
 Therefore the first step towards building ``SARAS`` is to install the following dependencies:
 
-* ``blitz`` - All array manipulations are performed using the Blitz++ library
 * ``cmake`` - Necessary to build the ``saras`` executable
 * ``mpich`` - For parallel computation using MPI
-* ``yaml`` - The input parameters are stored in a YAML file which needs to be parsed using yaml-cpp library.
 * ``hdf5`` - The output files are written in HDF5 format
+* ``blitz`` - All array manipulations are performed using the Blitz++ library
+* ``yaml-cpp`` - The input parameters are stored in a YAML file which needs to be parsed using yaml-cpp library.
 
-Packages like ``cmake``, ``mpich`` and ``hdf5`` can be installed from the OS package manager,
-while ``yaml`` and ``blitz`` can be downloaded and installed manually.
+Packages like ``cmake``, ``mpich``, ``yaml-cpp``, and ``hdf5`` can be installed from the OS package manager.
+However, the ``blitz`` package will have to be downloaded and installed manually.
 
-However, we provide below an alternative series of steps that will install all the libraries in the user's home directory.
-This method has three advantages:
-
-* It does not require administrator (``sudo``) privileges,
-* It will not disturb pre-existing packages already installed on the system
-* The method has been tested on both Linux (Ubuntu 14.04 and above), and MacOS (Mojave)
+If you do not have the administrator privileges required to install packages using the OS package manager,
+you can also install them in your home folder.
+This also offers the potential advantage of not disturbing pre-existing packages already installed on the system.
+The steps listed below explain this method of installation.
+That said, libraries like ``cmake``, ``MPICH`` and ``HDF5`` are normally available on most computing systems.
+Please check if these packages are already installed, and if they are, you can skip their installation steps.
 
 ### Download all the dependencies
 
-All the required packages can be downloaded from our [lab website](http://turbulencehub.org), and installed over a terminal.
+All the required packages can be downloaded and installed over a terminal.
 It is advisable to create a temporary directory where the packages can be downloaded and extracted.
-After navigating to the temporary directory, download the packages using ``wget`` on Linux, or ``curl`` on MacOS.
-For instance, on MacOS, the following lines will download ``CMake``, ``Blitz++``, ``yaml-cpp``, ``MPICH`` and ``HDF5`` packages respectively:
+After navigating to the temporary directory, download the packages using ``wget`` command on Linux, or ``curl`` command on MacOS.
+``CMake``, ``MPICH`` and ``HDF5`` packages can be downloaded from their respective sites, and extracted by the ``tar`` command.
 
 ```
-curl -O https://turbulencehub.org/wp-content/uploads/Download_Files/cmake-2.8.12.tar.gz
-curl -O https://turbulencehub.org/wp-content/uploads/Download_Files/blitz-1.0.1.tar.gz
-curl -O https://turbulencehub.org/wp-content/uploads/Download_Files/yaml-cpp-release-0.3.0.tar.gz
-curl -O https://turbulencehub.org/wp-content/uploads/Download_Files/mpich-3.1.3.tar.gz
-curl -O https://turbulencehub.org/wp-content/uploads/Download_Files/hdf5-1.8.20.tar.bz2
+wget https://github.com/Kitware/CMake/releases/download/v3.20.3/cmake-3.20.3.tar.gz
+wget http://www.mpich.org/static/downloads/3.4.2/mpich-3.4.2.tar.gz
+wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.21/src/hdf5-1.8.21.tar.gz
+
+tar -xf cmake-3.20.3.tar.gz
+tar -xf mpich-3.4.2.tar.gz
+tar -xf hdf5-1.8.21.tar.gz
 ```
 
-On Linux, please replace ``curl -O`` with ``wget``.
+On Mac OS, please replace ``wget`` with ``curl -O``.
+It is best to download the latest versions of ``Blitz++`` and ``yaml-cpp`` from their respective Git repositories.
+
+```
+git clone https://github.com/jbeder/yaml-cpp.git
+git clone https://github.com/blitzpp/blitz.git
+```
+
 If you are installing on a remote machine which doesn't have direct internet access,
 the packages can be downloaded using the links listed above, and transferred over ssh or ftp.
 
-### Extract all the packages
-
-The ``tar`` command (available by default on both Linux and MacOS) can be used to extract the above archives.
-For instance, ``CMake`` can be extracted by the command:
-
-`tar -xf cmake-2.8.12.tar.gz`
-
-On MacOS, if the above command fails with the error ``Failed to set default locale``, the $LANG environment variable has to be set as shown below:
-
-`export LANG=en_US.UTF-8`
+> On MacOS, if the ``tar`` command fails with the error ``Failed to set default locale``,
+> the $LANG environment variable has to be set.
+> For this you need to execute the command: `export LANG=en_US.UTF-8`
 
 Once all the downloaded packages have been extracted, create an install location in the user's home folder if it doesn't exist already.
 Usually, packages are installed in ``$HOME/local/`` directory.
@@ -68,10 +70,10 @@ The next steps will assume that the folder ``local/`` exists in the user's home 
 
 ### Install CMake
 
-Navigate to the folder created by extracting the ``CMake`` package, configure the installation script, and install the package:
+After navigating to the folder created by extracting the ``CMake`` package,
+execute the following commands to configure the installation script and install the package:
 
 ```
-cd cmake-2.8.12/
 ./configure --prefix=$HOME/local
 make -j4 install
 ```
@@ -95,53 +97,66 @@ export LIBRARY_PATH=$HOME/local/lib:$LIBRARY_PATH
 export MANPATH=$HOME/local/share/man/:$MANPATH
 ```
 
-Please note that the environment variables set here (and the $LANG variable set above if needed), exist only for the duration of the terminal session.
+Please note that the environment variables set here exist only for the duration of the terminal session.
 If the session is terminated by closing the terminal or logging out, the variables will be reset.
 To permanently add the path variables, the above lines may be appended to the shell profile file (like ``bashrc`` or ``bash_profile``).
 
-### Install Blitz++
-
-Navigate to the folder created by extracting the ``Blitz++`` package, and install the package as done for ``CMake``:
-
-```
-cd ../blitz-1.0.1/
-./configure --prefix=$HOME/local
-make -j4 install
-```
-
-At the final step in ``make install``, the Blitz++ installer uses python2.
-If you are using python3, please switch the environment to use python2 temporarily for this step of the installation.
-
 ### Install yaml-cpp
 
-Installing the ``yaml-cpp`` package will require ``cmake``, and hence uses a slightly different syntax.
+Installing the ``yaml-cpp`` package will require ``cmake``.
+It is best to build the package within a temporary ``build/`` directory to avoid disturbing the source files.
+After navigating to the folder created by cloning the ``yaml-cpp`` Git repository, execute the following steps:
 
 ```
-cd ../yaml-cpp-release-0.3.0/
-cmake -DCMAKE_INSTALL_PREFIX=$HOME/local
+mkdir build
+cd build/
+cmake -DCMAKE_INSTALL_PREFIX=$HOME/local ../
 make -j4 install
 ```
 
 With ``cmake``, the ``-DCMAKE_INSTALL_PREFIX`` argument performs the same function as ``--prefix`` for ``make``, namely specifying the install directory.
 
-Currently, ``SARAS`` is compatible only with yaml-cpp 0.3 and below, since it uses ``YAML::Parser::GetNextDocument``, which was removed in subsequent versions.
-If ``yaml-cpp`` is installed using a package manager, the OS may install yaml-cpp 0.5 or newer.
-The older version (which is still in available in many repositories) has to be specifically installed for ``SARAS`` to run.
+> ``SARAS`` is now compatible with the latest versions of ``yaml-cpp``.
+> The older ``yaml-cpp 0.3`` uses ``YAML::Parser::GetNextDocument`` to parse the YAML file.
+> However, this function is not secure and hence deprecated in later versions of ``yaml-cpp``.
+> If you have an older version of ``yaml-cpp`` installed on your system, you can still run ``SARAS`` with the older package.
+> To enable this, the user has to pass the ``-DYAML_LEGACY`` flag to ``CMake`` when building ``SARAS``.
 
 ### Install MPICH
 
-Repeat the same steps used to install ``cmake`` and ``blitz`` from the folder into which the ``MPICH`` package was extracted:
+Similar to the installation of ``CMake``, ``MPICH`` also uses a configure script to install the package.
+After navigating to the folder created by extracting the ``mpich`` tarball, configure and install the package as done before:
 
 ```
-cd ../mpich-3.1.3/
 ./configure --prefix=$HOME/local
 make -j4 install
 ```
 
-If the ``configure`` step throws the error ``The Fortran compiler gfortran will not compile files that call the same routine with arguments of different types.``,
-please set the following flag, and rerun the configure script.
+> If the ``configure`` step throws the error ``The Fortran compiler gfortran will not compile files that call the same routine with arguments of different types.``,
+> please set the following flag, and rerun the configure script.
+>
+> `export FFLAGS="-w -fallow-argument-mismatch -O2"`
 
-`export FFLAGS="-w -fallow-argument-mismatch -O2"`
+### Install Blitz++
+
+Although the older versions of ``Blitz`` used a configure script to build the package, the latest versions ``CMake`` instead.
+As done while installing ``yaml-cpp``, you will have to build the package within a temporary ``build/`` directory:
+After navigating to the folder created by cloning the ``blitz`` repository, execute the following commands:
+
+```
+mkdir build
+cd build/
+cmake -DCMAKE_INSTALL_PREFIX=$HOME/local ../
+make -j4 install
+```
+
+The latest version of ``CMake`` is required to build the ``blitz`` package.
+If the above steps fail due to ``CMake`` version mismatch, you will have to upgrade your ``CMake``.
+If you installed ``CMake`` as done in the steps above, you will not face this issue,
+since the latest version of ``CMake`` was downloaded for the installation process described above.
+
+> At the final step in ``make install``, the Blitz++ installer uses python2.
+> If you are using python3, please switch the environment to use python2 temporarily for this step of the installation.
 
 ### Install HDF5 library
 
@@ -155,35 +170,44 @@ CC=mpicc CXX=mpicxx ./configure --prefix=$HOME/local --enable-parallel --without
 make -j4 install
 ```
 
-Note that while building the ``HDF5`` library, it is being explicitly specified that the MPI compiler must be used.
-On some systems, it might be necessary to add an extra compiler flag before running ``make`` in order to install ``HDF5`` properly:
-
-`export CFLAGS=-Wno-error=implicit-function-declaration`
+> Note that while building the ``HDF5`` library, it is being explicitly specified that the MPI compiler must be used.
+> On some systems, it might be necessary to add an extra compiler flag before running ``make`` in order to install ``HDF5`` properly:
+> 
+> `export CFLAGS=-Wno-error=implicit-function-declaration`
 
 ### Clone and install SARAS
 
 With luck, the above steps will have installed all the dependencies required by ``SARAS``.
-They have been tested with ``gcc`` on Linux, ``homebrew-gcc`` as well as ``clang`` on MacOS.
-Now the ``saras`` repository can be cloned into your machine, and compiled:
+Now the ``saras`` repository can be cloned into your machine:
 
 ```
 git clone https://github.com/roshansamuel/saras.git
-cd saras/compile/
-bash compileSaras.sh
 ```
 
-The build script, ``compileSaras.sh`` automatically builds ``SARAS`` with a few default parameters.
-It has been tested to work on both Linux and MacOS.
-If the compilation is successful, the ``saras`` executable will be built and linked in the root ``saras/`` folder.
+After navigating to the folder created by cloning the repository,
+you can follow the same steps for building the package as done when installing ``Blitz``, ``yaml-cpp``, etc.
 
-Note that the first few lines of the ``compileSaras.sh`` script can be used to set certain compilation parameters and flags:
+```
+mkdir build
+cd build/
+CC=mpicc CXX=mpicxx cmake ../
+make -j4
+```
 
-* ``PROC`` - Number of processors to be used when running ``SARAS``. This parameter is used only if the ``EXECUTE_AFTER_COMPILE`` parameter is uncommented.
-* ``REAL_TYPE`` - ``SARAS`` supports computations with both double and single precision floating point values. This parameter must be either ``SINGLE`` or ``DOUBLE``
-* ``PLANAR`` - This parameter has to be enabled to use the ``SARAS`` executable for 2D simulations.
-* ``TIME_RUN`` - Suppresses file-writing and I/O operations. This flag is enabled only when timing the solver for scaling runs.
-* ``EXECUTE_AFTER_COMPILE`` - The script automatically runs the executable by issuing the ``mpirun`` command. This flag is enabled mainly during development for quickly compiling and running the solver.
+The following flags can be passed to ``CMake`` to enable/disable different features of ``SARAS``:
 
+* ``DPLANAR=ON`` - This compiles ``SARAS`` for 2D simulations. By default, ``SARAS`` is compiled for 3D runs
+* ``DREAL_SINGLE=ON`` - ``SARAS`` can compute with single-precision numbers. By default, ``SARAS`` uses double-precision
+* ``DTIME_RUN=ON`` - This flag suppresses file-writing and I/O when compiling the solver for scaling studies
+* ``DYAML_LEGACY=ON`` - As described previously, this flag allows ``SARAS`` to use older version of ``yaml-cpp``
+
+For example, to build ``SARAS`` for a 2D simulation using single-precision calculations, the solver will be built as:
+
+```
+CC=mpicc CXX=mpicxx cmake -DPLANAR=ON -DREAL_SINGLE=ON ../
+```
+
+Note that the MPI compilers have to be specified to ``CMake`` for the MPI headers to be found when building the executable.
 
 ## Running SARAS
 
@@ -226,17 +250,9 @@ This test is also available in the ``tests/`` folder.
 
 ## Setting up a new case in SARAS
 
-2D and 3D cases require separate executables of ``SARAS``.
+After generating the ``saras`` executable file as described in the section on Installing SARAS,
 The executable has to be placed in a folder with two sub-folders: ``input/`` and ``output/``.
 ``SARAS`` will read parameters from the ``input/`` folder, and write solution data into the ``output/`` folder.
-Following are the steps to get a case up and running:
-
-### Get the executable file
-
-Based on the dimensionality of the problem being solved, and the precision of floating point numbers to be used,
-set the ``PLANAR`` and ``REAL_TYPE`` variables in the build script - ``compileSaras.sh``.
-Executing this shell script will produce the ``saras`` executable file as mentioned above.
-It is best to disable the ``EXECUTE_AFTER_COMPILE`` flag so that the script doesn't run the executable immediately after compilation.
 
 ### Set the parameters file
 
