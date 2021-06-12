@@ -78,8 +78,11 @@ class parallel {
         int xRank, yRank;
         //@}
 
-        /** Array of ranks of the 4 neighbouring sub-domains - Left, Right, Front, Back */
-        blitz::Array<int, 1> nearRanks;
+        /** Array of ranks of the 4 neighbouring sub-domains across faces - Left, Right, Front, Back */
+        blitz::Array<int, 1> faceRanks;
+
+        /** Array of ranks of the 4 neighbouring sub-domains across edges - Left-Front, Left-Back, Right-Front, Right-Back */
+        blitz::Array<int, 1> edgeRanks;
 
         parallel(const parser &iDat);
 

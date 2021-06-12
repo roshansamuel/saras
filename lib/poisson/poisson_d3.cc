@@ -672,15 +672,15 @@ void multigrid_d3::updatePads(blitz::Array<blitz::Array<real, 3>, 1> &data) {
     recvRequest = MPI_REQUEST_NULL;
 
     // TRANSFER DATA FROM NEIGHBOURING CELL TO IMPOSE SUB-DOMAIN BOUNDARY CONDITIONS
-    MPI_Irecv(&(data(vLevel)(mgRecvLft(vLevel))), 1, xMGArray(vLevel), mesh.rankData.nearRanks(0), 1, MPI_COMM_WORLD, &recvRequest(0));
-    MPI_Irecv(&(data(vLevel)(mgRecvRgt(vLevel))), 1, xMGArray(vLevel), mesh.rankData.nearRanks(1), 2, MPI_COMM_WORLD, &recvRequest(1));
-    MPI_Irecv(&(data(vLevel)(mgRecvFrn(vLevel))), 1, yMGArray(vLevel), mesh.rankData.nearRanks(2), 3, MPI_COMM_WORLD, &recvRequest(2));
-    MPI_Irecv(&(data(vLevel)(mgRecvBak(vLevel))), 1, yMGArray(vLevel), mesh.rankData.nearRanks(3), 4, MPI_COMM_WORLD, &recvRequest(3));
+    MPI_Irecv(&(data(vLevel)(mgRecvLft(vLevel))), 1, xMGArray(vLevel), mesh.rankData.faceRanks(0), 1, MPI_COMM_WORLD, &recvRequest(0));
+    MPI_Irecv(&(data(vLevel)(mgRecvRgt(vLevel))), 1, xMGArray(vLevel), mesh.rankData.faceRanks(1), 2, MPI_COMM_WORLD, &recvRequest(1));
+    MPI_Irecv(&(data(vLevel)(mgRecvFrn(vLevel))), 1, yMGArray(vLevel), mesh.rankData.faceRanks(2), 3, MPI_COMM_WORLD, &recvRequest(2));
+    MPI_Irecv(&(data(vLevel)(mgRecvBak(vLevel))), 1, yMGArray(vLevel), mesh.rankData.faceRanks(3), 4, MPI_COMM_WORLD, &recvRequest(3));
 
-    MPI_Send(&(data(vLevel)(mgSendLft(vLevel))), 1, xMGArray(vLevel), mesh.rankData.nearRanks(0), 2, MPI_COMM_WORLD);
-    MPI_Send(&(data(vLevel)(mgSendRgt(vLevel))), 1, xMGArray(vLevel), mesh.rankData.nearRanks(1), 1, MPI_COMM_WORLD);
-    MPI_Send(&(data(vLevel)(mgSendFrn(vLevel))), 1, yMGArray(vLevel), mesh.rankData.nearRanks(2), 4, MPI_COMM_WORLD);
-    MPI_Send(&(data(vLevel)(mgSendBak(vLevel))), 1, yMGArray(vLevel), mesh.rankData.nearRanks(3), 3, MPI_COMM_WORLD);
+    MPI_Send(&(data(vLevel)(mgSendLft(vLevel))), 1, xMGArray(vLevel), mesh.rankData.faceRanks(0), 2, MPI_COMM_WORLD);
+    MPI_Send(&(data(vLevel)(mgSendRgt(vLevel))), 1, xMGArray(vLevel), mesh.rankData.faceRanks(1), 1, MPI_COMM_WORLD);
+    MPI_Send(&(data(vLevel)(mgSendFrn(vLevel))), 1, yMGArray(vLevel), mesh.rankData.faceRanks(2), 4, MPI_COMM_WORLD);
+    MPI_Send(&(data(vLevel)(mgSendBak(vLevel))), 1, yMGArray(vLevel), mesh.rankData.faceRanks(3), 3, MPI_COMM_WORLD);
 
     MPI_Waitall(4, recvRequest.dataFirst(), recvStatus.dataFirst());
 }
@@ -741,8 +741,8 @@ real multigrid_d3::testTransfer() {
     for (int n = 0; n <= inputParams.vcDepth; n++) {
         for (int j = 0; j <= yEnd(n); ++j) {
             for (int k = 0; k <= zEnd(n); ++k) {
-                residualData(n)(-1, j, k) = (mesh.rankData.nearRanks(0) + 1)*1000 + (xEnd(n) - 1)*100 + j*10 + k;
-                residualData(n)(xEnd(n) + 1, j, k) = (mesh.rankData.nearRanks(1) + 1)*1000 + 100 + j*10 + k;
+                residualData(n)(-1, j, k) = (mesh.rankData.faceRanks(0) + 1)*1000 + (xEnd(n) - 1)*100 + j*10 + k;
+                residualData(n)(xEnd(n) + 1, j, k) = (mesh.rankData.faceRanks(1) + 1)*1000 + 100 + j*10 + k;
             }
         }
     }
@@ -750,8 +750,8 @@ real multigrid_d3::testTransfer() {
     for (int n = 0; n <= inputParams.vcDepth; n++) {
         for (int i = 0; i <= xEnd(n); ++i) {
             for (int k = 0; k <= zEnd(n); ++k) {
-                residualData(n)(i, -1, k) = (mesh.rankData.nearRanks(2) + 1)*1000 + i*100 + (yEnd(n) - 1)*10 + k;
-                residualData(n)(i, yEnd(n) + 1, k) = (mesh.rankData.nearRanks(3) + 1)*1000 + i*100 + 10 + k;
+                residualData(n)(i, -1, k) = (mesh.rankData.faceRanks(2) + 1)*1000 + i*100 + (yEnd(n) - 1)*10 + k;
+                residualData(n)(i, yEnd(n) + 1, k) = (mesh.rankData.faceRanks(3) + 1)*1000 + i*100 + 10 + k;
             }
         }
     }

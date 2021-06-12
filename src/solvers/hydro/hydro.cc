@@ -180,15 +180,15 @@ void hydro::checkPeriodic() {
             std::cout << std::endl;
         }
 
-        if (mpiData.xRank == 0)             mpiData.nearRanks(0) = MPI_PROC_NULL;
-        if (mpiData.xRank == mpiData.npX-1) mpiData.nearRanks(1) = MPI_PROC_NULL;
+        if (mpiData.xRank == 0)             mpiData.faceRanks(0) = MPI_PROC_NULL;
+        if (mpiData.xRank == mpiData.npX-1) mpiData.faceRanks(1) = MPI_PROC_NULL;
     }
 
     // Front and rear walls
 #ifdef PLANAR
     // Front and rear walls are by default non-periodic for 2D simulations
-    if (mpiData.yRank == 0)             mpiData.nearRanks(2) = MPI_PROC_NULL;
-    if (mpiData.yRank == mpiData.npY-1) mpiData.nearRanks(3) = MPI_PROC_NULL;
+    if (mpiData.yRank == 0)             mpiData.faceRanks(2) = MPI_PROC_NULL;
+    if (mpiData.yRank == mpiData.npY-1) mpiData.faceRanks(3) = MPI_PROC_NULL;
 
 #else
     if (not inputParams.yPer) {
@@ -197,8 +197,8 @@ void hydro::checkPeriodic() {
             std::cout << std::endl;
         }
 
-        if (mpiData.yRank == 0)             mpiData.nearRanks(2) = MPI_PROC_NULL;
-        if (mpiData.yRank == mpiData.npY-1) mpiData.nearRanks(3) = MPI_PROC_NULL;
+        if (mpiData.yRank == 0)             mpiData.faceRanks(2) = MPI_PROC_NULL;
+        if (mpiData.yRank == mpiData.npY-1) mpiData.faceRanks(3) = MPI_PROC_NULL;
     }
 #endif
 

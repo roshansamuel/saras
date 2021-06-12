@@ -99,21 +99,34 @@ inline void parallel::assignRanks() {
  ********************************************************************************************************************************************
  */
 void parallel::getNeighbours() {
-    // EACH PROCESS HAS 4 NEIGHBOURS CORRESPONDING TO THE 4 FACES OF EACH CUBICAL SUB-DOMAIN
-    nearRanks.resize(4);
+    // EACH PROCESS HAS 4 NEIGHBOURS CORRESPONDING TO THE 4 FACES OF EACH CUBOIDAL SUB-DOMAIN
+    faceRanks.resize(4);
+
+    // EACH PROCESS ALSO HAS 4 DIAGONAL NEIGHBOURS CORRESPONDING TO THE 4 EDGES OF EACH CUBOIDAL SUB-DOMAIN
+    edgeRanks.resize(4);
 
     // EACH PROCESS IS ASSUMED TO HAVE NO NEIGHBOURS INITIALLY
-    nearRanks = MPI_PROC_NULL;
+    faceRanks = MPI_PROC_NULL;
+    edgeRanks = MPI_PROC_NULL;
 
-    // INITIAL NEIGHBOUR ASSIGNMENTS ARE DONE ASSUMING PERIODIC DOMAIN
+    // INITIAL FACE NEIGHBOUR ASSIGNMENTS ARE DONE ASSUMING PERIODIC DOMAIN
     // ALONG X/XI DIRECTION
-    nearRanks(0) = findRank(xRank - 1, yRank);
-    nearRanks(1) = findRank(xRank + 1, yRank);
+    faceRanks(0) = findRank(xRank - 1, yRank);
+    faceRanks(1) = findRank(xRank + 1, yRank);
 
     // ALONG Y/ETA DIRECTION
 #ifndef PLANAR
-    nearRanks(2) = findRank(xRank, yRank - 1);
-    nearRanks(3) = findRank(xRank, yRank + 1);
+    faceRanks(2) = findRank(xRank, yRank - 1);
+    faceRanks(3) = findRank(xRank, yRank + 1);
+#endif
+
+    // PROCESS HAS EDGE NEIGHBOURS ONLY IN 3D SIMULATIONS
+#ifndef PLANAR
+    edgeRanks(0) = findRank(xRank - 1, yRank - 1);
+    edgeRanks(1) = findRank(xRank - 1, yRank + 1);
+
+    edgeRanks(2) = findRank(xRank + 1, yRank - 1);
+    edgeRanks(3) = findRank(xRank + 1, yRank + 1);
 #endif
 }
 

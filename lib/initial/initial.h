@@ -46,6 +46,7 @@
 #include <blitz/array.h>
 
 #include "vfield.h"
+#include "sfield.h"
 #include "grid.h"
 
 class initial {
@@ -53,6 +54,7 @@ class initial {
         initial(const grid &mesh);
 
         virtual void initializeField(vfield &uField);
+        virtual void initializeField(vfield &uField, sfield &tField);
 
     protected:
         const grid &mesh;
@@ -68,7 +70,7 @@ class initial {
 
 class taylorGreen: public initial {
     public:
-        taylorGreen(const grid &mesh);
+        taylorGreen(const grid &mesh): initial(mesh) { };
 
         void initializeField(vfield &uField);
 };
@@ -83,7 +85,7 @@ class taylorGreen: public initial {
 
 class channelSine: public initial {
     public:
-        channelSine(const grid &mesh);
+        channelSine(const grid &mesh): initial(mesh) { };
 
         void initializeField(vfield &uField);
 };
@@ -116,6 +118,7 @@ class zeroInitial: public initial {
         zeroInitial(const grid &mesh): initial(mesh) { };
 
         void initializeField(vfield &uField) {uField.Vx = 0.0; uField.Vy = 0.0; uField.Vz = 0.0;};
+        void initializeField(vfield &uField, sfield &tField) {uField.Vx = 0.0; uField.Vy = 0.0; uField.Vz = 0.0; tField.F = 0.0;};
 };
 
 /**

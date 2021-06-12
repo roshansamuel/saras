@@ -468,11 +468,11 @@ void multigrid_d2::updatePads(blitz::Array<blitz::Array<real, 3>, 1> &data) {
     recvRequest = MPI_REQUEST_NULL;
 
     // TRANSFER DATA FROM NEIGHBOURING CELL TO IMPOSE SUB-DOMAIN BOUNDARY CONDITIONS
-    MPI_Irecv(&(data(vLevel)(mgRecvLft(vLevel))), 1, xMGArray(vLevel), mesh.rankData.nearRanks(0), 1, MPI_COMM_WORLD, &recvRequest(0));
-    MPI_Irecv(&(data(vLevel)(mgRecvRgt(vLevel))), 1, xMGArray(vLevel), mesh.rankData.nearRanks(1), 2, MPI_COMM_WORLD, &recvRequest(1));
+    MPI_Irecv(&(data(vLevel)(mgRecvLft(vLevel))), 1, xMGArray(vLevel), mesh.rankData.faceRanks(0), 1, MPI_COMM_WORLD, &recvRequest(0));
+    MPI_Irecv(&(data(vLevel)(mgRecvRgt(vLevel))), 1, xMGArray(vLevel), mesh.rankData.faceRanks(1), 2, MPI_COMM_WORLD, &recvRequest(1));
 
-    MPI_Send(&(data(vLevel)(mgSendLft(vLevel))), 1, xMGArray(vLevel), mesh.rankData.nearRanks(0), 2, MPI_COMM_WORLD);
-    MPI_Send(&(data(vLevel)(mgSendRgt(vLevel))), 1, xMGArray(vLevel), mesh.rankData.nearRanks(1), 1, MPI_COMM_WORLD);
+    MPI_Send(&(data(vLevel)(mgSendLft(vLevel))), 1, xMGArray(vLevel), mesh.rankData.faceRanks(0), 2, MPI_COMM_WORLD);
+    MPI_Send(&(data(vLevel)(mgSendRgt(vLevel))), 1, xMGArray(vLevel), mesh.rankData.faceRanks(1), 1, MPI_COMM_WORLD);
 
     MPI_Waitall(2, recvRequest.dataFirst(), recvStatus.dataFirst());
 }
@@ -526,8 +526,8 @@ real multigrid_d2::testTransfer() {
     // EXPECTED VALUES IN THE PAD REGIONS IF DATA TRANSFER HAPPENS WITH NO HITCH
     for (int n = 0; n <= inputParams.vcDepth; n++) {
         for (int k = 0; k <= zEnd(n); ++k) {
-            residualData(n)(-1, 0, k) = (mesh.rankData.nearRanks(0) + 1)*100 + (xEnd(n) - 1)*10 + k;
-            residualData(n)(xEnd(n) + 1, 0, k) = (mesh.rankData.nearRanks(1) + 1)*100 + 10 + k;
+            residualData(n)(-1, 0, k) = (mesh.rankData.faceRanks(0) + 1)*100 + (xEnd(n) - 1)*10 + k;
+            residualData(n)(xEnd(n) + 1, 0, k) = (mesh.rankData.faceRanks(1) + 1)*100 + 10 + k;
         }
     }
 

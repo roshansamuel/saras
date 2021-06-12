@@ -68,6 +68,24 @@ class mpidata {
         /** MPI subarray datatype for the slice of data to be received from the neighbouring sub-domain to right along y-direction (rear side) */
         MPI_Datatype recvSubarrayY1;
 
+        /** MPI subarray datatype for the slice of data to be sent to the neighbouring sub-domain along the left-front edge */
+        MPI_Datatype sendSubarrayX0Y0;
+        /** MPI subarray datatype for the slice of data to be sent to the neighbouring sub-domain along the left-back edge */
+        MPI_Datatype sendSubarrayX0Y1;
+        /** MPI subarray datatype for the slice of data to be sent to the neighbouring sub-domain along the right-front edge */
+        MPI_Datatype sendSubarrayX1Y0;
+        /** MPI subarray datatype for the slice of data to be sent to the neighbouring sub-domain along the right-back edge */
+        MPI_Datatype sendSubarrayX1Y1;
+
+        /** MPI subarray datatype for the slice of data to be received from the neighbouring sub-domain along the left-front edge */
+        MPI_Datatype recvSubarrayX0Y0;                                                                                             
+        /** MPI subarray datatype for the slice of data to be received from the neighbouring sub-domain along the left-back edge */
+        MPI_Datatype recvSubarrayX0Y1;                                                                                             
+        /** MPI subarray datatype for the slice of data to be received from the neighbouring sub-domain along the right-front edge */
+        MPI_Datatype recvSubarrayX1Y0;                                                                                             
+        /** MPI subarray datatype for the slice of data to be received from the neighbouring sub-domain along the right-back edge */
+        MPI_Datatype recvSubarrayX1Y1;
+
         /** An array of MPI_Request data-types necessary for obtaining output from the non-blocking receive MPI_Irecv in the syncData function. */
         blitz::Array<MPI_Request, 1> recvRequest;
 

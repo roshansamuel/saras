@@ -29,7 +29,7 @@
  *
  ********************************************************************************************************************************************
  */
-/*! \file initial.cc
+/*! \file taylorGreen.cc
  *
  *  \brief Definitions for functions of class initial
  *  \sa initial.h
@@ -41,18 +41,6 @@
  */
 
 #include "initial.h"
-
-/**
- ********************************************************************************************************************************************
- * \brief   Constructor of the initial class
- *
- *          The empty constructer merely initializes the local reference to the global mesh variable.
- *
- * \param   mesh is a const reference to the global data contained in the grid class.
- ********************************************************************************************************************************************
- */
-taylorGreen::taylorGreen(const grid &mesh): initial(mesh) { }
-
 
 /**
  ********************************************************************************************************************************************

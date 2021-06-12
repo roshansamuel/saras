@@ -169,7 +169,6 @@ Hence it must be installed only after installing ``MPICH`` (if ``MPICH`` was not
 A few additional build flags are also provided when building the ``HDF5`` library:
 
 ```
-cd ../hdf5-1.8.20/
 CC=mpicc CXX=mpicxx ./configure --prefix=$HOME/local --enable-parallel --without-zlib
 make -j4 install
 ```

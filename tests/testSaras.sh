@@ -57,7 +57,7 @@ fi
 cd build
 
 # Run cmake with necessary flags for 2D LDC test
-CC=mpicc CXX=mpicxx cmake ../../ -DPLANAR=ON -DREAL_DOUBLE=ON
+CC=mpicc CXX=mpicxx cmake ../../ -DPLANAR=ON
 
 # Compile
 make -j8
