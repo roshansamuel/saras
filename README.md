@@ -85,6 +85,23 @@ make -j4 install
 Note that the option ``-j4`` given to ``make`` will use 4 cores of your system.
 If more cores are available, the process can be speeded-up by specifying a higher number.
 
+> On some systems, the installation of CMake may fail with the error ``Could not find OpenSSL``.
+> Usually this happens after bootstrapping, but before the build step of the ``configure`` script.
+> At this stage, although CMake is not installed fully on your system,
+> the configuration script will have temporarily built a ``cmake`` executable inside 
+> a temporary folder named ``Bootstrap.cmk/``.
+> This folder is created in the same location where the ``configure`` script was executed.
+> You will need to resume installation from within this temporary folder using additional flags:
+>
+> `cd Bootstrap.cmk/`
+> `./cmake -DCMAKE_USE_OPENSSL=OFF -DCMAKE_INSTALL_PREFIX=$HOME/local ../`
+>
+> This will allow you to configure the installation of CMake without needing the OpenSSL library.
+> Now you can navigate back to the parent folder and proceed with using the ``make`` command to install CMake:
+>
+> `cd ../`
+> `make -j4 install`
+
 ### Export path variables
 
 Once ``CMake`` has been installed in ``$HOME/local`` it should be made available for the next steps of installation.
