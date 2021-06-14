@@ -91,16 +91,20 @@ If more cores are available, the process can be speeded-up by specifying a highe
 > the configuration script will have temporarily built a ``cmake`` executable inside 
 > a temporary folder named ``Bootstrap.cmk/``.
 > This folder is created in the same location where the ``configure`` script was executed.
-> You will need to resume installation from within this temporary folder using additional flags:
+> You will need to resume the build from within this temporary folder using additional flags:
 >
-> `cd Bootstrap.cmk/`
-> `./cmake -DCMAKE_USE_OPENSSL=OFF -DCMAKE_INSTALL_PREFIX=$HOME/local ../`
+> ```
+> cd Bootstrap.cmk/
+> ./cmake -DCMAKE_USE_OPENSSL=OFF -DCMAKE_INSTALL_PREFIX=$HOME/local ../
+> ```
 >
 > This will allow you to configure the installation of CMake without needing the OpenSSL library.
 > Now you can navigate back to the parent folder and proceed with using the ``make`` command to install CMake:
 >
-> `cd ../`
-> `make -j4 install`
+> ```
+> cd ../
+> make -j4 install
+> ```
 
 ### Export path variables
 
