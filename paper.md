@@ -262,9 +262,8 @@ We validate ``SARAS`` using two test cases: lid-driven cavity and decaying turbu
 
 # Acknowledgements
 
-We gratefully acknowledge the contributions from Gaurav Gautham, Saurav Bhattacharjee, Rishabh Sahu,
-and Fahad Anwer during the development of SARAS.
-We also thank the reviewers at JoSS, whose useful suggestions greatly improved the solver, with true open-source ethos.
+We gratefully acknowledge the contributions from Gaurav Gautham, Saurav Bhattacharjee, Rishabh Sahu and Mohammad Anas during the development of SARAS.
+We also thank Kyle Niemeyer and the reviewers at JOSS, whose useful suggestions greatly improved the solver, with true open-source ethos.
 Part of our computations were performed on the Cray XC40 (Shaheen II) of KAUST supercomputing laboratory, Saudi Arabia, through Projects k1052 and k1416.
 
 ---
