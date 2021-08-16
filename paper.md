@@ -51,12 +51,14 @@ bibliography: resources/paper.bib
 The laws that govern natural systems can often be modelled mathematically using
 partial differential equations (PDEs).
 Usually the resultant PDEs are not solvable analytically,
-hence numerical solutions become important in such cases.
-As a result, efficient numerical solutions of PDEs are important
-for understanding such systems.
+leaving numerical solutions as the only recourse to gain useful insights into such systems.
+As a result, it is important to efficiently calculate numerical solutions of PDEs
+to further our understanding of such systems.
 In this paper we briefly describe the design and validation
 of ``SARAS``, a general-purpose PDE solver based on finite difference
 method [@Anderson:book:CFD; @Ferziger:book:CFD].
+
+# Statement of Need
 
 There are a number of open-source solvers for Computational Fluid Dynamics.
 Some well known solvers include OpenFOAM [@Weller:1998FOAM], Pencil Code [@Brandenburg:2002CPC],
@@ -73,11 +75,13 @@ The design of ``SARAS`` is inspired by ``TARANG`` [@Verma:Pramana2013tarang],
 a pseudo-spectral solver developed in our lab.
 ``TARANG`` has been shown to scale up to 196608 cores [@Chatterjee:JPDC2018], and ``SARAS``
 has been designed with the goal of achieving similar scaling performance.
-We are planning to conduct a scaling analysis of ``SARAS`` and compare its performance with ``TARANG``
-in the near future.
+We conducted a preliminary scaling analysis of ``SARAS`` using up to 1024 cores for the
+lid-driven cavity (LDC) problem on a $512^3$ grid, and observed strong scaling [@Verma:SNCS2020].
+However, we need to implement further optimizations to the code before scaling
+to larger grids and more cores.
 In solving the Rayleigh Benard Convection problem, we also observed that the computational
 efficiency of ``SARAS`` is at par with that of OpenFOAM.
-We also recently performed a comparative study between spectral and finite difference
+Recently, we also performed a comparative study between spectral and finite difference
 codes in the context of exascale computing [@Verma:SNCS2020], using ``SARAS``.
 
 In ``SARAS``, the underlying mathematical constructs like vector and scalar fields
@@ -148,6 +152,7 @@ $$
 The numerical implementation of the above procedure will be discussed in the next section.
 
 # Numerical Method and Implementation
+
 ``SARAS`` uses finite-difference method [@Ferziger:book:CFD] to calculate derivatives of the field variables.
 Presently the solver uses second-order central difference stencils to compute first and second derivatives.
 We use a highly optimized and fast array manipulation library, Blitz++ [@Veldhuizen:CP1998], for all array operations.
@@ -163,6 +168,7 @@ The solver also supports adaptive time-stepping, where the Courant-Friedrichs-Le
 [@Courant:1928CFL] is used to dynamically compute the appropriate time-step.
 
 # Results
+
 We validate our code using two very well-known test problems: lid-driven cavity and decaying turbulence.
 We simulate these problems using ``SARAS`` and compare the results with standard and validated solutions.
 
@@ -258,6 +264,8 @@ We validate ``SARAS`` using two test cases: lid-driven cavity and decaying turbu
 
 We gratefully acknowledge the contributions from Gaurav Gautham, Saurav Bhattacharjee, Rishabh Sahu,
 and Fahad Anwer during the development of SARAS.
+We also thank the reviewers at JoSS, whose useful suggestions greatly improved the solver, with true open-source ethos.
+Part of our computations were performed on the Cray XC40 (Shaheen II) of KAUST supercomputing laboratory, Saudi Arabia, through Projects k1052 and k1416.
 
 ---
 
