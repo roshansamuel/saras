@@ -1,5 +1,8 @@
 # Saras - Finite difference solver
 
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.02095/status.svg)](https://doi.org/10.21105/joss.02095)
+
 SARAS is an MPI parallelized Navier-Stokes equation solver written in C++.
 It uses the finite-difference method for calculating spatial derivatives and parallelized geometric multi-grid method for solving
 the pressure Poisson equation.
