@@ -25,10 +25,10 @@ Therefore the first step towards building ``SARAS`` is to install the following 
 * ``blitz`` - All array manipulations are performed using the Blitz++ library
 * ``yaml-cpp`` - The input parameters are stored in a YAML file which needs to be parsed using yaml-cpp library.
 
-Packages like ``cmake``, ``mpich``, ``yaml-cpp``, and ``hdf5`` can be installed from the OS package manager.
-However, the ``blitz`` package will have to be downloaded and installed manually.
+Packages like ``cmake``, ``mpich``, and ``hdf5`` can be installed from the OS package manager.
+However, the latest versions of ``blitz`` and ``yaml-cpp`` packages can be downloaded from GitHub as described below.
 
-If you do not have the administrator privileges required to install packages using the OS package manager,
+If you do not have sudo privileges to install packages using the OS package manager,
 you can install them in your home folder instead.
 This also offers the potential advantage of not disturbing pre-existing packages already installed on the system.
 The steps listed below explain this method of installation.
@@ -47,11 +47,11 @@ After navigating to the temporary directory, download the packages using ``wget`
 packages can be downloaded from their respective sites, and extracted by the ``tar`` command.
 
 ```
-wget https://github.com/Kitware/CMake/releases/download/v3.20.3/cmake-3.20.3.tar.gz
+wget https://cmake.org/files/v3.12/cmake-3.12.4.tar.gz
 wget http://www.mpich.org/static/downloads/3.4.2/mpich-3.4.2.tar.gz
 wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.21/src/hdf5-1.8.21.tar.gz
 
-tar -xf cmake-3.20.3.tar.gz
+tar -xf cmake-3.12.4.tar.gz
 tar -xf mpich-3.4.2.tar.gz
 tar -xf hdf5-1.8.21.tar.gz
 ```
@@ -87,27 +87,6 @@ make -j4 install
 
 Note that the option ``-j4`` given to ``make`` will use 4 cores of your system.
 If more cores are available, the process can be speeded-up by specifying a higher number.
-
-> On some systems, the installation of CMake may fail with the error ``Could not find OpenSSL``.
-> Usually this happens after bootstrapping, but before the build step of the ``configure`` script.
-> At this stage, although CMake is not installed fully on your system,
-> the configuration script will have temporarily built a ``cmake`` executable inside 
-> a temporary folder named ``Bootstrap.cmk/``.
-> This folder is created in the same location where the ``configure`` script was executed.
-> You will need to resume the build from within this temporary folder using additional flags:
->
-> ```
-> cd Bootstrap.cmk/
-> ./cmake -DCMAKE_USE_OPENSSL=OFF -DCMAKE_INSTALL_PREFIX=$HOME/local ../
-> ```
->
-> This will allow you to configure the installation of CMake without needing the OpenSSL library.
-> Now you can navigate back to the parent folder and proceed with using the ``make`` command to install CMake:
->
-> ```
-> cd ../
-> make -j4 install
-> ```
 
 ### Export path variables
 
