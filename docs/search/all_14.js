@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['x',['x',['../structdataStruct.html#a748bb04ffd14bce01bc80416f5180e39',1,'dataStruct']]],
   ['xcolloc',['xColloc',['../classgrid.html#a261933fd96e3c56af7048a94dbd496e0',1,'grid']]],
   ['xcollocglobal',['xCollocGlobal',['../classgrid.html#a34e6e59cdfe56a7c49dfe2f44ffcecdd',1,'grid']]],
   ['xi_5fxcolloc',['xi_xColloc',['../classgrid.html#a33474471880ec80f6770908cf0b531da',1,'grid']]],

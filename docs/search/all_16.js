@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['z',['z',['../structdataStruct.html#a1b8e92eb676bedcb2a11c0c02bbcf38e',1,'dataStruct']]],
   ['zcolloc',['zColloc',['../classgrid.html#a7a661e13ef91ba300864db6da5671952',1,'grid']]],
   ['zcollocglobal',['zCollocGlobal',['../classgrid.html#af50b3d6cbbdaac5d4995c90966953dac',1,'grid']]],
   ['zeroforcing',['zeroForcing',['../classzeroForcing.html',1,'']]],

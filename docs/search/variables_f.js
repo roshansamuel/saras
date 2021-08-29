@@ -1,10 +1,17 @@
 var searchData=
 [
-  ['ycolloc',['yColloc',['../classgrid.html#af43bf78cc65c280cb67068abd43e20e3',1,'grid']]],
-  ['ycollocglobal',['yCollocGlobal',['../classgrid.html#a3b3fe4bc7622f1d4d14f1d67212605dd',1,'grid']]],
-  ['ylen',['yLen',['../classgrid.html#ae34ddae199da5cd348b13c44c7626a1b',1,'grid']]],
-  ['yrank',['yRank',['../classparallel.html#a79838566ac5a6e3013343b66e272d08d',1,'parallel']]],
-  ['ystag',['yStag',['../classfield.html#acccfd4a102f58cb274d410f501976901',1,'field']]],
-  ['ystaggr',['yStaggr',['../classgrid.html#ad2e9df6f0132f1e40bb1c8c0239501e5',1,'grid']]],
-  ['ystaggrglobal',['yStaggrGlobal',['../classgrid.html#acb77f95eac3f302ac071ae1e3ae95cd9',1,'grid']]]
+  ['x',['x',['../structdataStruct.html#a748bb04ffd14bce01bc80416f5180e39',1,'dataStruct']]],
+  ['xcolloc',['xColloc',['../classgrid.html#a261933fd96e3c56af7048a94dbd496e0',1,'grid']]],
+  ['xcollocglobal',['xCollocGlobal',['../classgrid.html#a34e6e59cdfe56a7c49dfe2f44ffcecdd',1,'grid']]],
+  ['xi_5fxcolloc',['xi_xColloc',['../classgrid.html#a33474471880ec80f6770908cf0b531da',1,'grid']]],
+  ['xi_5fxstaggr',['xi_xStaggr',['../classgrid.html#a815c77e52650f385021c23aee1e773ec',1,'grid']]],
+  ['xix2colloc',['xix2Colloc',['../classgrid.html#ad900e49ca5ed88ee57d136245bf9a023',1,'grid']]],
+  ['xix2staggr',['xix2Staggr',['../classgrid.html#aaa5d31710eb36cd0ac0a1d20c9b6e96d',1,'grid']]],
+  ['xixxcolloc',['xixxColloc',['../classgrid.html#a0d370a3c36801e0cb401ba981625f747',1,'grid']]],
+  ['xixxstaggr',['xixxStaggr',['../classgrid.html#ae9969bfba9757afd2a7a486fdbf7b6ac',1,'grid']]],
+  ['xlen',['xLen',['../classgrid.html#a1e56e66b5c32b968088c8d52ab8e012b',1,'grid']]],
+  ['xrank',['xRank',['../classparallel.html#a24418c6a2aa5edb7c06a024757cb2bb6',1,'parallel']]],
+  ['xstag',['xStag',['../classfield.html#a27fdabafdfa9a3128fc88b30b06b6661',1,'field']]],
+  ['xstaggr',['xStaggr',['../classgrid.html#a79c99209eb02e27fa03157e2b44295a3',1,'grid']]],
+  ['xstaggrglobal',['xStaggrGlobal',['../classgrid.html#a49a8e43ded5b6dfd109868c4ee2ac238',1,'grid']]]
 ];

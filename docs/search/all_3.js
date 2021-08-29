@@ -1,7 +1,7 @@
 var searchData=
 [
   ['dataprobe',['dataProbe',['../classhydro.html#a02a073d8b88677ee199b5b0b8d2167b6',1,'hydro']]],
-  ['datastruct',['dataStruct',['../structdataStruct.html',1,'']]],
+  ['datastruct',['dataStruct',['../structdataStruct.html',1,'dataStruct'],['../structdataStruct.html#a03aad2b2b6ba48feb24250257e2e9fc4',1,'dataStruct::dataStruct()']]],
   ['derivative',['derivative',['../classderivative.html',1,'derivative'],['../classderivative.html#a38821f6814ad1a9da9265d618a771e6f',1,'derivative::derivative()']]],
   ['derivative_2ecc',['derivative.cc',['../derivative_8cc.html',1,'']]],
   ['derivative_2eh',['derivative.h',['../derivative_8h.html',1,'']]],

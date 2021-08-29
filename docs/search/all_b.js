@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['nearranks',['nearRanks',['../classparallel.html#a7b13d9a40183bca2c103caf50bb16a51',1,'parallel']]],
   ['neumanncc',['neumannCC',['../classneumannCC.html',1,'neumannCC'],['../classneumannCC.html#af26d8d820769b76d8ced4ac39798c3ee',1,'neumannCC::neumannCC()']]],
   ['neumanncc_2ecc',['neumannCC.cc',['../neumannCC_8cc.html',1,'']]],
   ['neumannfc',['neumannFC',['../classneumannFC.html',1,'neumannFC'],['../classneumannFC.html#a1347f2e0d1ab3304eacbf20e43fcc5de',1,'neumannFC::neumannFC()']]],

@@ -9,7 +9,6 @@ var searchData=
   ['sfield',['sfield',['../classsfield.html#a10c7c64ceee7180701b95c4c11bfe7fe',1,'sfield']]],
   ['shift',['shift',['../classfield.html#abbae7ae3580b75d9247977ffe3585e45',1,'field']]],
   ['smooth',['smooth',['../classpoisson.html#a34dcab564048f46bfe636709bd765c39',1,'poisson']]],
-  ['solve',['solve',['../classpoisson.html#ad2cecb2bfe5569b7256285ffa385acf4',1,'poisson']]],
   ['solvepde',['solvePDE',['../classhydro.html#a4a205e91b9db1d24029345149af4af5c',1,'hydro::solvePDE()'],['../classhydro__d2.html#a4871d69c7e3c990789da35fc8bc35c37',1,'hydro_d2::solvePDE()'],['../classhydro__d3.html#a8d2ada35e5aefb21664e97da44f16e18',1,'hydro_d3::solvePDE()'],['../classscalar__d2.html#acc23fd22eb740c94500f859a4e3571b5',1,'scalar_d2::solvePDE()'],['../classscalar__d3.html#a19455f7563fe20670e6e1727636acd98',1,'scalar_d3::solvePDE()']]],
   ['solvet',['solveT',['../classscalar.html#a55295d2efa45a0ba546177331234cf33',1,'scalar']]],
   ['solvevx',['solveVx',['../classhydro.html#a5ac03d9df01c35969705ee0ff6cb2590',1,'hydro']]],
