@@ -92,7 +92,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:af5d0427a7d3137071ddfd13bb059e0d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to compute the diffusion term.  <a href="classvfield.html#af5d0427a7d3137071ddfd13bb059e0d7">More...</a><br /></td></tr>
 <tr class="separator:af5d0427a7d3137071ddfd13bb059e0d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14ce240f68ce8fab039c043ab0c5668b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvfield.html#a14ce240f68ce8fab039c043ab0c5668b">computeTStp</a> (real &amp;dt_out)</td></tr>
-<tr class="memdesc:a14ce240f68ce8fab039c043ab0c5668b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator is used to calculate time step #dt_out for time integration using CFL Condition with desired Courant No.  <a href="classvfield.html#a14ce240f68ce8fab039c043ab0c5668b">More...</a><br /></td></tr>
+<tr class="memdesc:a14ce240f68ce8fab039c043ab0c5668b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator is used to calculate time step #dt_out using CFL Condition.  <a href="classvfield.html#a14ce240f68ce8fab039c043ab0c5668b">More...</a><br /></td></tr>
 <tr class="separator:a14ce240f68ce8fab039c043ab0c5668b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1258af35034d88ffcfd12f1e7d888cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvfield.html#ac1258af35034d88ffcfd12f1e7d888cf">computeNLin</a> (const <a class="el" href="classvfield.html">vfield</a> &amp;V, <a class="el" href="classplainvf.html">plainvf</a> &amp;H)</td></tr>
 <tr class="memdesc:ac1258af35034d88ffcfd12f1e7d888cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to compute the convective derivative of the vector field.  <a href="classvfield.html#ac1258af35034d88ffcfd12f1e7d888cf">More...</a><br /></td></tr>
@@ -198,13 +198,14 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Constructor of the vfield class. </p>
-<pre class="fragment">     Three instances of the sfield class to store the data of the three component scalar fields are initialized.
-     The scalar fields are initialized with appropriate grid staggering to place the components on the cell faces.
-     The name for the vector field as given by the user is also assigned.
+<pre class="fragment">     Three instances of field class are initialized.
+     Each instance corresponds to a component of the vector field.
+     The fields are initialized with appropriate grid to place the components on the cell faces.
+     The name of the vector field as given by the user is also assigned.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">gridData</td><td>is a const reference to the global data contained in the grid class </td></tr>
-    <tr><td class="paramname">fieldName</td><td>is a string value set by the user to name and identify the vector field </td></tr>
+    <tr><td class="paramname">gridData</td><td>is a const reference to the global data in the grid class </td></tr>
+    <tr><td class="paramname">fieldName</td><td>is a string value used to name and identify the vector field </td></tr>
   </table>
   </dd>
 </dl>
@@ -229,11 +230,13 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Function to compute the diffusion term. </p>
-<pre class="fragment">     It is assumed that the velocity is specified at face-centers, as required by the \ref sfield#computeNLin
-     "computeNLin" function of sfield.
+<pre class="fragment">     The diffusion term (grad-squared) is caulculated here.
+     The second derivatives of each component field are calculated along x, y and z.
+     These terms are added to the corresponding components of the given plain
+     vector field (plainvf), which is usually the RHS of the PDE being solved.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">H</td><td>is a pointer to a vector field (vfield) to which the output of the function is to be written </td></tr>
+    <tr><td class="paramname">H</td><td>is a reference to the plainvf into which the output is written </td></tr>
   </table>
   </dd>
 </dl>
@@ -267,7 +270,7 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Function to compute the convective derivative of the vector field. </p>
-<pre class="fragment">     The function computes for the operator \f$ (\mathbf{u}.\nabla)\mathbf{v} \f$ for the vector field, \f$\mathbf{v}\f$.
+<pre class="fragment">     The function calculates \f$ (\mathbf{u}.\nabla)\mathbf{v} \f$ on the vector field, \f$\mathbf{v}\f$.
      To do so, the function needs the vector field (vfield) of velocity, \f$\mathbf{u}\f$.
      This value is used in three separate calls to the \ref sfield#computeNLin "computeNLin" function of sfield
      to compute the derivatives for the three components of the vector field.
@@ -275,8 +278,8 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
      "computeNLin" function of sfield.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">V</td><td>is a const reference to a vector field (vfield) that specifies the convection velocity at each point </td></tr>
-    <tr><td class="paramname">H</td><td>is a pointer to a vector field (vfield) to which the output of the function is to be written </td></tr>
+    <tr><td class="paramname">V</td><td>is a const reference to the vector field (vfield) that specifies the convection velocity </td></tr>
+    <tr><td class="paramname">H</td><td>is a reference to the plainvf into which the output is written </td></tr>
   </table>
   </dd>
 </dl>
@@ -299,10 +302,14 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
       </table>
 </div><div class="memdoc">
 
-<p>Operator is used to calculate time step #dt_out for time integration using CFL Condition with desired Courant No. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Operator is used to calculate time step #dt_out using CFL Condition. </p>
+<pre class="fragment">     When the parameters specify that time-step must be adaptively
+     calculated using the Courant Number given in the parameters file,
+     this function will provide the \f$ dt \f$ using the maximum values
+     of the components of the vfield.
+</pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dt_out</td><td>is a reference to a real variable into which the calculated value of time-step has to be written </td></tr>
+    <tr><td class="paramname">dt_out</td><td>is a reference to the real value into which the calculated value of time-step is written </td></tr>
   </table>
   </dd>
 </dl>
@@ -343,7 +350,7 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
                                \frac{\partial \mathbf{v}}{\partial z} \f$.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">divV</td><td>is a pointer to a scalar field (sfield) into which the computed divergence must be written. </td></tr>
+    <tr><td class="paramname">divV</td><td>is a reference to the scalar field (sfield) into which the computed divergence is written. </td></tr>
   </table>
   </dd>
 </dl>
@@ -396,15 +403,15 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Overloaded operator to add a given plain vector field. </p>
-<pre class="fragment">     The unary operator += adds a given plain vector field to the entire field stored as vfield and returns
+<pre class="fragment">     The unary operator += adds a given plain vector field to the vfield and returns
      a pointer to itself.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>is a reference to a plainvf to be deducted from the member fields</td></tr>
+    <tr><td class="paramname">a</td><td>is a reference to the plainvf to be added to the member fields</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pointer to itself is returned by the vector field class to which the operator belongs </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to itself is returned by the vector field object to which the operator belongs </dd></dl>
 
 </div>
 </div>
@@ -425,15 +432,15 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Overloaded operator to add a given vector field. </p>
-<pre class="fragment">     The unary operator += adds a given vector field to the entire field stored as vfield and returns
+<pre class="fragment">     The unary operator += adds a given vector field to the vfield and returns
      a pointer to itself.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>is a reference to another vfield to be deducted from the member fields</td></tr>
+    <tr><td class="paramname">a</td><td>is a reference to the vfield to be added to the member fields</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pointer to itself is returned by the vector field class to which the operator belongs </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to itself is returned by the vector field object to which the operator belongs </dd></dl>
 
 </div>
 </div>
@@ -454,15 +461,15 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Overloaded operator to subtract a given plain vector field. </p>
-<pre class="fragment">     The unary operator -= subtracts a given plain vector field from the entire field stored as vfield and returns
+<pre class="fragment">     The unary operator -= subtracts a given plain vector field from the vfield and returns
      a pointer to itself.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>is a reference to a plainvf to be deducted from the member fields</td></tr>
+    <tr><td class="paramname">a</td><td>is a reference to the plainvf to be subtracted from the member fields</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pointer to itself is returned by the vector field class to which the operator belongs </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to itself is returned by the vector field object to which the operator belongs </dd></dl>
 
 </div>
 </div>
@@ -483,15 +490,15 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Overloaded operator to subtract a given vector field. </p>
-<pre class="fragment">     The unary operator -= subtracts a given vector field from the entire field stored as vfield and returns
+<pre class="fragment">     The unary operator -= subtracts a given vector field from the vfield and returns
      a pointer to itself.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>is a reference to another vfield to be deducted from the member fields</td></tr>
+    <tr><td class="paramname">a</td><td>is a reference to the vfield to be subtracted from the member fields</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pointer to itself is returned by the vector field class to which the operator belongs </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to itself is returned by the vector field object to which the operator belongs </dd></dl>
 
 </div>
 </div>
@@ -512,7 +519,8 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Overloaded operator to assign a plain vector field to the vector field. </p>
-<pre class="fragment">     The operator = assigns all the three scalar sub-fields of a vfield to all the corresponding fields (Vx, Vy and Vz).
+<pre class="fragment">     The operator = assigns all the three blitz arrays of a plain vector field (plainvf)
+     to the corresponding arrays in the three fields of the vfield.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">a</td><td>is a plainvf to be assigned to the vector field </td></tr>
@@ -566,7 +574,8 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Overloaded operator to assign another vector field to the vector field. </p>
-<pre class="fragment">     The operator = assigns all the three scalar sub-fields of a vfield to all the corresponding fields (Vx, Vy and Vz).
+<pre class="fragment">     The operator = assigns all the three fields of a given vector field (vfield)
+     to the corresponding fields of the vfield.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">a</td><td>is a vfield to be assigned to the vector field </td></tr>
@@ -592,7 +601,7 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Function to synchronise data across all processors when performing parallel computations. </p>
-<pre class="fragment">     Each of the individual scalar field components have their own subroutine, \ref sfield#syncData "syncData" to send and
+<pre class="fragment">     Each of the individual field components have their own subroutine, \ref sfield#syncData "syncData" to send and
      receive data across its MPI decomposed sub-domains.
      This function calls the \ref sfield#syncData "syncData" function of its components to update the sub-domain boundary pads.
 </pre> 
@@ -623,7 +632,7 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 29 2021 14:51:13 for Saras by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+Generated on Wed Sep 1 2021 14:29:00 for Saras by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
 </small></address>
 </body>
 </html>

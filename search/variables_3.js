@@ -5,6 +5,6 @@ var searchData=
   ['fbulk_2',['fBulk',['../classfield.html#a2d81dfa236bc9a2528ffd62983dd97d4',1,'field']]],
   ['fclft_3',['fCLft',['../classfield.html#adb2a386d608f7caccdbd9fab6efdaf68',1,'field']]],
   ['fcore_4',['fCore',['../classfield.html#a76b6d705e8adbc43c95a78ba8c069aea',1,'field']]],
-  ['fieldname_5',['fieldName',['../classfield.html#a7849cc5466690495f20744875f12af03',1,'field::fieldName()'],['../classvfield.html#aab1871607e3f99d097d5647a789f8da6',1,'vfield::fieldName()']]],
+  ['fieldname_5',['fieldName',['../classfield.html#a7849cc5466690495f20744875f12af03',1,'field::fieldName()'],['../classsfield.html#a54ab549ee0e2d022429afd8222e2a5be',1,'sfield::fieldName()'],['../classvfield.html#aab1871607e3f99d097d5647a789f8da6',1,'vfield::fieldName()']]],
   ['fwalls_6',['fWalls',['../classfield.html#a42caa56671ae99c3a0bf1b22324f8620',1,'field']]]
 ];

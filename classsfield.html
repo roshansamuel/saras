@@ -85,7 +85,7 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a10c7c64ceee7180701b95c4c11bfe7fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsfield.html#a10c7c64ceee7180701b95c4c11bfe7fe">sfield</a> (const <a class="el" href="classgrid.html">grid</a> &amp;gridData, std::string fieldName)</td></tr>
+<tr class="memitem:a10c7c64ceee7180701b95c4c11bfe7fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsfield.html#a10c7c64ceee7180701b95c4c11bfe7fe">sfield</a> (const <a class="el" href="classgrid.html">grid</a> &amp;gridData, std::string <a class="el" href="classsfield.html#a54ab549ee0e2d022429afd8222e2a5be">fieldName</a>)</td></tr>
 <tr class="memdesc:a10c7c64ceee7180701b95c4c11bfe7fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the sfield class.  <a href="classsfield.html#a10c7c64ceee7180701b95c4c11bfe7fe">More...</a><br /></td></tr>
 <tr class="separator:a10c7c64ceee7180701b95c4c11bfe7fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88c1ac3beb9af604d555191ee1b602ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsfield.html#a88c1ac3beb9af604d555191ee1b602ce">computeDiff</a> (<a class="el" href="classplainsf.html">plainsf</a> &amp;H)</td></tr>
@@ -132,9 +132,11 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a2a4cac824ab7681db01fdde262a03a42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f0e11190050c4fb0717b93d4db70908"><td class="memItemLeft" align="right" valign="top"><a id="a3f0e11190050c4fb0717b93d4db70908" name="a3f0e11190050c4fb0717b93d4db70908"></a>
 <a class="el" href="classderivative.html">derivative</a>&#160;</td><td class="memItemRight" valign="bottom"><b>derS</b></td></tr>
+<tr class="memdesc:a3f0e11190050c4fb0717b93d4db70908"><td class="mdescLeft">&#160;</td><td class="mdescRight">derS is an instance of the derivative class used to compute derivatives <br /></td></tr>
 <tr class="separator:a3f0e11190050c4fb0717b93d4db70908"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54ab549ee0e2d022429afd8222e2a5be"><td class="memItemLeft" align="right" valign="top"><a id="a54ab549ee0e2d022429afd8222e2a5be" name="a54ab549ee0e2d022429afd8222e2a5be"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>fieldName</b></td></tr>
+<tr class="memdesc:a54ab549ee0e2d022429afd8222e2a5be"><td class="mdescLeft">&#160;</td><td class="mdescRight">This string is used to identify the vector field, and is useful in file-writing. <br /></td></tr>
 <tr class="separator:a54ab549ee0e2d022429afd8222e2a5be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d355217fbe8c1941e6fefa92a33dc17"><td class="memItemLeft" align="right" valign="top"><a id="a9d355217fbe8c1941e6fefa92a33dc17" name="a9d355217fbe8c1941e6fefa92a33dc17"></a>
 blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>interTempF</b></td></tr>
@@ -171,12 +173,11 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Constructor of the sfield class. </p>
-<pre class="fragment">     The instance of the field class to store the data of the scalar field is initialized, and the necessary grid
-     transformation derivatives along each direction are chosen according to the grid staggering.
-     The arrays to store the output from various operators like derivatives, convective derivatives, etc. are also
+<pre class="fragment">     One instance of the field class to store the data of the scalar field is initialized.
+     The field is initialized with the appropriate grid to place the scalar on the cell centres.
+     The name for the scalar field as given by the user is also assigned.
+     Temporary arrays to store data for calculation of derivatives or interpolation are also
      allocated.
-     Finally, an instance of the &lt;B&gt;mpidata&lt;/B&gt; class is initialized to store the sub-arrays to be send/received
-     across the processors during MPI communication.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">gridData</td><td>is a const reference to the global data contained in the grid class </td></tr>
@@ -209,7 +210,7 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
      "computeNLin" function of sfield.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">H</td><td>is a pointer to a scalar field (sfield) to which the output of the function is to be written </td></tr>
+    <tr><td class="paramname">H</td><td>is a reference to the plain scalar field (plainsf) to which the output will be written </td></tr>
   </table>
   </dd>
 </dl>
@@ -243,12 +244,12 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Function to compute the convective derivative of the scalar field. </p>
-<pre class="fragment">     The function computes for the operator \f$ (\mathbf{u}.\nabla)f \f$ at the grid nodes of the scalar field f.
+<pre class="fragment">     The function calculates \f$ (\mathbf{u}.\nabla)f \f$ at the grid nodes of the scalar field f.
      To do so, the function needs the vector field (vfield) of velocity. It is assumed that the velocity is always
      specified at face-centers, and is interpolated accordingly to the scalar field grid points.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">V</td><td>is a const reference to a vector field (vfield) that specifies the convection velocity at each point </td></tr>
+    <tr><td class="paramname">V</td><td>is a const reference to a vector field (vfield) that specifies the convection velocity </td></tr>
   </table>
   </dd>
 </dl>
@@ -282,8 +283,7 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Operator to compute the gradient of the scalar field. </p>
-<pre class="fragment">     The gradient operator computes the gradient of the cell centered scalar field, and stores it into a face-centered staggered
-     plain vector field as defined by the tensor operation:
+<pre class="fragment">     The function computes the gradient of the cell centered scalar field, and stores it into a face-centered plainvf:
      \f$ \nabla f = \frac{\partial f}{\partial x}i + \frac{\partial f}{\partial y}j + \frac{\partial f}{\partial z}k \f$.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -312,7 +312,7 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Overloaded operator to multiply a scalar value to the scalar field. </p>
-<pre class="fragment">     The unary operator *= multiplies a real value to the entire field stored as sfield and returns
+<pre class="fragment">     The unary operator *= multiplies a real value to the sfield and returns
      a pointer to itself.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -341,7 +341,7 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Overloaded operator to add a given plain scalar field. </p>
-<pre class="fragment">     The unary operator += adds a given plain scalar field to the entire field stored as sfield and returns
+<pre class="fragment">     The unary operator += adds a given plain scalar field to the sfield and returns
      a pointer to itself.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -370,7 +370,7 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Overloaded operator to add a given scalar field. </p>
-<pre class="fragment">     The unary operator += adds a given scalar field to the entire field stored as sfield and returns
+<pre class="fragment">     The unary operator += adds a given scalar field to the sfield and returns
      a pointer to itself.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -399,11 +399,11 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Overloaded operator to subtract a given plain scalar field. </p>
-<pre class="fragment">     The unary operator -= subtracts a given plain scalar field from the entire field stored as sfield and returns
+<pre class="fragment">     The unary operator -= subtracts a given plain scalar field from the sfield and returns
      a pointer to itself.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>is a reference to a plainsf to be deducted from the member field</td></tr>
+    <tr><td class="paramname">a</td><td>is a reference to a plainsf to be subtracted from the member field</td></tr>
   </table>
   </dd>
 </dl>
@@ -428,11 +428,11 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Overloaded operator to subtract a given scalar field. </p>
-<pre class="fragment">     The unary operator -= subtracts a given scalar field from the entire field stored as sfield and returns
+<pre class="fragment">     The unary operator -= subtracts a given scalar field from the sfield and returns
      a pointer to itself.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>is a reference to another sfield to be deducted from the member field</td></tr>
+    <tr><td class="paramname">a</td><td>is a reference to another sfield to be subtracted from the member field</td></tr>
   </table>
   </dd>
 </dl>
@@ -537,8 +537,8 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Function to synchronise data across all processors when performing parallel computations. </p>
-<pre class="fragment">     This function calls the \ref mpidata#syncData "syncData" function of mpidata class to perform perform data-transfer and thus update
-     the sub-domain boundary pads.
+<pre class="fragment">     This function calls the \ref mpidata#syncData "syncData" function of mpidata class to
+     perform data-transfer and thus update the sub-domain boundary pads.
 </pre> 
 </div>
 </div>
@@ -549,7 +549,7 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 29 2021 14:51:13 for Saras by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+Generated on Wed Sep 1 2021 14:29:00 for Saras by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
 </small></address>
 </body>
 </html>

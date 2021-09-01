@@ -94,9 +94,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1c2bd0b8b3244fb16077ae349bf0a7d9"><td class="memItemLeft" align="right" valign="top">real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfield.html#a1c2bd0b8b3244fb16077ae349bf0a7d9">fieldMax</a> ()</td></tr>
 <tr class="memdesc:a1c2bd0b8b3244fb16077ae349bf0a7d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to extract the maximum value from the field.  <a href="classfield.html#a1c2bd0b8b3244fb16077ae349bf0a7d9">More...</a><br /></td></tr>
 <tr class="separator:a1c2bd0b8b3244fb16077ae349bf0a7d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbae7ae3580b75d9247977ffe3585e45"><td class="memItemLeft" align="right" valign="top">blitz::RectDomain&lt; 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfield.html#abbae7ae3580b75d9247977ffe3585e45">shift</a> (int dim, blitz::RectDomain&lt; 3 &gt; core, int steps)</td></tr>
-<tr class="memdesc:abbae7ae3580b75d9247977ffe3585e45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to shift a blitz RectDomain object a specified number of steps in specified dimension.  <a href="classfield.html#abbae7ae3580b75d9247977ffe3585e45">More...</a><br /></td></tr>
-<tr class="separator:abbae7ae3580b75d9247977ffe3585e45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19c408ef2675617c3064a9bba19db448"><td class="memItemLeft" align="right" valign="top">blitz::RectDomain&lt; 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfield.html#a19c408ef2675617c3064a9bba19db448">shift</a> (int dim, const blitz::RectDomain&lt; 3 &gt; core, int steps)</td></tr>
+<tr class="memdesc:a19c408ef2675617c3064a9bba19db448"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to shift a blitz RectDomain object by a given number of steps along a specified dimension.  <a href="classfield.html#a19c408ef2675617c3064a9bba19db448">More...</a><br /></td></tr>
+<tr class="separator:a19c408ef2675617c3064a9bba19db448"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac9f8b4ef60ed28c395b09fdbcd0c216"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classfield.html">field</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfield.html#aac9f8b4ef60ed28c395b09fdbcd0c216">operator+=</a> (<a class="el" href="classfield.html">field</a> &amp;a)</td></tr>
 <tr class="memdesc:aac9f8b4ef60ed28c395b09fdbcd0c216"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded operator to add a given field.  <a href="classfield.html#aac9f8b4ef60ed28c395b09fdbcd0c216">More...</a><br /></td></tr>
 <tr class="separator:aac9f8b4ef60ed28c395b09fdbcd0c216"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -202,7 +202,7 @@ blitz::TinyVector&lt; int, 3 &gt;&#160;</td><td class="memItemRight" valign="bot
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Field class to store data and perform finite difference operations on the data. </p>
-<p >The class stores the base data of both scalar and vector fields as blitz arrays. The data is stored with a uniform grid spacing as in the transformed plane. The limits of the full domain and its core are also stored in a set of RectDomain and TinyVector objects. </p>
+<p >The class stores the base data of both scalar and vector fields as blitz arrays. The data is stored with a uniform grid spacing as in the transformed plane. The limits and views of the full, core and bulk domains are also stored in a set of TinyVector and RectDomain objects respectively. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4e125e6615be0d4c2f578bfc2647dfaa" name="a4e125e6615be0d4c2f578bfc2647dfaa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4e125e6615be0d4c2f578bfc2647dfaa">&#9670;&nbsp;</a></span>field()</h2>
@@ -249,18 +249,22 @@ blitz::TinyVector&lt; int, 3 &gt;&#160;</td><td class="memItemRight" valign="bot
 </div><div class="memdoc">
 
 <p>Constructor of the field class. </p>
-<pre class="fragment">     The field class decides the limits necessary for a 3D array to store the data as per the specified grid staggering details.
-     It initializes and stores necessary RectDomain objects for getting the core slice and various offset slices for performing
-     finite difference operations.
-     The upper and lower bounds necessary for the array are also calculated depending on the directions along which the mesh is
-     staggered and those along which it is collocated.
-     Finally, a blitz array to store the data of the field is resized according to the limits and initialized to 0.
+<pre class="fragment">     The field class decides the limits necessary for a 3D array to store the
+     data as per the specified grid indexing (half or full index).
+     It initializes and stores necessary RectDomain objects for getting the
+     core slice and bulk slice.
+     Moreover, various offset slices of both core and bulk, used for performing
+     finite difference operations, are also defined in this class.
+     The upper and lower bounds of the array are calculated based on the directions
+     along which the variable is staggered (or half-indexed).
+     Finally, a blitz array to store the data of the field is resized according
+     to the limits and initialized to 0.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">gridData</td><td>is a const reference to the global data contained in the grid class </td></tr>
-    <tr><td class="paramname">xStag</td><td>is a const boolean value that is <b>true</b> when the grid is staggered along the x-direction and <b>false</b> when it is not </td></tr>
-    <tr><td class="paramname">yStag</td><td>is a const boolean value that is <b>true</b> when the grid is staggered along the y-direction and <b>false</b> when it is not </td></tr>
-    <tr><td class="paramname">zStag</td><td>is a const boolean value that is <b>true</b> when the grid is staggered along the z-direction and <b>false</b> when it is not </td></tr>
+    <tr><td class="paramname">gridData</td><td>is a const reference to the global data in the grid class </td></tr>
+    <tr><td class="paramname">xStag</td><td>is a const boolean value that is <b>true</b> when F is staggered (half-indexed) along x-direction </td></tr>
+    <tr><td class="paramname">yStag</td><td>is a const boolean value that is <b>true</b> when F is staggered (half-indexed) along y-direction </td></tr>
+    <tr><td class="paramname">zStag</td><td>is a const boolean value that is <b>true</b> when F is staggered (half-indexed) along z-direction </td></tr>
   </table>
   </dd>
 </dl>
@@ -462,8 +466,8 @@ blitz::TinyVector&lt; int, 3 &gt;&#160;</td><td class="memItemRight" valign="bot
 
 </div>
 </div>
-<a id="abbae7ae3580b75d9247977ffe3585e45" name="abbae7ae3580b75d9247977ffe3585e45"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abbae7ae3580b75d9247977ffe3585e45">&#9670;&nbsp;</a></span>shift()</h2>
+<a id="a19c408ef2675617c3064a9bba19db448" name="a19c408ef2675617c3064a9bba19db448"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19c408ef2675617c3064a9bba19db448">&#9670;&nbsp;</a></span>shift()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -477,7 +481,7 @@ blitz::TinyVector&lt; int, 3 &gt;&#160;</td><td class="memItemRight" valign="bot
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">blitz::RectDomain&lt; 3 &gt;&#160;</td>
+          <td class="paramtype">const blitz::RectDomain&lt; 3 &gt;&#160;</td>
           <td class="paramname"><em>core</em>, </td>
         </tr>
         <tr>
@@ -494,7 +498,7 @@ blitz::TinyVector&lt; int, 3 &gt;&#160;</td><td class="memItemRight" valign="bot
       </table>
 </div><div class="memdoc">
 
-<p>Function to shift a blitz RectDomain object a specified number of steps in specified dimension. </p>
+<p>Function to shift a blitz RectDomain object by a given number of steps along a specified dimension. </p>
 <pre class="fragment">     The RectDomain objects offer a view of the blitz arrays on which the shift function operates.
      These objects are shifted along the dimension specified in the argument, by &lt;B&gt;dim&lt;/B&gt;, through a number of steps,
      to offer offset views.
@@ -526,8 +530,8 @@ blitz::TinyVector&lt; int, 3 &gt;&#160;</td><td class="memItemRight" valign="bot
 </div><div class="memdoc">
 
 <p>Function to synchronise data across all processors when performing parallel computations. </p>
-<pre class="fragment">     This function calls the \ref mpidata#syncData "syncData" function of mpidata class to perform perform data-transfer and thus update
-     the sub-domain boundary pads.
+<pre class="fragment">     This function calls the \ref mpidata#syncData "syncData" function of mpidata class to
+     perform data-transfer and thus update the sub-domain boundary pads.
 </pre> 
 </div>
 </div>
@@ -607,7 +611,7 @@ blitz::TinyVector&lt; int, 3 &gt;&#160;</td><td class="memItemRight" valign="bot
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 29 2021 14:51:13 for Saras by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+Generated on Wed Sep 1 2021 14:28:59 for Saras by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
 </small></address>
 </body>
 </html>

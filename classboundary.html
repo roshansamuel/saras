@@ -88,13 +88,14 @@ Inheritance diagram for boundary:</div>
  <div class="center">
   <img src="classboundary.png" usemap="#boundary_map" alt=""/>
   <map id="boundary_map" name="boundary_map">
-<area href="classdirichletCC.html" title="The derived class from boundary to apply dirichlet boundary condition for a cell-centered variable." alt="dirichletCC" shape="rect" coords="0,56,81,80"/>
-<area href="classdirichletFC.html" title="The derived class from boundary to apply dirichlet boundary condition for a face-centered variable." alt="dirichletFC" shape="rect" coords="91,56,172,80"/>
-<area href="classhotPlateCC.html" title="The derived class from boundary to apply mixed boundary condition involving a heated plate for a cell..." alt="hotPlateCC" shape="rect" coords="182,56,263,80"/>
-<area href="classneumannCC.html" title="The derived class from boundary to apply neumann boundary condition for a cell-centered variable." alt="neumannCC" shape="rect" coords="273,56,354,80"/>
-<area href="classneumannFC.html" title="The derived class from boundary to apply neumann boundary condition for a face-centered variable." alt="neumannFC" shape="rect" coords="364,56,445,80"/>
-<area href="classperiodicCC.html" title="The derived class from boundary to apply periodic boundary condition for a cell-centered variable." alt="periodicCC" shape="rect" coords="455,56,536,80"/>
-<area href="classperiodicFC.html" title="The derived class from boundary to apply periodic boundary condition for a face-centered variable." alt="periodicFC" shape="rect" coords="546,56,627,80"/>
+<area href="classdirichletCC.html" title="The derived class from boundary to apply dirichlet boundary condition for a cell-centered variable." alt="dirichletCC" shape="rect" coords="91,56,172,80"/>
+<area href="classdirichletFC.html" title="The derived class from boundary to apply dirichlet boundary condition for a face-centered variable." alt="dirichletFC" shape="rect" coords="91,112,172,136"/>
+<area href="classhotPlateCC.html" title="The derived class from boundary to apply mixed boundary condition involving a heated plate for a cell..." alt="hotPlateCC" shape="rect" coords="91,168,172,192"/>
+<area href="classneumannCC.html" title="The derived class from boundary to apply neumann boundary condition for a cell-centered variable." alt="neumannCC" shape="rect" coords="91,224,172,248"/>
+<area href="classneumannFC.html" title="The derived class from boundary to apply neumann boundary condition for a face-centered variable." alt="neumannFC" shape="rect" coords="91,280,172,304"/>
+<area href="classnullBC.html" title="The derived class from boundary to impose null boundary condition that leaves the data unchanged." alt="nullBC" shape="rect" coords="91,336,172,360"/>
+<area href="classperiodicCC.html" title="The derived class from boundary to apply periodic boundary condition for a cell-centered variable." alt="periodicCC" shape="rect" coords="91,392,172,416"/>
+<area href="classperiodicFC.html" title="The derived class from boundary to apply periodic boundary condition for a face-centered variable." alt="periodicFC" shape="rect" coords="91,448,172,472"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -155,9 +156,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>shiftVal</b></td></tr>
         - 1 = Y direction
         - 2 = Z direction
 
-   The view of the wall slice defined by any one of the blitz RectDomain objects in the \ref field#fWalls has to
+   The wall slice defined by the blitz RectDomain objects in the \ref field#fWalls has to be
    shifted to the left or right in order to access data at the points adjacent to the wall.
-   This is needed when averaging/interpolating the values at the wall.
+   This is done when averaging/interpolating the values at the wall.
    The integer value by which this shifting has to be done is specified by \ref shiftVal, which could be either +1 or -1.
 
    Finally not all subdomains need to have the BC applied to them.
@@ -238,7 +239,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>shiftVal</b></td></tr>
 <pre class="fragment">     Based on the values of wallNum, shiftDim, shiftVal and fieldVal, the appropriate BC (neumann/dirichlet/mixed)
      is imposed on the field.
 </pre> 
-<p>Reimplemented in <a class="el" href="classdirichletCC.html#acc7fa424e1c512513441e3771673f623">dirichletCC</a>, <a class="el" href="classdirichletFC.html#aa24d0d4160ee14cf8d72567e7a697e7e">dirichletFC</a>, <a class="el" href="classperiodicCC.html#ac76114be2d199c078420c2817a155b3d">periodicCC</a>, <a class="el" href="classperiodicFC.html#af2eb8d12e5c50c6f8683e4e758c6e364">periodicFC</a>, <a class="el" href="classneumannCC.html#ab133d9ec55283ee70e42993993843e44">neumannCC</a>, <a class="el" href="classneumannFC.html#af2b01b8dceae5ab0dca89401dffea706">neumannFC</a>, and <a class="el" href="classhotPlateCC.html#aa4fb0759dd2cfeeabaf3df9f717f705a">hotPlateCC</a>.</p>
+<p>Reimplemented in <a class="el" href="classdirichletCC.html#acc7fa424e1c512513441e3771673f623">dirichletCC</a>, <a class="el" href="classdirichletFC.html#aa24d0d4160ee14cf8d72567e7a697e7e">dirichletFC</a>, <a class="el" href="classperiodicCC.html#ac76114be2d199c078420c2817a155b3d">periodicCC</a>, <a class="el" href="classperiodicFC.html#af2eb8d12e5c50c6f8683e4e758c6e364">periodicFC</a>, <a class="el" href="classneumannCC.html#ab133d9ec55283ee70e42993993843e44">neumannCC</a>, <a class="el" href="classneumannFC.html#af2b01b8dceae5ab0dca89401dffea706">neumannFC</a>, <a class="el" href="classhotPlateCC.html#aa4fb0759dd2cfeeabaf3df9f717f705a">hotPlateCC</a>, and <a class="el" href="classnullBC.html#a48aa5cf192b3b2f11fba27eb189259c1">nullBC</a>.</p>
 
 </div>
 </div>
@@ -249,7 +250,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>shiftVal</b></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 29 2021 14:51:13 for Saras by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+Generated on Wed Sep 1 2021 14:28:59 for Saras by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
 </small></address>
 </body>
 </html>

@@ -78,7 +78,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Plain vector field class to store simple vector fields with no differentiation or interpolation.  
+<p>Plain vector field class to store simple vector fields with no additional operators like differentiation or interpolation.  
  <a href="classplainvf.html#details">More...</a></p>
 
 <p><code>#include &quot;<a class="el" href="plainvf_8h_source.html">lib/plainvf.h</a>&quot;</code></p>
@@ -147,7 +147,7 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 <tr class="separator:a471e7d662fe4b3e036d0962d42041c7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Plain vector field class to store simple vector fields with no differentiation or interpolation. </p>
+<div class="textblock"><p >Plain vector field class to store simple vector fields with no additional operators like differentiation or interpolation. </p>
 <p >The class stores vector fields in the form of three Blitz arrays The vector field is stored in such a way that the components are face-centered scalar fields, with:</p><ul>
 <li>x-component located at the face centers along the yz-plane</li>
 <li>y-component located at the face centers along the zx-plane</li>
@@ -181,12 +181,12 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Constructor of the plainvf class. </p>
-<pre class="fragment">     Three blitz arrays to store the data of the three component scalar fields are initialized.
+<pre class="fragment">     Three blitz arrays to store the data of the three components are initialized.
      The name for the plain vector field as given by the user is also assigned.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">gridData</td><td>is a const reference to the global data contained in the grid class </td></tr>
-    <tr><td class="paramname">refV</td><td>is a const reference to a sample vfield according to whose components the components of plainvf is resized </td></tr>
+    <tr><td class="paramname">gridData</td><td>is a const reference to the global data in the grid class </td></tr>
+    <tr><td class="paramname">refV</td><td>is a const reference to a vfield according to whose components the arrays of plainvf are resized </td></tr>
   </table>
   </dd>
 </dl>
@@ -240,15 +240,15 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Overloaded operator to add a given plain vector field. </p>
-<pre class="fragment">     The unary operator += adds a given plain vector field to the entire field stored as plainvf and returns
+<pre class="fragment">     The unary operator += adds a given plain vector field to the plainvf and returns
      a pointer to itself.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>is a reference to another plainvf to be deducted from the member fields</td></tr>
+    <tr><td class="paramname">a</td><td>is a reference to the plainvf to be added to the member fields</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pointer to itself is returned by the plain vector field class to which the operator belongs </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to itself is returned by the plain vector field object to which the operator belongs </dd></dl>
 
 </div>
 </div>
@@ -269,15 +269,15 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Overloaded operator to add a given vector field. </p>
-<pre class="fragment">     The unary operator += adds a given vector field to the entire field stored as plainvf and returns
+<pre class="fragment">     The unary operator += adds a given vector field to the plainvf and returns
      a pointer to itself.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>is a reference to another vfield to be deducted from the member fields</td></tr>
+    <tr><td class="paramname">a</td><td>is a reference to the vfield to be added to the member fields</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pointer to itself is returned by the plain vector field class to which the operator belongs </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to itself is returned by the plain vector field object to which the operator belongs </dd></dl>
 
 </div>
 </div>
@@ -298,15 +298,15 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Overloaded operator to subtract a given plain vector field. </p>
-<pre class="fragment">     The unary operator -= subtracts a given plain vector field from the entire field stored as plainvf and returns
+<pre class="fragment">     The unary operator -= subtracts a given plain vector field from the plainvf and returns
      a pointer to itself.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>is a reference to another plainvf to be deducted from the member fields</td></tr>
+    <tr><td class="paramname">a</td><td>is a reference to the plainvf to be subtracted from the member fields</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pointer to itself is returned by the plain vector field class to which the operator belongs </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to itself is returned by the plain vector field object to which the operator belongs </dd></dl>
 
 </div>
 </div>
@@ -327,15 +327,15 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Overloaded operator to subtract a given vector field. </p>
-<pre class="fragment">     The unary operator -= subtracts a given vector field from the entire field stored as plainvf and returns
+<pre class="fragment">     The unary operator -= subtracts a given vector field from the plainvf and returns
      a pointer to itself.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>is a reference to another vfield to be deducted from the member fields</td></tr>
+    <tr><td class="paramname">a</td><td>is a reference to the vfield to be subtracted from the member fields</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pointer to itself is returned by the plain vector field class to which the operator belongs </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to itself is returned by the plain vector field object to which the operator belongs </dd></dl>
 
 </div>
 </div>
@@ -356,7 +356,8 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Overloaded operator to assign another plain vector field to the plain vector field. </p>
-<pre class="fragment">     The operator = assigns all the three scalar sub-fields of a plainvf to all the corresponding fields (Vx, Vy and Vz).
+<pre class="fragment">     The operator = assigns all the three blitz arrays of a plain vector field (plainvf)
+     to the corresponding three arrays of the plainvf.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">a</td><td>is a plainvf to be assigned to the plain vector field </td></tr>
@@ -410,7 +411,8 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><div class="memdoc">
 
 <p>Overloaded operator to assign another vector field to the plain vector field. </p>
-<pre class="fragment">     The operator = assigns all the three scalar sub-fields of a plainvf to all the corresponding fields (Vx, Vy and Vz).
+<pre class="fragment">     The operator = assigns all the three fields of a given vector field (vfield)
+     to the corresponding three arrays of the plainvf.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">a</td><td>is a vfield to be assigned to the plain vector field </td></tr>
@@ -549,7 +551,7 @@ blitz::Array&lt; real, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 29 2021 14:51:13 for Saras by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+Generated on Wed Sep 1 2021 14:28:59 for Saras by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
 </small></address>
 </body>
 </html>

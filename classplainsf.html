@@ -121,6 +121,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a61482789884ed4954e061f94111710b2"><td class="memItemLeft" align="right" valign="top">real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplainsf.html#a61482789884ed4954e061f94111710b2">fxMax</a> ()</td></tr>
 <tr class="memdesc:a61482789884ed4954e061f94111710b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to extract the maximum value from the plain scalar field.  <a href="classplainsf.html#a61482789884ed4954e061f94111710b2">More...</a><br /></td></tr>
 <tr class="separator:a61482789884ed4954e061f94111710b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b69c2212ab6f8b0dd341f8feb08450c"><td class="memItemLeft" align="right" valign="top">real&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classplainsf.html#a3b69c2212ab6f8b0dd341f8feb08450c">fxMean</a> ()</td></tr>
+<tr class="memdesc:a3b69c2212ab6f8b0dd341f8feb08450c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to compute the mean value from the plain scalar field.  <a href="classplainsf.html#a3b69c2212ab6f8b0dd341f8feb08450c">More...</a><br /></td></tr>
+<tr class="separator:a3b69c2212ab6f8b0dd341f8feb08450c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -175,7 +178,7 @@ blitz::Range&#160;</td><td class="memItemRight" valign="bottom"><b>zColl</b></td
      transformation derivatives along each direction are chosen according to the grid staggering.
      The arrays to store the output from various operators like derivatives, convective derivatives, etc. are also
      allocated.
-     Finally, an instance of the &lt;B&gt;mpidata&lt;/B&gt; class is initialized to store the sub-arrays to be send/received
+     Finally, an instance of the &lt;B&gt;mpidata&lt;/B&gt; class is initialized to store the sub-arrays to be sent/received
      across the processors during MPI communication.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -216,6 +219,37 @@ blitz::Range&#160;</td><td class="memItemRight" valign="bottom"><b>zColl</b></td
      While performing parallel computation, the function performs an &lt;B&gt;MPI_Allreduce()&lt;/B&gt; to get
      the global maximum from the entire computational domain.
 </pre> <dl class="section return"><dt>Returns</dt><dd>The real value of the maximum is returned (it is implicitly assumed that only real values are used) </dd></dl>
+
+</div>
+</div>
+<a id="a3b69c2212ab6f8b0dd341f8feb08450c" name="a3b69c2212ab6f8b0dd341f8feb08450c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b69c2212ab6f8b0dd341f8feb08450c">&#9670;&nbsp;</a></span>fxMean()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">real plainsf::fxMean </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function to compute the mean value from the plain scalar field. </p>
+<pre class="fragment">     The function uses the in-built blitz function to obtain the mean value in an array.
+     While performing parallel computation, the function performs an &lt;B&gt;MPI_Allreduce()&lt;/B&gt; to get
+     the global mean from the entire computational domain.
+</pre> <dl class="section return"><dt>Returns</dt><dd>The real value of the mean is returned (it is implicitly assumed that only real values are used) </dd></dl>
 
 </div>
 </div>
@@ -284,7 +318,7 @@ blitz::Range&#160;</td><td class="memItemRight" valign="bottom"><b>zColl</b></td
 </div><div class="memdoc">
 
 <p>Overloaded operator to multiply a scalar value to the scalar field. </p>
-<pre class="fragment">     The unary operator *= multiplies a real value to the entire field stored as plainsf and returns
+<pre class="fragment">     The unary operator *= multiplies a real value to the plainsf and returns
      a pointer to itself.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -313,7 +347,7 @@ blitz::Range&#160;</td><td class="memItemRight" valign="bottom"><b>zColl</b></td
 </div><div class="memdoc">
 
 <p>Overloaded operator to add a given plain scalar field. </p>
-<pre class="fragment">     The unary operator += adds a given plain scalar field to the entire field stored as plainsf and returns
+<pre class="fragment">     The unary operator += adds a given plain scalar field to the plainsf and returns
      a pointer to itself.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -342,7 +376,7 @@ blitz::Range&#160;</td><td class="memItemRight" valign="bottom"><b>zColl</b></td
 </div><div class="memdoc">
 
 <p>Overloaded operator to add a given scalar field. </p>
-<pre class="fragment">     The unary operator += adds a given scalar field to the entire field stored as plainsf and returns
+<pre class="fragment">     The unary operator += adds a given scalar field to the plainsf and returns
      a pointer to itself.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -371,11 +405,11 @@ blitz::Range&#160;</td><td class="memItemRight" valign="bottom"><b>zColl</b></td
 </div><div class="memdoc">
 
 <p>Overloaded operator to subtract a given plain scalar field. </p>
-<pre class="fragment">     The unary operator -= subtracts a given plain scalar field from the entire field stored as plainsf and returns
+<pre class="fragment">     The unary operator -= subtracts a given plain scalar field from the plainsf and returns
      a pointer to itself.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>is a reference to another plainsf to be deducted from the member field</td></tr>
+    <tr><td class="paramname">a</td><td>is a reference to another plainsf to be subtracted from the member field</td></tr>
   </table>
   </dd>
 </dl>
@@ -400,11 +434,11 @@ blitz::Range&#160;</td><td class="memItemRight" valign="bottom"><b>zColl</b></td
 </div><div class="memdoc">
 
 <p>Overloaded operator to subtract a given scalar field. </p>
-<pre class="fragment">     The unary operator -= subtracts a given scalar field from the entire field stored as plainsf and returns
+<pre class="fragment">     The unary operator -= subtracts a given scalar field from the plainsf and returns
      a pointer to itself.
 </pre> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>is a reference to another sfield to be deducted from the member field</td></tr>
+    <tr><td class="paramname">a</td><td>is a reference to another sfield to be subtracted from the member field</td></tr>
   </table>
   </dd>
 </dl>
@@ -529,7 +563,7 @@ blitz::Range&#160;</td><td class="memItemRight" valign="bottom"><b>zColl</b></td
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 29 2021 14:51:13 for Saras by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
+Generated on Wed Sep 1 2021 14:28:59 for Saras by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2
 </small></address>
 </body>
 </html>
