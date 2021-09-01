@@ -31,7 +31,7 @@
  #
  ############################################################################################################################################
  ##
- ##! \file validate_ldc.py
+ ##! \file checkLDC.py
  #
  #   \brief Python script to validate SARAS with results of Ghia et al
  #
@@ -112,10 +112,7 @@ def loadData(timeVal):
         exit()
 
     # Initialize and read staggered grid data
-    U = np.zeros([Nx, Nz])
     U = np.array(f['Vx'])
-
-    W = np.zeros([Nx, Nz])
     W = np.array(f['Vz'])
 
 

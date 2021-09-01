@@ -152,7 +152,8 @@ class plainvf {
 /**
  ********************************************************************************************************************************************
  *  \class plainvf plainvf.h "lib/plainvf.h"
- *  \brief Plain vector field class to store simple vector fields with no differentiation or interpolation
+ *  \brief Plain vector field class to store simple vector fields with no additional operators
+ *         like differentiation or interpolation
  *
  *  The class stores vector fields in the form of three Blitz arrays
  *  The vector field is stored in such a way that the components are face-centered scalar fields, with:

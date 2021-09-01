@@ -123,11 +123,32 @@ class plainsf {
         inline real fxMax() {
             real localMax, globalMax;
 
-            localMax = blitz::max(F);
+            localMax = blitz::max(F(xColl, yColl, zColl));
 
             MPI_Allreduce(&localMax, &globalMax, 1, MPI_FP_REAL, MPI_MAX, MPI_COMM_WORLD);
 
             return globalMax;
+        }
+
+/**
+ ********************************************************************************************************************************************
+ * \brief   Function to compute the mean value from the plain scalar field
+ *
+ *          The function uses the in-built blitz function to obtain the mean value in an array.
+ *          While performing parallel computation, the function performs an <B>MPI_Allreduce()</B> to get
+ *          the global mean from the entire computational domain.
+ *
+ * \return  The real value of the mean is returned (it is implicitly assumed that only real values are used)
+ ********************************************************************************************************************************************
+ */
+        inline real fxMean() {
+            real localMean, globalSum;
+
+            localMean = blitz::mean(F(xColl, yColl, zColl));
+
+            MPI_Allreduce(&localMean, &globalSum, 1, MPI_FP_REAL, MPI_SUM, MPI_COMM_WORLD);
+
+            return globalSum/gridData.rankData.nProc;
         }
 
         ~plainsf() { };

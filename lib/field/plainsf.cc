@@ -50,7 +50,7 @@
  *          transformation derivatives along each direction are chosen according to the grid staggering.
  *          The arrays to store the output from various operators like derivatives, convective derivatives, etc. are also
  *          allocated.
- *          Finally, an instance of the <B>mpidata</B> class is initialized to store the sub-arrays to be send/received
+ *          Finally, an instance of the <B>mpidata</B> class is initialized to store the sub-arrays to be sent/received
  *          across the processors during MPI communication.
  *
  * \param   gridData is a const reference to the global data contained in the grid class
@@ -60,6 +60,7 @@
 plainsf::plainsf(const grid &gridData, const sfield &refF): gridData(gridData) {
     F.resize(refF.F.fSize);
     F.reindexSelf(refF.F.flBound);
+    F = 0.0;
 
     xColl = blitz::Range(gridData.collocCoreDomain.lbound(0), gridData.collocCoreDomain.ubound(0));
     yColl = blitz::Range(gridData.collocCoreDomain.lbound(1), gridData.collocCoreDomain.ubound(1));
@@ -73,7 +74,7 @@ plainsf::plainsf(const grid &gridData, const sfield &refF): gridData(gridData) {
  ********************************************************************************************************************************************
  * \brief   Overloaded operator to add a given plain scalar field
  *
- *          The unary operator += adds a given plain scalar field to the entire field stored as plainsf and returns
+ *          The unary operator += adds a given plain scalar field to the plainsf and returns
  *          a pointer to itself.
  *
  * \param   a is a reference to another plainsf to be added to the member field
@@ -91,10 +92,10 @@ plainsf& plainsf::operator += (plainsf &a) {
  ********************************************************************************************************************************************
  * \brief   Overloaded operator to subtract a given plain scalar field
  *
- *          The unary operator -= subtracts a given plain scalar field from the entire field stored as plainsf and returns
+ *          The unary operator -= subtracts a given plain scalar field from the plainsf and returns
  *          a pointer to itself.
  *
- * \param   a is a reference to another plainsf to be deducted from the member field
+ * \param   a is a reference to another plainsf to be subtracted from the member field
  *
  * \return  A pointer to itself is returned by the plain scalar field class to which the operator belongs
  ********************************************************************************************************************************************
@@ -109,7 +110,7 @@ plainsf& plainsf::operator -= (plainsf &a) {
  ********************************************************************************************************************************************
  * \brief   Overloaded operator to add a given scalar field
  *
- *          The unary operator += adds a given scalar field to the entire field stored as plainsf and returns
+ *          The unary operator += adds a given scalar field to the plainsf and returns
  *          a pointer to itself.
  *
  * \param   a is a reference to another sfield to be added to the member field
@@ -127,10 +128,10 @@ plainsf& plainsf::operator += (sfield &a) {
  ********************************************************************************************************************************************
  * \brief   Overloaded operator to subtract a given scalar field
  *
- *          The unary operator -= subtracts a given scalar field from the entire field stored as plainsf and returns
+ *          The unary operator -= subtracts a given scalar field from the plainsf and returns
  *          a pointer to itself.
  *
- * \param   a is a reference to another sfield to be deducted from the member field
+ * \param   a is a reference to another sfield to be subtracted from the member field
  *
  * \return  A pointer to itself is returned by the plain scalar field class to which the operator belongs
  ********************************************************************************************************************************************
@@ -145,7 +146,7 @@ plainsf& plainsf::operator -= (sfield &a) {
  ********************************************************************************************************************************************
  * \brief   Overloaded operator to multiply a scalar value to the scalar field
  *
- *          The unary operator *= multiplies a real value to the entire field stored as plainsf and returns
+ *          The unary operator *= multiplies a real value to the plainsf and returns
  *          a pointer to itself.
  *
  * \param   a is a real number to be multiplied to the scalar field

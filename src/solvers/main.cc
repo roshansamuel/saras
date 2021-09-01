@@ -44,7 +44,6 @@
 #include "parallel.h"
 #include "scalar.h"
 #include "parser.h"
-#include "hydro.h"
 #include "grid.h"
 
 int main() {
@@ -70,19 +69,25 @@ int main() {
     gettimeofday(&runStart, NULL);
 
     if (inputParams.probType <= 4) {
-        // SELECTION OF SOLVERS FOR HYDRODYNAMICS SIMULATIONS
-        if (mpi.rank == 0) {
-            if (inputParams.probType == 1) {
-                std::cout << std::endl << "Solving NSE for lid-driven cavity problem" << std::endl;
-            } else if (inputParams.probType == 2) {
-                std::cout << std::endl << "Solving NSE for decaying flow simulation" << std::endl;
-            } else if (inputParams.probType == 3) {
-                std::cout << std::endl << "Solving NSE for channel flow problem" << std::endl;
-            } else if (inputParams.probType == 4) {
-                std::cout << std::endl << "Solving NSE for forced channel flow problem" << std::endl;
-            }
-            std::cout << std::endl;
+        // EXIT IF THE probType PARAMETER IS 0 OR NEGATIVE
+        if (inputParams.probType <= 0) {
+            if (mpi.rank == 0) std::cout << std::endl << "Invalid problem type. ABORTING" << std::endl;
+            MPI_Finalize();
+            exit(0);
         }
+
+        // SELECTION OF SOLVERS FOR HYDRODYNAMICS SIMULATIONS
+        switch (inputParams.probType) {
+            case 1: if (mpi.rank == 0) std::cout << std::endl << "Solving NSE for lid-driven cavity problem" << std::endl;
+                break;
+            case 2: if (mpi.rank == 0) std::cout << std::endl << "Solving NSE for decaying flow simulation" << std::endl;
+                break;
+            case 3: if (mpi.rank == 0) std::cout << std::endl << "Solving NSE for channel flow problem" << std::endl;
+                break;
+            case 4: if (mpi.rank == 0) std::cout << std::endl << "Solving NSE for forced channel flow problem" << std::endl;
+                break;
+        }
+        if (mpi.rank == 0) std::cout << std::endl;
 
         hydro *nseSolver;
 
@@ -99,23 +104,23 @@ int main() {
 
     } else if (inputParams.probType <= 7) {
         // SELECTION OF SOLVERS FOR SCALAR SIMULATIONS
-        if (mpi.rank == 0) {
-            if (inputParams.probType == 5) {
-                std::cout << std::endl << "Solving NSE for heated bottom-plate problem" << std::endl;
-            } else if (inputParams.probType == 6) {
-                std::cout << std::endl << "Solving NSE for heated top-plate problem" << std::endl;
-            } else {
+        switch (inputParams.probType) {
+            case 5: if (mpi.rank == 0) std::cout << std::endl << "Solving NSE for heated bottom-plate problem" << std::endl;
+                break;
+            case 6: if (mpi.rank == 0) std::cout << std::endl << "Solving NSE for heated top-plate problem" << std::endl;
+                break;
+            case 7:
                 if (not inputParams.xPer) {
-                    std::cout << std::endl << "Solving NSE for heated sidewall problem" << std::endl;
+                    if (mpi.rank == 0) std::cout << std::endl << "Solving NSE for heated sidewall problem" << std::endl;
                 } else {
-                    std::cout << std::endl << "ERROR: X direction cannot be periodic for heated sidewall problem. ABORTING" << std::endl;
+                    if (mpi.rank == 0) std::cout << std::endl << "ERROR: X direction cannot be periodic for heated sidewall problem. ABORTING" << std::endl;
 
                     MPI_Finalize();
                     exit(0);
                 }
-            }
-            std::cout << std::endl;
+                break;
         }
+        if (mpi.rank == 0) std::cout << std::endl;
 
         scalar *nseSolver;
 
@@ -130,13 +135,8 @@ int main() {
 
         delete nseSolver;
 
-    }    
-    
-    else {
-        if (mpi.rank == 0) {
-            std::cout << std::endl << "Invalid problem type. ABORTING" << std::endl;
-        }
-
+    } else {
+        if (mpi.rank == 0) std::cout << std::endl << "Invalid problem type. ABORTING" << std::endl;
         MPI_Finalize();
         exit(0);
     }

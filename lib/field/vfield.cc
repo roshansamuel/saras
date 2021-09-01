@@ -50,12 +50,13 @@
  ********************************************************************************************************************************************
  * \brief   Constructor of the vfield class
  *
- *          Three instances of the sfield class to store the data of the three component scalar fields are initialized.
- *          The scalar fields are initialized with appropriate grid staggering to place the components on the cell faces.
- *          The name for the vector field as given by the user is also assigned.
+ *          Three instances of field class are initialized.
+ *          Each instance corresponds to a component of the vector field.
+ *          The fields are initialized with appropriate grid to place the components on the cell faces.
+ *          The name of the vector field as given by the user is also assigned.
  *
- * \param   gridData is a const reference to the global data contained in the grid class
- * \param   fieldName is a string value set by the user to name and identify the vector field
+ * \param   gridData is a const reference to the global data in the grid class
+ * \param   fieldName is a string value used to name and identify the vector field
  ********************************************************************************************************************************************
  */
 vfield::vfield(const grid &gridData, std::string fieldName):
@@ -92,10 +93,12 @@ vfield::vfield(const grid &gridData, std::string fieldName):
  ********************************************************************************************************************************************
  * \brief   Function to compute the diffusion term
  *
- *          It is assumed that the velocity is specified at face-centers, as required by the \ref sfield#computeNLin
- *          "computeNLin" function of sfield.
+ *          The diffusion term (grad-squared) is caulculated here.
+ *          The second derivatives of each component field are calculated along x, y and z.
+ *          These terms are added to the corresponding components of the given plain
+ *          vector field (plainvf), which is usually the RHS of the PDE being solved.
  *
- * \param   H is a pointer to a vector field (vfield) to which the output of the function is to be written
+ * \param   H is a reference to the plainvf into which the output is written
  ********************************************************************************************************************************************
  */
 void vfield::computeDiff(plainvf &H) {
@@ -146,15 +149,15 @@ void vfield::computeDiff(plainvf &H) {
  ********************************************************************************************************************************************
  * \brief   Function to compute the convective derivative of the vector field
  *
- *          The function computes for the operator \f$ (\mathbf{u}.\nabla)\mathbf{v} \f$ for the vector field, \f$\mathbf{v}\f$.
+ *          The function calculates \f$ (\mathbf{u}.\nabla)\mathbf{v} \f$ on the vector field, \f$\mathbf{v}\f$.
  *          To do so, the function needs the vector field (vfield) of velocity, \f$\mathbf{u}\f$.
  *          This value is used in three separate calls to the \ref sfield#computeNLin "computeNLin" function of sfield
  *          to compute the derivatives for the three components of the vector field.
  *          It is assumed that the velocity is specified at face-centers, as required by the \ref sfield#computeNLin
  *          "computeNLin" function of sfield.
  *
- * \param   V is a const reference to a vector field (vfield) that specifies the convection velocity at each point
- * \param   H is a pointer to a vector field (vfield) to which the output of the function is to be written
+ * \param   V is a const reference to the vector field (vfield) that specifies the convection velocity
+ * \param   H is a reference to the plainvf into which the output is written
  ********************************************************************************************************************************************
  */
 void vfield::computeNLin(const vfield &V, plainvf &H) {
@@ -251,9 +254,14 @@ void vfield::computeNLin(const vfield &V, plainvf &H) {
 
 /**
  ********************************************************************************************************************************************
- * \brief   Operator is used to calculate time step #dt_out for time integration using CFL Condition with desired Courant No
+ * \brief   Operator is used to calculate time step #dt_out using CFL Condition
  *           
- * \param   dt_out is a reference to a real variable into which the calculated value of time-step has to be written
+ *          When the parameters specify that time-step must be adaptively
+ *          calculated using the Courant Number given in the parameters file,
+ *          this function will provide the \f$ dt \f$ using the maximum values
+ *          of the components of the vfield.
+ *
+ * \param   dt_out is a reference to the real value into which the calculated value of time-step is written
  *********************************************************************************************************************************************
  */
 void vfield::computeTStp(real &dt_out) {
@@ -285,7 +293,7 @@ void vfield::computeTStp(real &dt_out) {
  *                                    \frac{\partial \mathbf{v}}{\partial y} +
  *                                    \frac{\partial \mathbf{v}}{\partial z} \f$.
  *
- * \param   divV is a pointer to a scalar field (sfield) into which the computed divergence must be written.
+ * \param   divV is a reference to the scalar field (sfield) into which the computed divergence is written.
  ********************************************************************************************************************************************
  */
 void vfield::divergence(plainsf &divV, const sfield &P) {
@@ -315,7 +323,7 @@ void vfield::divergence(plainsf &divV, const sfield &P) {
  ********************************************************************************************************************************************
  * \brief   Function to synchronise data across all processors when performing parallel computations
  *
- *          Each of the individual scalar field components have their own subroutine, \ref sfield#syncData "syncData" to send and
+ *          Each of the individual field components have their own subroutine, \ref sfield#syncData "syncData" to send and
  *          receive data across its MPI decomposed sub-domains.
  *          This function calls the \ref sfield#syncData "syncData" function of its components to update the sub-domain boundary pads.
  ********************************************************************************************************************************************
@@ -330,12 +338,12 @@ void vfield::syncData() {
  ********************************************************************************************************************************************
  * \brief   Overloaded operator to add a given plain vector field
  *
- *          The unary operator += adds a given plain vector field to the entire field stored as vfield and returns
+ *          The unary operator += adds a given plain vector field to the vfield and returns
  *          a pointer to itself.
  *
- * \param   a is a reference to a plainvf to be deducted from the member fields
+ * \param   a is a reference to the plainvf to be added to the member fields
  *
- * \return  A pointer to itself is returned by the vector field class to which the operator belongs
+ * \return  A pointer to itself is returned by the vector field object to which the operator belongs
  ********************************************************************************************************************************************
  */
 vfield& vfield::operator += (plainvf &a) {
@@ -350,12 +358,12 @@ vfield& vfield::operator += (plainvf &a) {
  ********************************************************************************************************************************************
  * \brief   Overloaded operator to subtract a given plain vector field
  *
- *          The unary operator -= subtracts a given plain vector field from the entire field stored as vfield and returns
+ *          The unary operator -= subtracts a given plain vector field from the vfield and returns
  *          a pointer to itself.
  *
- * \param   a is a reference to a plainvf to be deducted from the member fields
+ * \param   a is a reference to the plainvf to be subtracted from the member fields
  *
- * \return  A pointer to itself is returned by the vector field class to which the operator belongs
+ * \return  A pointer to itself is returned by the vector field object to which the operator belongs
  ********************************************************************************************************************************************
  */
 vfield& vfield::operator -= (plainvf &a) {
@@ -370,12 +378,12 @@ vfield& vfield::operator -= (plainvf &a) {
  ********************************************************************************************************************************************
  * \brief   Overloaded operator to add a given vector field
  *
- *          The unary operator += adds a given vector field to the entire field stored as vfield and returns
+ *          The unary operator += adds a given vector field to the vfield and returns
  *          a pointer to itself.
  *
- * \param   a is a reference to another vfield to be deducted from the member fields
+ * \param   a is a reference to the vfield to be added to the member fields
  *
- * \return  A pointer to itself is returned by the vector field class to which the operator belongs
+ * \return  A pointer to itself is returned by the vector field object to which the operator belongs
  ********************************************************************************************************************************************
  */
 vfield& vfield::operator += (vfield &a) {
@@ -390,12 +398,12 @@ vfield& vfield::operator += (vfield &a) {
  ********************************************************************************************************************************************
  * \brief   Overloaded operator to subtract a given vector field
  *
- *          The unary operator -= subtracts a given vector field from the entire field stored as vfield and returns
+ *          The unary operator -= subtracts a given vector field from the vfield and returns
  *          a pointer to itself.
  *
- * \param   a is a reference to another vfield to be deducted from the member fields
+ * \param   a is a reference to the vfield to be subtracted from the member fields
  *
- * \return  A pointer to itself is returned by the vector field class to which the operator belongs
+ * \return  A pointer to itself is returned by the vector field object to which the operator belongs
  ********************************************************************************************************************************************
  */
 vfield& vfield::operator -= (vfield &a) {
@@ -430,7 +438,8 @@ vfield& vfield::operator *= (real a) {
  ********************************************************************************************************************************************
  * \brief   Overloaded operator to assign a plain vector field to the vector field
  *
- *          The operator = assigns all the three scalar sub-fields of a vfield to all the corresponding fields (Vx, Vy and Vz).
+ *          The operator = assigns all the three blitz arrays of a plain vector field (plainvf)
+ *          to the corresponding arrays in the three fields of the vfield.
  *
  * \param   a is a plainvf to be assigned to the vector field
  ********************************************************************************************************************************************
@@ -445,7 +454,8 @@ void vfield::operator = (plainvf &a) {
  ********************************************************************************************************************************************
  * \brief   Overloaded operator to assign another vector field to the vector field
  *
- *          The operator = assigns all the three scalar sub-fields of a vfield to all the corresponding fields (Vx, Vy and Vz).
+ *          The operator = assigns all the three fields of a given vector field (vfield)
+ *          to the corresponding fields of the vfield.
  *
  * \param   a is a vfield to be assigned to the vector field
  ********************************************************************************************************************************************

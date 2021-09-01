@@ -233,14 +233,14 @@ For more information please refer to the ``SARAS`` [documentation](https://rosha
 
 ``SARAS`` offers an automated testing process to validate the solver after installation.
 The relevant test scripts can be found in the ``tests/`` folder of the solver.
-Executing the Bash shell script ``testSaras.sh``, will compile ``SARAS``, and run it with a pre-defined set of parameters.
+Executing the Bash shell script ``testLDC.sh``, will compile ``SARAS``, and run it with a pre-defined set of parameters.
 We use the benchmark results on 2D lid-driven cavity (LDC) performed by Ghia et al (1982) to validate ``SARAS``.
 The test can be executed by running the following command within the ``tests/`` folder.
 
-``bash testSaras.sh``
+``bash testLDC.sh``
 
 The test uses 4 cores and takes about 12 minutes to complete on an Intel workstation.
-At the end of the test, the Python script ``validate_ldc.py``, found in ``tests/ldcTest/`` reads the output,
+At the end of the test, the Python script ``checkLDC.py``, found in ``tests/ldcTest/`` reads the output,
 and plots the velocity profiles along with the data from Ghia et al's result.
 
 The following Python modules are necessary for the Python test script to execute successfully

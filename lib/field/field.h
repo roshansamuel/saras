@@ -109,7 +109,7 @@ class field {
 
         real fieldMax();
 
-        blitz::RectDomain<3> shift(int dim, blitz::RectDomain<3> core, int steps);
+        blitz::RectDomain<3> shift(int dim, const blitz::RectDomain<3> core, int steps);
 
         field& operator += (field &a);
         field& operator -= (field &a);
@@ -130,7 +130,8 @@ class field {
  *
  *  The class stores the base data of both scalar and vector fields as blitz arrays.
  *  The data is stored with a uniform grid spacing as in the transformed plane.
- *  The limits of the full domain and its core are also stored in a set of RectDomain and TinyVector objects.
+ *  The limits and views of the full, core and bulk domains are also stored in a set
+ *  of TinyVector and RectDomain objects respectively.
  ********************************************************************************************************************************************
  */
 

@@ -46,28 +46,31 @@
  ********************************************************************************************************************************************
  * \brief   Constructor of the plainvf class
  *
- *          Three blitz arrays to store the data of the three component scalar fields are initialized.
+ *          Three blitz arrays to store the data of the three components are initialized.
  *          The name for the plain vector field as given by the user is also assigned.
  *
- * \param   gridData is a const reference to the global data contained in the grid class
- * \param   refV is a const reference to a sample vfield according to whose components the components of plainvf is resized
+ * \param   gridData is a const reference to the global data in the grid class
+ * \param   refV is a const reference to a vfield according to whose components the arrays of plainvf are resized
  ********************************************************************************************************************************************
  */
 plainvf::plainvf(const grid &gridData, const vfield &refV): gridData(gridData) {
     Vx.resize(refV.Vx.fSize);
     Vx.reindexSelf(refV.Vx.flBound);
+    Vx = 0.0;
 
     mpiVxData = new mpidata(Vx, gridData.rankData);
     mpiVxData->createSubarrays(refV.Vx.fSize, refV.Vx.cuBound + 1, gridData.padWidths, refV.Vx.xStag, refV.Vx.yStag);
 
     Vy.resize(refV.Vy.fSize);
     Vy.reindexSelf(refV.Vy.flBound);
+    Vy = 0.0;
 
     mpiVyData = new mpidata(Vy, gridData.rankData);
     mpiVyData->createSubarrays(refV.Vy.fSize, refV.Vy.cuBound + 1, gridData.padWidths, refV.Vy.xStag, refV.Vy.yStag);
 
     Vz.resize(refV.Vz.fSize);
     Vz.reindexSelf(refV.Vz.flBound);
+    Vz = 0.0;
 
     mpiVzData = new mpidata(Vz, gridData.rankData);
     mpiVzData->createSubarrays(refV.Vz.fSize, refV.Vz.cuBound + 1, gridData.padWidths, refV.Vz.xStag, refV.Vz.yStag);
@@ -77,12 +80,12 @@ plainvf::plainvf(const grid &gridData, const vfield &refV): gridData(gridData) {
  ********************************************************************************************************************************************
  * \brief   Overloaded operator to add a given plain vector field
  *
- *          The unary operator += adds a given plain vector field to the entire field stored as plainvf and returns
+ *          The unary operator += adds a given plain vector field to the plainvf and returns
  *          a pointer to itself.
  *
- * \param   a is a reference to another plainvf to be deducted from the member fields
+ * \param   a is a reference to the plainvf to be added to the member fields
  *
- * \return  A pointer to itself is returned by the plain vector field class to which the operator belongs
+ * \return  A pointer to itself is returned by the plain vector field object to which the operator belongs
  ********************************************************************************************************************************************
  */
 plainvf& plainvf::operator += (plainvf &a) {
@@ -97,12 +100,12 @@ plainvf& plainvf::operator += (plainvf &a) {
  ********************************************************************************************************************************************
  * \brief   Overloaded operator to subtract a given plain vector field
  *
- *          The unary operator -= subtracts a given plain vector field from the entire field stored as plainvf and returns
+ *          The unary operator -= subtracts a given plain vector field from the plainvf and returns
  *          a pointer to itself.
  *
- * \param   a is a reference to another plainvf to be deducted from the member fields
+ * \param   a is a reference to the plainvf to be subtracted from the member fields
  *
- * \return  A pointer to itself is returned by the plain vector field class to which the operator belongs
+ * \return  A pointer to itself is returned by the plain vector field object to which the operator belongs
  ********************************************************************************************************************************************
  */
 plainvf& plainvf::operator -= (plainvf &a) {
@@ -117,12 +120,12 @@ plainvf& plainvf::operator -= (plainvf &a) {
  ********************************************************************************************************************************************
  * \brief   Overloaded operator to add a given vector field
  *
- *          The unary operator += adds a given vector field to the entire field stored as plainvf and returns
+ *          The unary operator += adds a given vector field to the plainvf and returns
  *          a pointer to itself.
  *
- * \param   a is a reference to another vfield to be deducted from the member fields
+ * \param   a is a reference to the vfield to be added to the member fields
  *
- * \return  A pointer to itself is returned by the plain vector field class to which the operator belongs
+ * \return  A pointer to itself is returned by the plain vector field object to which the operator belongs
  ********************************************************************************************************************************************
  */
 plainvf& plainvf::operator += (vfield &a) {
@@ -137,12 +140,12 @@ plainvf& plainvf::operator += (vfield &a) {
  ********************************************************************************************************************************************
  * \brief   Overloaded operator to subtract a given vector field
  *
- *          The unary operator -= subtracts a given vector field from the entire field stored as plainvf and returns
+ *          The unary operator -= subtracts a given vector field from the plainvf and returns
  *          a pointer to itself.
  *
- * \param   a is a reference to another vfield to be deducted from the member fields
+ * \param   a is a reference to the vfield to be subtracted from the member fields
  *
- * \return  A pointer to itself is returned by the plain vector field class to which the operator belongs
+ * \return  A pointer to itself is returned by the plain vector field object to which the operator belongs
  ********************************************************************************************************************************************
  */
 plainvf& plainvf::operator -= (vfield &a) {
@@ -177,7 +180,8 @@ plainvf& plainvf::operator *= (real a) {
  ********************************************************************************************************************************************
  * \brief   Overloaded operator to assign another plain vector field to the plain vector field
  *
- *          The operator = assigns all the three scalar sub-fields of a plainvf to all the corresponding fields (Vx, Vy and Vz).
+ *          The operator = assigns all the three blitz arrays of a plain vector field (plainvf)
+ *          to the corresponding three arrays of the plainvf.
  *
  * \param   a is a plainvf to be assigned to the plain vector field
  ********************************************************************************************************************************************
@@ -192,7 +196,8 @@ void plainvf::operator = (plainvf &a) {
  ********************************************************************************************************************************************
  * \brief   Overloaded operator to assign another vector field to the plain vector field
  *
- *          The operator = assigns all the three scalar sub-fields of a plainvf to all the corresponding fields (Vx, Vy and Vz).
+ *          The operator = assigns all the three fields of a given vector field (vfield)
+ *          to the corresponding three arrays of the plainvf.
  *
  * \param   a is a vfield to be assigned to the plain vector field
  ********************************************************************************************************************************************

@@ -199,7 +199,7 @@ void probes::getData(dataStruct *outData) {
  ********************************************************************************************************************************************
  */
 void probes::gatherData(dataStruct *outData) {
-    int localSize = localProbes.size();
+    unsigned int localSize = localProbes.size();
     int *numProbes, *prbStarts;
 
     numProbes = new int[mesh.rankData.nProc];
@@ -207,7 +207,7 @@ void probes::gatherData(dataStruct *outData) {
 
     dataStruct sendData[localSize];
 
-    for (int i = 0; i < localSize; i++) {
+    for (unsigned int i = 0; i < localSize; i++) {
         sendData[i].x = outData[i].x;
 #ifndef PLANAR
         sendData[i].y = outData[i].y;

@@ -213,6 +213,7 @@ void poisson::mgSolve(plainsf &inFn, const plainsf &rhs) {
  *          First the input data contained in \ref pressureData is smoothed, after which the residual is computed and stored
  *          in the \ref residualData array.
  *          The restrictions, smoothing, and prolongations are performed on these two arrays subsequently.
+ *
  ********************************************************************************************************************************************
  */
 void poisson::vCycle() {
@@ -286,6 +287,7 @@ void poisson::vCycle() {
  *          The memory required for various arrays in multi-grid solver are pre-allocated through this function.
  *          The function is called from within the constructor to perform this allocation once and for all.
  *          The arrays are initialized to 0.
+ *
  ********************************************************************************************************************************************
  */
 void poisson::initializeArrays() {
@@ -369,6 +371,7 @@ void poisson::setStagBounds() {
  *          As a result, the number of processors in each direction must be a power of 2.
  *          In this case, the the value \f$ M \f$ of \f$ 2^M + 1 \f$ can be computed as \f$ M = N - log_2(np) \f$
  *          where \f$ np \f$ is the number of processors along the direction under consideration.
+ *
  ********************************************************************************************************************************************
  */
 void poisson::setLocalSizeIndex() {
@@ -390,6 +393,7 @@ void poisson::setLocalSizeIndex() {
  *
  *          The function assigns values to the variables \ref hx, \ref hy etc.
  *          These coefficients are repeatedly used at many places in the Poisson solver.
+ *
  ********************************************************************************************************************************************
  */
 void poisson::setCoefficients() {
@@ -499,6 +503,7 @@ void poisson::copyStaggrDerivs() {
  *          Coarsening reduces the number of points in the grid by averaging values at two adjacent nodes onto an intermediate point between them
  *          As a result, the number of points in the domain decreases from \f$ 2^{N+1} + 1 \f$ at the input level to \f$ 2^N + 1 \f$.
  *          The vLevel variable is accordingly incremented by 1 to reflect this descent by one step down the V-Cycle.
+ *
  ********************************************************************************************************************************************
  */
 void poisson::coarsen() { };
@@ -511,6 +516,7 @@ void poisson::coarsen() { };
  *          Prolongation makes the grid finer by averaging values at two adjacent nodes onto an intermediate point between them
  *          As a result, the number of points in the domain increases from \f$ 2^N + 1 \f$ at the input level to \f$ 2^{N+1} + 1 \f$.
  *          The vLevel variable is accordingly reduced by 1 to reflect this ascent by one step up the V-Cycle.
+ *
  ********************************************************************************************************************************************
  */
 void poisson::prolong() { };
@@ -566,6 +572,7 @@ real poisson::computeError(const int normOrder) {  return 0.0; };
  *          The sub-domains close to the wall will have the Neumann boundary condition on pressure imposeed at the walls.
  *          Meanwhile at the interior boundaries at the inter-processor sub-domains, data is transferred from the neighbouring cells
  *          by calling the \ref updatePads function.
+ *
  ********************************************************************************************************************************************
  */
 void poisson::imposeBC() { };
@@ -578,6 +585,7 @@ void poisson::imposeBC() { };
  *          This function is called mainly during smoothing operations by the \ref imposeBC function.
  *          At the interior boundaries at the inter-processor sub-domains, data is transferred from the neighbouring cells
  *          using a combination of MPI_Irecv and MPI_Send functions.
+ *
  ********************************************************************************************************************************************
  */
 void poisson::updatePads(blitz::Array<blitz::Array<real, 3>, 1> &data) { };
@@ -592,6 +600,7 @@ void poisson::updatePads(blitz::Array<blitz::Array<real, 3>, 1> &data) { };
  *          The number of sub-arrays along each edge/face of the sub-domains are equal to the number of V-cycle levels.
  *          Since this data transfer has to take place at all the mesh levels including the finest mesh, there will be
  *          vcDepth + 1 elements.
+ *
  ********************************************************************************************************************************************
  */
 void poisson::createMGSubArrays() { };
@@ -604,6 +613,7 @@ void poisson::createMGSubArrays() { };
  *          The function populates the arrays with predetermined values at all locations.
  *          It then calls updatePads at different vLevels and checks is the data is being transferred along x and y directions
  *          This done by printing the contents of the arrays for visual inspection for now.
+ *
  ********************************************************************************************************************************************
  */
 real poisson::testTransfer() { return 0; };
@@ -615,6 +625,7 @@ real poisson::testTransfer() { return 0; };
  *          The function populates the arrays with predetermined values at all locations.
  *          It then calls prolong function at a lower vLevel and checks if the data is being interpolated correctly at higher vLevel
  *          This done by returning the average deviation from correct values as a real value
+ *
  ********************************************************************************************************************************************
  */
 real poisson::testProlong() { return 0; };
@@ -626,6 +637,7 @@ real poisson::testProlong() { return 0; };
  *          The function populates the arrays with predetermined values at all locations.
  *          It then calls imposeBC function at different vLevels and checks if the correct values of the functions are imposed at boundaries
  *          This done by printing the contents of the arrays for visual inspection for now.
+ *
  ********************************************************************************************************************************************
  */
 real poisson::testPeriodic() { return 0; };

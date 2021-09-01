@@ -56,12 +56,14 @@ class sfield {
         const grid &gridData;
 
         blitz::Array<real, 3> derivTempF;
-        
+
     public:
         field F;
 
+        /** derS is an instance of the derivative class used to compute derivatives */
         derivative derS;
 
+        /** This string is used to identify the vector field, and is useful in file-writing */
         std::string fieldName;
 
         blitz::Array<real, 3> interTempF;
