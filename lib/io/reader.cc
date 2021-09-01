@@ -226,10 +226,24 @@ real reader::readData() {
     H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
 
     // First create a file handle with the path to the input file
-    fileHandle = H5Fopen("output/restartFile.h5", H5F_ACC_RDONLY, plist_id);
+    H5E_BEGIN_TRY {
+        fileHandle = H5Fopen("output/restartFile.h5", H5F_ACC_RDONLY, plist_id);
+    } H5E_END_TRY;
+
+    // Abort if file doesn't exist
+    if (fileHandle < 0) {
+        if (mesh.rankData.rank == 0) {
+            std::cout << "ERROR: Restart flag is true, but could not open restart file. Aborting" << std::endl;
+        }
+        MPI_Finalize();
+        exit(0);
+    }
 
     // Close the property list for later reuse
     H5Pclose(plist_id);
+
+    // Check the restart file for consistency with input parameters
+    restartCheck(fileHandle);
 
     // Read the scalar value containing the time from the restart file
     hid_t timeDSpace = H5Screate(H5S_SCALAR);
@@ -310,6 +324,79 @@ void reader::copyData(field &outField) {
         }
     }
 #endif
+}
+
+/**
+ ********************************************************************************************************************************************
+ * \brief   Function to check compatibility of restart file with input parameters
+ *
+ *          Firstly, the dimensions of arrays in restart file must match with those in the parameters.
+ *          Secondly, the array limits of the data are verified with the sizes specified in the input parameters.
+ *
+ ********************************************************************************************************************************************
+ */
+void reader::restartCheck(hid_t fHandle) {
+    // Use the pressure data to get size of dataset
+    hid_t pData = H5Dopen2(fHandle, "P", H5P_DEFAULT);
+    hid_t pSpace = H5Dget_space(pData);
+    const int ndims = H5Sget_simple_extent_ndims(pSpace);
+#ifdef PLANAR
+    if (ndims != 2) {
+        if (mesh.rankData.rank == 0) {
+            std::cout << "ERROR: Dimensionality of restart file conflicts with solver parameters. Aborting" << std::endl;
+        }
+        MPI_Finalize();
+        exit(0);
+    }
+#else
+    if (ndims != 3) {
+        if (mesh.rankData.rank == 0) {
+            std::cout << "ERROR: Dimensionality of restart file conflicts with solver parameters. Aborting" << std::endl;
+        }
+        MPI_Finalize();
+        exit(0);
+    }
+#endif
+    hsize_t dims[ndims];
+    H5Sget_simple_extent_dims(pSpace, dims, NULL);
+
+    // Abort if size of dataset doesn't match input parameters
+    if (int(dims[0]) != mesh.globalSize(0)) {
+        if (mesh.rankData.rank == 0) {
+            std::cout << "ERROR: Array limits in restart file conflicts with solver parameters. Aborting" << std::endl;
+        }
+        MPI_Finalize();
+        exit(0);
+    }
+#ifdef PLANAR
+    if (int(dims[1]) != mesh.globalSize(2)) {
+        if (mesh.rankData.rank == 0) {
+            std::cout << "ERROR: Array limits in restart file conflicts with solver parameters. Aborting" << std::endl;
+        }
+        MPI_Finalize();
+        exit(0);
+    }
+#else
+    if (int(dims[1]) != mesh.globalSize(1)) {
+        if (mesh.rankData.rank == 0) {
+            std::cout << "ERROR: Array limits in restart file conflicts with solver parameters. Aborting" << std::endl;
+        }
+        MPI_Finalize();
+        exit(0);
+    }
+
+    if (int(dims[2]) != mesh.globalSize(2)) {
+        if (mesh.rankData.rank == 0) {
+            std::cout << "ERROR: Array limits in restart file conflicts with solver parameters. Aborting" << std::endl;
+        }
+        MPI_Finalize();
+        exit(0);
+    }
+#endif
+
+    // Close dataset and dataspace
+    H5Dclose(pData);
+    H5Sclose(pSpace);
 }
 
 reader::~reader() { }

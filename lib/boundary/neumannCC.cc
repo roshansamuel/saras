@@ -70,8 +70,9 @@ neumannCC::neumannCC(const grid &mesh, field &inField, const int bcWall, const r
  */
 inline void neumannCC::imposeBC() {
     if (rankFlag) {
-        // UNDER DEVELOPMENT
+        // This implementation assumes that the derivative at boundary is 0, and needs update
         dField.F(dField.fWalls(wallNum)) = dField.F(dField.shift(shiftDim, dField.fWalls(wallNum), shiftVal));
+
         //dField.F(dField.fWalls(4)) = dField.F(dField.fWalls(4)) +
         //        wallData*(2.0*wallData - dField.F(dField.shift(2, dField.fWalls(4), 1)));
     }

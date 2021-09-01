@@ -211,6 +211,7 @@ void writer::initLimits() {
     }
 }
 
+
 /**
  ********************************************************************************************************************************************
  * \brief   Function to create output folder if it does not exist
@@ -429,6 +430,7 @@ void writer::writeSolution(real time) {
             exit(0);
         }
 
+        // Close dataset for reuse
         H5Dclose(dataSet);
     }
 
@@ -467,7 +469,7 @@ void writer::writeRestart(real time) {
     // Close the property list for later reuse
     H5Pclose(plist_id);
 
-    // Add a single scalar value containing the time in the restart file
+    // Add the scalar value of time to the restart file
     hid_t timeDSpace = H5Screate(H5S_SCALAR);
     dataSet = H5Dcreate2(fileHandle, "Time", H5T_NATIVE_REAL, timeDSpace, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
     status = H5Dwrite(dataSet, H5T_NATIVE_REAL, timeDSpace, timeDSpace, H5P_DEFAULT, &time);
@@ -508,6 +510,7 @@ void writer::writeRestart(real time) {
             exit(0);
         }
 
+        // Close dataset for reuse
         H5Dclose(dataSet);
     }
 

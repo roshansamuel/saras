@@ -44,7 +44,7 @@
 
 /**
  ********************************************************************************************************************************************
- * \brief   Constructor of the boundary class
+ * \brief   Constructor of the neumannFC class
  *
  *          The constructor initializes the base boundary class using part of the arguments supplied to it.
  *          The value of the derivative of the field at the boundary, denoted by fieldValue, is also set in the initialization list.
@@ -70,6 +70,7 @@ neumannFC::neumannFC(const grid &mesh, field &inField, const int bcWall, const r
  */
 inline void neumannFC::imposeBC() {
     if (rankFlag) {
+        // This implementation assumes that the derivative at boundary is 0, and needs update
         dField.F(dField.fWalls(wallNum)) = dField.F(dField.shift(shiftDim, dField.fWalls(wallNum), shiftVal));
     }
 }

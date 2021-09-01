@@ -73,8 +73,8 @@ class reader {
         std::vector< blitz::TinyVector<int, 3> > localSize;
 
         void initLimits();
-
         void copyData(field &outField);
+        void restartCheck(hid_t fHandle);
 
     public:
         reader(const grid &mesh, std::vector<field> &rFields);

@@ -98,9 +98,9 @@ class boundary {
  *              - 1 = Y direction
  *              - 2 = Z direction
  *
- *         The view of the wall slice defined by any one of the blitz RectDomain objects in the \ref field#fWalls has to
+ *         The wall slice defined by the blitz RectDomain objects in the \ref field#fWalls has to be
  *         shifted to the left or right in order to access data at the points adjacent to the wall.
- *         This is needed when averaging/interpolating the values at the wall.
+ *         This is done when averaging/interpolating the values at the wall.
  *         The integer value by which this shifting has to be done is specified by \ref shiftVal, which could be either +1 or -1.
  *         
  *         Finally not all subdomains need to have the BC applied to them.
@@ -231,6 +231,21 @@ class hotPlateCC: public boundary {
  ********************************************************************************************************************************************
  *  \class hotPlateCC boundary.h "lib/boundary/boundary.h"
  *  \brief The derived class from boundary to apply mixed boundary condition involving a heated plate for a cell-centered variable.
+ *
+ ********************************************************************************************************************************************
+ */
+
+class nullBC: public boundary {
+    public:
+        nullBC(const grid &mesh, field &inField, const int bcWall): boundary(mesh, inField, bcWall) { };
+
+        inline void imposeBC() { };
+};
+
+/**
+ ********************************************************************************************************************************************
+ *  \class nullBC boundary.h "lib/boundary/boundary.h"
+ *  \brief The derived class from boundary to impose null boundary condition that leaves the data unchanged.
  *
  ********************************************************************************************************************************************
  */
